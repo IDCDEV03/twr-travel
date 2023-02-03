@@ -25,11 +25,28 @@
                         <b><?php echo e(session('success')); ?></b>
                     </div>
                 <?php endif; ?>
-
-
-
-
-
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="table-info">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">รถที่เช่า</th>
+                            <th scope="col">จำนวนผู้โดยสาร</th>
+                            <th scope="col">วันที่เช่า</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>รายละเอียด</td>
+                        </tr>                        
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
