@@ -31,19 +31,25 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">รถที่เช่า</th>
-                            <th scope="col">จำนวนผู้โดยสาร</th>
+                            <th scope="col">สถานที่</th>                           
                             <th scope="col">วันที่เช่า</th>
+                            <th scope="col">สถานะ</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
+                       @foreach ($car_rent as $item)
                         <tr>
                             <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td>{{$item->car_type}}</td>
+                            <td>{{$item->start_place}}-{{$item->end_place}}</td>         
+                            <td>
+                            {{ Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
+                            </td>
+                            <td></td>
                             <td>รายละเอียด</td>
-                        </tr>                        
+                        </tr>      
+                        @endforeach                  
                         </tbody>
                     </table>
                 </div>

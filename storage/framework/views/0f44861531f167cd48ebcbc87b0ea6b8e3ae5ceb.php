@@ -31,19 +31,24 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">รถที่เช่า</th>
-                            <th scope="col">จำนวนผู้โดยสาร</th>
+                            <th scope="col">สถานที่</th>                           
                             <th scope="col">วันที่เช่า</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
+                       <?php $__currentLoopData = $car_rent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
                             <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td><?php echo e($item->car_type); ?></td>
+                            <td><?php echo e($item->start_place); ?>-<?php echo e($item->end_place); ?></td>         
+                            <td>
+                            <?php echo e(Carbon\Carbon::parse($item->created_at)->format('d/m/Y')); ?>
+
+                            </td>
                             <td>รายละเอียด</td>
-                        </tr>                        
+                        </tr>      
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                  
                         </tbody>
                     </table>
                 </div>

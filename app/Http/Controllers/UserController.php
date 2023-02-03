@@ -280,7 +280,11 @@ class UserController extends Controller
 
   public function car_rental_list()
   {
-    return view('userpages.car_rent_list');
+    $user_id = Auth::user()->id;
+    $car_rent = DB::table('user_car_rents')
+    ->where('member_id','=',$user_id)
+    ->get();
+    return view('userpages.car_rent_list', compact('car_rent'));
   }
 
   public function add_car_rent(Request $request)
