@@ -7,17 +7,17 @@
     <meta name="description" content="Thanwarat Travel">
     <meta name="keywords" content="#">
     <meta name="author" content="ID Drives">
-    <link rel="icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon">
+    <link rel="icon" href="<?php echo e(asset('assets/images/favicon.png')); ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo e(asset('assets/images/favicon.png')); ?>" type="image/x-icon">
     <title>สมาชิก : Thanwarat Travel</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
-    @include('layouts.simple.css')
-    @yield('style')
+    <?php echo $__env->make('layouts.simple.css', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->yieldContent('style'); ?>
   </head>
-  <body @if(Route::current()->getName() == 'index') onload="startTime()" @endif>
+  <body <?php if(Route::current()->getName() == 'index'): ?> onload="startTime()" <?php endif; ?>>
     <div class="loader-wrapper">
       <div class="loader-index"><span></span></div>
       <svg>
@@ -34,40 +34,40 @@
     <!-- page-wrapper Start-->
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
       <!-- Page Header Start-->
-      @include('userLayouts.simple.header')
+      <?php echo $__env->make('userLayouts.simple.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
       <!-- Page Header Ends  -->
       <!-- Page Body Start-->
       <div class="page-body-wrapper">
         <!-- Page Sidebar Start-->
-        @include('userLayouts.simple.sidebar')
+        <?php echo $__env->make('userLayouts.simple.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <!-- Page Sidebar Ends-->
         <div class="page-body">
           <div class="container-fluid">        
             <div class="page-title">
               <div class="row">
                 <div class="col-6">
-                  @yield('breadcrumb-title')
+                  <?php echo $__env->yieldContent('breadcrumb-title'); ?>
                 </div>
                 <div class="col-6">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('/') }}"> <i data-feather="home"></i></a></li>
-                    @yield('breadcrumb-items')
+                    <li class="breadcrumb-item"><a href="<?php echo e(route('/')); ?>"> <i data-feather="home"></i></a></li>
+                    <?php echo $__env->yieldContent('breadcrumb-items'); ?>
                   </ol>
                 </div>
               </div>
             </div>
           </div>
           <!-- Container-fluid starts-->
-          @yield('content')
+          <?php echo $__env->yieldContent('content'); ?>
           <!-- Container-fluid Ends-->
         </div>
         <!-- footer start-->
-        @include('userLayouts.simple.footer') 
+        <?php echo $__env->make('userLayouts.simple.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?> 
         
       </div>
     </div>
     <!-- latest jquery-->
-    @include('userLayouts.simple.script')  
+    <?php echo $__env->make('userLayouts.simple.script', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>  
     <!-- Plugin used-->
 
     <script type="text/javascript">
@@ -77,4 +77,4 @@
       }
     </script>
   </body>
-</html>
+</html><?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/userLayouts/simple/master.blade.php ENDPATH**/ ?>

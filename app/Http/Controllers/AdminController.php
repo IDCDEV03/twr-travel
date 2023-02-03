@@ -526,6 +526,17 @@ class AdminController extends Controller
     return view('admin.invoice', compact('invoice'));
   }
  
+  public function list_invoice()
+  {
+    $list_invoice = DB::table('member_booking_packages')
+    ->join('package_tours','package_tours.package_id','=','member_booking_packages.package_id')
+    ->join('booking_quotations','booking_quotations.booking_id','=','member_booking_packages.booking_id')
+    ->where('member_booking_packages.booking_status','=','5')
+    ->orderBy('booking_quotations.updated_at', 'desc')
+    ->get();
+    return view('admin.list_invoice',compact('list_invoice'));
+  }
+
 
 
 }

@@ -223,7 +223,7 @@
                 </div>
                 <div class="co-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="copyright_right">
-                        <img src="<?php echo e(asset('assets_home/img/common/cards.png')); ?>" alt="img">
+                        <img src="<?php echo e(asset('assets_home/img/common/cards.png')); ?>" alt="img" width="100">
                     </div>
                 </div>
             </div>

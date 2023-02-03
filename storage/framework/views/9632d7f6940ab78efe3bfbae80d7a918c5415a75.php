@@ -12,14 +12,14 @@
                                 <a href="#!"><i class="fab fa-instagram"></i></a>
                                 <a href="#!"><i class="fab fa-linkedin"></i></a>
                             </li>
-                            <li><a href="#!"><span>+011 234 567 89</span></a></li>
-                            <li><a href="#!"><span>contact@domain.com</span></a></li>
+                            <li><a href="#!"><span>Tel.081-8718548 , 081-2616178</span></a></li>
+                            <li><a href="#!"><span>thanwarattravel@gmail.com</span></a></li>
                         </ul>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <ul class="topbar-others-options">
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="register.html">Sign up</a></li>
+                            <li><a href="<?php echo e(route('login.show')); ?>">เข้าสู่ระบบ</a></li>
+                            <li><a href="<?php echo e(route('register.show')); ?>">สมัครสมาชิก</a></li>
                         </ul>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                 <div class="container">
                     <div class="main-responsive-menu">
                         <div class="logo">
-                            <a href="index.php">
+                            <a href="<?php echo e(route('/')); ?>">
                                 <img src="<?php echo e(asset('assets_home/img/logo.png')); ?>" alt="logo" >
                             </a>
                         </div>
@@ -41,14 +41,14 @@
             <div class="main-navbar">
                 <div class="container">
                     <nav class="navbar navbar-expand-md navbar-light">
-                    <a class="navbar-brand" href="index.php">
+                    <a class="navbar-brand" href="<?php echo e(route('/')); ?>">
                             <img src="<?php echo e(asset('assets_home/img/logo02.png')); ?>" alt="logo">
                         </a>
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a href="#" class="nav-link active">
-                                        Home
+                                        หน้าแรก
                                         <i class="fas fa-angle-down"></i>
                                     </a>
                                     <ul class="dropdown-menu">
@@ -87,43 +87,11 @@
                                         </li>
                                     </ul>
                                 </li>
+                              
+                          
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
-                                       เที่ยวบิน
-                                        <i class="fas fa-angle-down"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="flight-search-result.html" class="nav-link">Flight</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="flight-booking-submission.html" class="nav-link">Flight Booking</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                       ตารางรถไฟ
-                                        <i class="fas fa-angle-down"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="hotel-search.html" class="nav-link">Hotel</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="hotel-details.html" class="nav-link">Hotel Booking</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="room-details.html" class="nav-link">Room Details</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="room-booking.html" class="nav-link">Room Booking</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                       ตารางรถบัส
+                                       จองรถ
                                         <i class="fas fa-angle-down"></i>
                                     </a>
                                     <ul class="dropdown-menu">
@@ -136,21 +104,7 @@
                                         <li class="nav-item">
                                             <a href="visa-info.html" class="nav-link">Business visa </a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a href="visa-info.html" class="nav-link">Education visa </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="visa-info.html" class="nav-link">Working visa </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="visa-info.html" class="nav-link">Tourist visa </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="visa-info.html" class="nav-link">Medical visa </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="visa-info.html" class="nav-link">On-arrival visa </a>
-                                        </li>
+                                        
                                     </ul>
                                 </li>
 
@@ -164,7 +118,7 @@
                                         <i class="bi bi-search"></i></a>
                                 </div>
                                 <div class="option-item">
-                                    <a href="become-vendor.html" class="btn  btn_navber">สมัครสมาชิก</a>
+                                    <a href="<?php echo e(route('register.show')); ?>" class="btn  btn_navber">สมัครสมาชิก</a>
                                 </div>
                             </div>
                         </div>

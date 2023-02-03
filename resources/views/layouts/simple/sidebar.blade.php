@@ -66,6 +66,7 @@
                             style="display: {{ request()->route()->getPrefix() == '/page-layouts'? 'block;': 'none;' }}">
                             <li><a href="{{ route('admin.user_data') }}">ข้อมูลสมาชิก</a></li>
                             <li><a href="{{ route('booking_chk') }}"> ข้อมูลคำสั่งซื้อ</a></li>
+                            <li><a href="{{ route('admin.list_invoice') }}">รายการใบสั่งจอง</a></li>
                             <li><a href=""> รายงาน</a></li>
                            
                         </ul>

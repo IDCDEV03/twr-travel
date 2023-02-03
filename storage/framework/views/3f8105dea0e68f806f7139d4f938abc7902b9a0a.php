@@ -50,7 +50,7 @@ div {
 }
     </style>
     <style type="text/css">
-        @media print {
+        @media  print {
             #non-printable {
                 display: none;
             }
@@ -68,14 +68,14 @@ div {
     <div id="non-printable">
         <div class="card">
             <div class="card-body">
-                <a href="{{ URL::previous() }}" class="btn btn-secondary">ย้อนกลับ</a>
+                <a href="<?php echo e(route('user_quotation', ['id' => request()->id])); ?>" class="btn btn-secondary">ย้อนกลับ</a>
                 <button class="btn btn-primary" onclick="window.print()">พิมพ์</button>
             </div>
         </div>
     </div>
 
     <div id="printable">
-        @foreach($invoice as $item)
+        <?php $__currentLoopData = $invoice; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 <!---- start ----->
 
           <!-- Container-fluid starts-->
@@ -93,9 +93,9 @@ div {
                             <tr>                          
                               <td>
                                 <img class="media-object img-60"
-                                src="{{ asset('assets/images/logo.png') }}"
-                                alt="" width="100px">
-                                 <span class="fs-26"><strong>ธัญวรัตม์ ทราเวล</strong> </span>
+                            src="<?php echo e(asset('assets/images/logo.png')); ?>"
+                            alt="" width="100px">
+                             <span class="fs-26"><strong>ธัญวรัตม์ ทราเวล</strong> </span>
                               </td>
                               <td>
                                 <h3>ใบจองแพ็คเกจ </h3>
@@ -108,23 +108,25 @@ div {
                                 <span>
                                  โทร. 0818718548 , 0812616178 , 042-116-338</span>
                               <br>
-                             <p> 444/11 ม.6 หมู่บ้านการเด้นโฮม2 ถ.รอบเมือง ต.หมากแข้ง  <br>อ.เมือง จ.อุดรธานี 41000
+                             <p> ที่อยู่ : 444/11 ม.6 หมู่บ้านการเด้นโฮม2 ถ.รอบเมือง ต.หมากแข้ง  <br>อ.เมือง จ.อุดรธานี 41000
                           </p>  
                               </td>  
                               <td>
                                 <p>เลขที่: <span>
-                                  {{ $item->quotation_id }}
+                                  <?php echo e($item->quotation_id); ?>
+
                               </span>
                               <br>
                                 วันที่: <span>
-                                  {{ Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
+                                  <?php echo e(Carbon\Carbon::parse($item->created_at)->format('d/m/Y')); ?>
+
       
                               </span><br> ใช้ได้ถึง:
                               <span>
-                                  @php
+                                  <?php
       $end = Carbon::parse($item->created_at)->addDays(15)->format('d/m/Y');
       echo $end;
-      @endphp
+      ?>
       
                               </span>
                                 </td>                         
@@ -140,10 +142,10 @@ div {
                             <div class="media">                             
                               <div class="media-body m-l-20">
                                 <p>ลูกค้า</p>
-                                <h4 class="media-heading">{{ auth()->user()->member_name }}</h4>
+                                <h4 class="media-heading"><?php echo e(auth()->user()->member_name); ?></h4>
                                 <p>
-                                    {{$item->member_email}} 
-                                    <br><span>{{$item->user_phone}}</span></p>
+                                    <?php echo e($item->member_email); ?> 
+                                    <br><span><?php echo e($item->user_phone); ?></span></p>
                               </div>
                             </div>
                           </div>                      
@@ -164,26 +166,30 @@ div {
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p class="m-0">{{ $item->code_tour }}</p>
+                                            <p class="m-0"><?php echo e($item->code_tour); ?></p>
                                         </td>
                                         <td>
-                                            <label>{{ $item->package_name }}
+                                            <label><?php echo e($item->package_name); ?>
+
                                                 <br>
-                                                จำนวนที่นั่ง : {{ $item->number_of_travel }}
+                                                จำนวนที่นั่ง : <?php echo e($item->number_of_travel); ?>
+
                                                 <br>
                                                 วันที่เดินทางไป-กลับ :
-                                                {{ Carbon\Carbon::parse($item->date_start)->format('d/m/Y') }}
+                                                <?php echo e(Carbon\Carbon::parse($item->date_start)->format('d/m/Y')); ?>
+
                                                 -
-                                                {{ Carbon\Carbon::parse($item->date_end)->format('d/m/Y') }}
+                                                <?php echo e(Carbon\Carbon::parse($item->date_end)->format('d/m/Y')); ?>
+
                                             </label>
                                         </td>
                         
                                         <td>
                                             <p class="itemtext">
-                                                @php
+                                                <?php
                                                     $total_price = number_format($item->total_price);
                                                     echo $total_price;
-                                                @endphp</p>
+                                                ?></p>
                                         </td>
                                     </tr>
                                     <tr >
@@ -196,10 +202,10 @@ div {
                         
                                         <td class="txt-secondary"> 
                                             <p class="itemtext">
-                                                @php
+                                                <?php
                                                     $deposit_price = number_format($item->price_deposit);
                                                     echo $deposit_price;
-                                                @endphp</p>
+                                                ?></p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -211,10 +217,10 @@ div {
                                         </td>
                                         <td>
                                             <p class="itemtext">
-                                                @php
+                                                <?php
                                                     $result = $item->total_price - $item->price_deposit;
                                                     echo number_format($result);
-                                                @endphp</p>
+                                                ?></p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -225,11 +231,11 @@ div {
                                         </td>
                                         <td class="payment">
                                             <h6 class="mb-0 p-2">
-                                                @php
+                                                <?php
                                                 $deposit_price = number_format($item->price_deposit);
                                                     echo
                                                 $deposit_price;
-                                                @endphp
+                                                ?>
                                                 บาท</h6>
                                         </td>
                                     </tr>
@@ -245,8 +251,9 @@ div {
                                       <li>โอนชำระผ่านบัญชี</li>
                                       <li>###
                                           <p>
-                                        ###
-                                      
+                                          ###
+                                      <br>
+                                    
                                   </p>
                                       </li>
                                   </ul>
@@ -255,12 +262,12 @@ div {
                               </div>
                             </div>
                             <div class="col-md-4">
-                              @if($item->quotation_status == '2')
+                              <?php if($item->quotation_status == '2'): ?>
                               <span class="txt-success">
                                <strong>หมายเหตุ : ดำเนินการชำระมัดจำงวดที่ 1 แล้ว 
                                </strong>
                                </span>
-                               @endif
+                               <?php endif; ?>
                             </div>
                           </div>
                         </div>
@@ -273,8 +280,11 @@ div {
 
 
 
-@endforeach
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
+
+
+
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
@@ -282,3 +292,4 @@ div {
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/userpages/user_invoice.blade.php ENDPATH**/ ?>

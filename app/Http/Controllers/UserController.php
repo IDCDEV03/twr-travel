@@ -253,13 +253,29 @@ class UserController extends Controller
     return back()->with("status", "เปลี่ยนรหัสผ่านเรียบร้อยแล้ว!");
   }
 
-  public function all_packages()
+  public function all_packages(Request $request)
   {
-    $all_packages = DB::table('package_tours')
-    ->where('package_status','=','1')
-    ->orderBy('created_at', 'desc')
-    ->get();
-    return view('userpages.all_packages', compact('all_packages'));
+    $search = $request['search'] ?? "";
+    if ($search != "")
+    {
+      $all_packages = DB::table('package_tours')
+      ->where('package_name','LIKE',"%$search%")
+      ->orderBy('created_at', 'desc')
+      ->get();
+    }else{
+      $all_packages = DB::table('package_tours')
+      ->where('package_status','=','1')
+      ->orderBy('created_at', 'desc')
+      ->get();
+    }
+  
+    return view('userpages.all_packages', compact('all_packages','search'));
+  }
+
+  //เช่ารถ
+  public function car_rental()
+  {
+    return view('userpages.car_rent');
   }
 
 }

@@ -62,6 +62,8 @@ Route::get('/admin/userbooking/{id}', $controller_path . '\AdminController@user_
 
 //admin_invoice
 Route::get('/admin/invoice/{id}', $controller_path . '\AdminController@admin_invoice')->name('admin.invoice');
+Route::get('/admin/list_invoice', $controller_path . '\AdminController@list_invoice')->name('admin.list_invoice');
+
 
 });
 
@@ -93,6 +95,8 @@ Route::POST('/user/update_profile/{id}', $controller_path . '\UserController@use
 Route::get('/user/update_password', $controller_path . '\UserController@user_password')->name('user_password');
 Route::POST('/user/change_password', $controller_path . '\UserController@update_password')->name('update_password');
 
+//user_เช่ารถ
+Route::get('/user/car-rental', $controller_path . '\UserController@car_rental')->name('user.car-rental');
 
 //HOME_FRONT-END
 Route::get('/about-us', $controller_path . '\HomeController@about_us')->name('about_us.show');

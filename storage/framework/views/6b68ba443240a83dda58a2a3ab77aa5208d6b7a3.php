@@ -1,35 +1,35 @@
-@extends('userLayouts.simple.master')
-@section('title', 'Invoice')
 
-@section('css')
-<link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/Prompt/Prompt-Bold.ttf')}}">
-@endsection
+<?php $__env->startSection('title', 'Invoice'); ?>
 
-@section('style')
+<?php $__env->startSection('css'); ?>
+<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/fonts/Prompt/Prompt-Bold.ttf')); ?>">
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('style'); ?>
 <style>
-    @media print
+    @media  print
 {
 #non-printable { display: none; }
 #printable { display: block; }
 }
 </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('breadcrumb-title')
+<?php $__env->startSection('breadcrumb-title'); ?>
     <h3>ใบจองแพ็คเกจ</h3>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('breadcrumb-items')
-@endsection
+<?php $__env->startSection('breadcrumb-items'); ?>
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 
                 <div class="card">
                     <div class="card-body">
-                        @foreach ($user_quotation as $item)
+                        <?php $__currentLoopData = $user_quotation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="invoice">
 <div id="printable">
     <div>
@@ -37,7 +37,7 @@
             <div class="col-sm-6">
                 <div class="media">
                     <div class="media-left"><img class="media-object img-80"
-                            src="{{ asset('assets/images/logo.png') }}"
+                            src="<?php echo e(asset('assets/images/logo.png')); ?>"
                             alt=""></div>
                     <div class="media-body m-l-20 text-right">
                         <h4 class="media-heading">ธัญวรัตม์ ทราเวล</h4>
@@ -55,18 +55,20 @@
                 <div class="text-md-end text-xs-center">
                     <h3>ใบจองแพ็คเกจ </h3>
                     <p>เลขที่: <span>
-                            {{ $item->quotation_id }}
+                            <?php echo e($item->quotation_id); ?>
+
                         </span>
                         <br>
                         วันที่: <span>
-                            {{ Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
+                            <?php echo e(Carbon\Carbon::parse($item->created_at)->format('d/m/Y')); ?>
+
 
                         </span><br> ใช้ได้ถึง:
                         <span>
-                            @php
+                            <?php
 $end = Carbon::parse($item->created_at)->addDays(15)->format('d/m/Y');
 echo $end;
-@endphp
+?>
 
                         </span>
                     </p>
@@ -82,10 +84,10 @@ echo $end;
     <div class="media">
         <div class="media-body m-l-20">
             <p>ลูกค้า</p>
-            <h4 class="media-heading">{{ auth()->user()->member_name }}</h4>
+            <h4 class="media-heading"><?php echo e(auth()->user()->member_name); ?></h4>
             <p>
-                {{$item->member_email}} 
-                <br><span>{{$item->user_phone}}</span></p>
+                <?php echo e($item->member_email); ?> 
+                <br><span><?php echo e($item->user_phone); ?></span></p>
         </div>
     </div>
 </div>
@@ -107,26 +109,30 @@ echo $end;
             </tr>
             <tr>
                 <td>
-                    <p class="m-0">{{ $item->code_tour }}</p>
+                    <p class="m-0"><?php echo e($item->code_tour); ?></p>
                 </td>
                 <td>
-                    <label>{{ $item->package_name }}
+                    <label><?php echo e($item->package_name); ?>
+
                         <br>
-                        จำนวนที่นั่ง : {{ $item->number_of_travel }}
+                        จำนวนที่นั่ง : <?php echo e($item->number_of_travel); ?>
+
                         <br>
                         วันที่เดินทางไป-กลับ :
-                        {{ Carbon\Carbon::parse($item->date_start)->format('d/m/Y') }}
+                        <?php echo e(Carbon\Carbon::parse($item->date_start)->format('d/m/Y')); ?>
+
                         -
-                        {{ Carbon\Carbon::parse($item->date_end)->format('d/m/Y') }}
+                        <?php echo e(Carbon\Carbon::parse($item->date_end)->format('d/m/Y')); ?>
+
                     </label>
                 </td>
 
                 <td>
                     <p class="itemtext">
-                        @php
+                        <?php
                             $total_price = number_format($item->total_price);
                             echo $total_price;
-                        @endphp</p>
+                        ?></p>
                 </td>
             </tr>
             <tr >
@@ -139,10 +145,10 @@ echo $end;
 
                 <td class="txt-secondary"> 
                     <p class="itemtext">
-                        @php
+                        <?php
                             $deposit_price = number_format($item->price_deposit);
                             echo $deposit_price;
-                        @endphp</p>
+                        ?></p>
                 </td>
             </tr>
             <tr>
@@ -154,10 +160,10 @@ echo $end;
                 </td>
                 <td>
                     <p class="itemtext">
-                        @php
+                        <?php
                             $result = $item->total_price - $item->price_deposit;
                             echo number_format($result);
-                        @endphp</p>
+                        ?></p>
                 </td>
             </tr>
             <tr>
@@ -168,11 +174,11 @@ echo $end;
                 </td>
                 <td class="payment">
                     <h6 class="mb-0 p-2">
-                        @php
+                        <?php
                         $deposit_price = number_format($item->price_deposit);
                             echo
                         $deposit_price;
-                        @endphp
+                        ?>
                         บาท</h6>
                 </td>
             </tr>
@@ -198,9 +204,9 @@ echo $end;
                     </div>
                 </div>
                 <div class="col-md-4">
-                    @if($item->quotation_status == '2')
+                    <?php if($item->quotation_status == '2'): ?>
                    <span class="txt-success">หมายเหตุ : ชำระมัดจำงวดที่ 1 แล้ว </span>
-                    @endif
+                    <?php endif; ?>
                 </div>
             </div>
                                     </div>
@@ -208,10 +214,10 @@ echo $end;
                                 </div>
                                 <div id="non-printable">
                                     <div class="col-sm-12 text-center mt-3">
-                                    @if($item->quotation_status == '0')
-                                    <a href="{{url('/user/payment/'.$item->quotation_id)}}" class="btn btn-secondary">แจ้งชำระเงิน</a>
-                                    @endif
-                                    <a href="{{url('/user/invoice/'.$item->booking_id)}}" class="btn btn btn-primary me-2" type="button"
+                                    <?php if($item->quotation_status == '0'): ?>
+                                    <a href="<?php echo e(url('/user/payment/'.$item->quotation_id)); ?>" class="btn btn-secondary">แจ้งชำระเงิน</a>
+                                    <?php endif; ?>
+                                    <a href="<?php echo e(url('/user/invoice/'.$item->booking_id)); ?>" class="btn btn btn-primary me-2" type="button"
                                     >พิมพ์</a>
                                 </div>
                                 </div>
@@ -225,12 +231,14 @@ echo $end;
             </div>
         </div>
     </div>
-    @endforeach
-@endsection
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+<?php $__env->stopSection(); ?>
 
-@section('script')
-    <script src="{{ asset('assets/js/counter/jquery.waypoints.min.js') }}"></script>
-    <script src="{{ asset('assets/js/counter/jquery.counterup.min.js') }}"></script>
-    <script src="{{ asset('assets/js/counter/counter-custom.js') }}"></script>
-    <script src="{{ asset('assets/js/print.js') }}"></script>
-@endsection
+<?php $__env->startSection('script'); ?>
+    <script src="<?php echo e(asset('assets/js/counter/jquery.waypoints.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/counter/jquery.counterup.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/counter/counter-custom.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/print.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('userLayouts.simple.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/userpages/booking_quotation.blade.php ENDPATH**/ ?>
