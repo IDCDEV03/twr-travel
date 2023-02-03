@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('end_province');
             $table->string('end_district');
             $table->string('end_place');
-            $table->date('star_travel');
+            $table->date('start_travel');
             $table->date('back_travel');
             $table->string('car_for');
             $table->text('travel_detail');

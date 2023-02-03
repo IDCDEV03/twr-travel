@@ -46,7 +46,7 @@
 						  <li><a href="{{ route('booking_status') }}" class="{{ Route::currentRouteName() == 'box-layout' ? 'active' : '' }}">ตรวจสอบสถานะการจอง</a></li>   
  
 						  <li>
-							<a href="{{ route('user.car-rental')}}" >บริการเช่ารถ</a>
+							<a href="{{ route('user.car-rental-list')}}" >บริการเช่ารถ</a>
 						</li> 
 
 						<li>

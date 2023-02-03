@@ -19,7 +19,8 @@
             <div class="card-body">
 
              
-                <form class="form theme-form">
+                <form class="form theme-form" action="{{ route('user.add_car_rent') }}" method="POST" >
+                  @csrf
                     <div class="card-body">
                       <div class="row">                   
                         <div class="col">
@@ -115,18 +116,7 @@
                         </div>
                       </div>
                     </div>
-<br>
-                    <div class="row">
-                      <div class="col">
-                        <div class="mb-3 row">
-                          <label class="col-sm-3 col-form-label">แนบไฟล์รายละเอียดการเดินทาง (ถ้ามี)</label>
-                          <div class="col-sm-9">
-                            <input class="form-control" name="travel_detail_file" type="file">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                      
+                                      
                     <div class="row g-3">
                    
                       <div class="col-md-6">

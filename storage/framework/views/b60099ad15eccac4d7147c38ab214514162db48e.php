@@ -47,7 +47,7 @@
 						  <li><a href="<?php echo e(route('booking_status')); ?>" class="<?php echo e(Route::currentRouteName() == 'box-layout' ? 'active' : ''); ?>">ตรวจสอบสถานะการจอง</a></li>   
  
 						  <li>
-							<a href="<?php echo e(route('user.car-rental')); ?>" >บริการเช่ารถ</a>
+							<a href="<?php echo e(route('user.car-rental-list')); ?>" >บริการเช่ารถ</a>
 						</li> 
 
 						<li>

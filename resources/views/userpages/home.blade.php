@@ -33,7 +33,7 @@
                         </div>                      
                     </a>
 
-                    <a href="{{ route('user.car-rental') }}" class="list-group-item list-group-item-action flex-column "
+                    <a href="{{ route('user.car-rental-list') }}" class="list-group-item list-group-item-action flex-column "
                     href="javascript:void(0)">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">บริการเช่ารถ</h5>

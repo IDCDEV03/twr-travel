@@ -7,7 +7,7 @@ use App\Models\member_booking_package;
 use App\Models\User;
 use Illuminate\Pagination\Paginator;
 use App\Http\Controllers\Controller;
-use App\Models\package_tour;
+use App\Models\user_car_rent;
 use Carbon\Carbon;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 use Illuminate\Http\Request;
@@ -276,6 +276,23 @@ class UserController extends Controller
   public function car_rental()
   {
     return view('userpages.car_rent');
+  }
+
+  public function car_rental_list()
+  {
+    return view('userpages.car_rent_list');
+  }
+
+  public function add_car_rent(Request $request)
+  {
+      $ิrent_id = Str::random(8);
+      $data = $request->all();
+      $data['created_at'] = Carbon::now();
+      $data['rent_id'] = $ิrent_id;
+
+      user_car_rent::create($data);
+
+      return redirect()->route('userPages.home')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
   }
 
 }
