@@ -3,6 +3,7 @@
 @section('title', 'Default')
 
 @section('css')
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/date-picker.css')}}">
 @endsection
 
 @section('style')
@@ -87,12 +88,11 @@
                    
                         <div class="col-md-4">
                           <label class="form-label">วันที่เดินทางไป</label>
-                          <input class="form-control" name="start_travel" type="text">
-                
+                          <input class="datepicker-here form-control digits" type="text" id="minMaxExample" data-language="en" name="start_travel">                
                         </div>
                         <div class="col-md-4">
                           <label class="form-label" >วันที่เดินทางกลับ</label>
-                          <input class="form-control" name="back_travel" type="text" >               
+                          <input class="datepicker-here form-control digits" type="text" id="minMaxExample2" data-language="en" name="end_travel">             
                         </div>    
                         <div class="col-md-4">
                             <label class="form-label"> ประเภทการใช้รถ </label>
@@ -187,4 +187,7 @@
 @section('script')
     <script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
     <script src="{{ asset('assets/js/dashboard/default.js') }}"></script>
+    <script src="{{asset('assets/js/datepicker/date-picker/datepicker.js')}}"></script>
+    <script src="{{asset('assets/js/datepicker/date-picker/datepicker.en.js')}}"></script>
+    <script src="{{asset('assets/js/datepicker/date-picker/datepicker.custom.js')}}"></script>
 @endsection

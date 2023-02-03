@@ -287,16 +287,25 @@ class UserController extends Controller
     return view('userpages.car_rent_list', compact('car_rent'));
   }
 
+  public function car_rent_detail($id)
+  {
+    $car_rent = DB::table('user_car_rents')
+    ->where('rent_id','=',$id)
+    ->get();
+    return view('userpages.car_rent_detail',compact('car_rent'));
+  }
+
   public function add_car_rent(Request $request)
   {
       $ิrent_id = Str::random(8);
       $data = $request->all();
       $data['created_at'] = Carbon::now();
       $data['rent_id'] = $ิrent_id;
+      $data['rent_status'] = '0';
 
       user_car_rent::create($data);
 
-      return redirect()->route('userPages.home')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
+      return redirect()->route('user.car-rental-list')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
   }
 
 }

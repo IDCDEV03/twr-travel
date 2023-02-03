@@ -46,8 +46,30 @@
                             <td>
                             {{ Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
                             </td>
-                            <td></td>
-                            <td>รายละเอียด</td>
+                            <td>
+
+                                @if ($item->rent_status == '0')
+                                <span class="badge bg-secondary">รอตรวจสอบ</span>
+                                @elseif ($item->rent_status == '1')
+                                <span class="badge bg-info">
+                                    ส่งใบเสนอราคาแล้ว
+                                </span>
+                                @elseif ($item->rent_status == '2')
+                                <span class="badge bg-danger">
+                                    ยกเลิกการจอง
+                                </span>
+                                @elseif ($item->rent_status == '3')
+                                <span class="badge bg-secondary">
+                                    แจ้งชำระเงินแล้ว<br> รอตรวจสอบ
+                                </span>
+                                @elseif ($item->rent_status == '4')
+                                <span class="badge bg-success">
+                                   ตรวจสอบการชำระเงินเรียบร้อย
+                                </span>
+                                @endif
+
+                            </td>
+                            <td><a href="{{route('user.rent_detail', ['id' => $item->rent_id])}}" >รายละเอียด</a> </td>
                         </tr>      
                         @endforeach                  
                         </tbody>

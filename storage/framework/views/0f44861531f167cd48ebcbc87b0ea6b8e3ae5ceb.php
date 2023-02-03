@@ -33,6 +33,7 @@
                             <th scope="col">รถที่เช่า</th>
                             <th scope="col">สถานที่</th>                           
                             <th scope="col">วันที่เช่า</th>
+                            <th scope="col">สถานะ</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -46,7 +47,30 @@
                             <?php echo e(Carbon\Carbon::parse($item->created_at)->format('d/m/Y')); ?>
 
                             </td>
-                            <td>รายละเอียด</td>
+                            <td>
+
+                                <?php if($item->rent_status == '0'): ?>
+                                <span class="badge bg-secondary">รอตรวจสอบ</span>
+                                <?php elseif($item->rent_status == '1'): ?>
+                                <span class="badge bg-info">
+                                    ส่งใบเสนอราคาแล้ว
+                                </span>
+                                <?php elseif($item->rent_status == '2'): ?>
+                                <span class="badge bg-danger">
+                                    ยกเลิกการจอง
+                                </span>
+                                <?php elseif($item->rent_status == '3'): ?>
+                                <span class="badge bg-secondary">
+                                    แจ้งชำระเงินแล้ว<br> รอตรวจสอบ
+                                </span>
+                                <?php elseif($item->rent_status == '4'): ?>
+                                <span class="badge bg-success">
+                                   ตรวจสอบการชำระเงินเรียบร้อย
+                                </span>
+                                <?php endif; ?>
+
+                            </td>
+                            <td><a href="<?php echo e(route('user.rent_detail', ['id' => $item->rent_id])); ?>" >รายละเอียด</a> </td>
                         </tr>      
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                  
                         </tbody>

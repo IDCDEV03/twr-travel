@@ -3,6 +3,7 @@
 <?php $__env->startSection('title', 'Default'); ?>
 
 <?php $__env->startSection('css'); ?>
+<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/css/vendors/date-picker.css')); ?>">
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('style'); ?>
@@ -87,12 +88,11 @@
                    
                         <div class="col-md-4">
                           <label class="form-label">วันที่เดินทางไป</label>
-                          <input class="form-control" name="start_travel" type="text">
-                
+                          <input class="datepicker-here form-control digits" type="text" id="minMaxExample" data-language="en" name="start_travel">                
                         </div>
                         <div class="col-md-4">
                           <label class="form-label" >วันที่เดินทางกลับ</label>
-                          <input class="form-control" name="back_travel" type="text" >               
+                          <input class="datepicker-here form-control digits" type="text" id="minMaxExample2" data-language="en" name="end_travel">             
                         </div>    
                         <div class="col-md-4">
                             <label class="form-label"> ประเภทการใช้รถ </label>
@@ -187,6 +187,9 @@
 <?php $__env->startSection('script'); ?>
     <script src="<?php echo e(asset('assets/js/notify/bootstrap-notify.min.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/js/dashboard/default.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/datepicker/date-picker/datepicker.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/datepicker/date-picker/datepicker.en.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/datepicker/date-picker/datepicker.custom.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('userLayouts.simple.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/userpages/car_rent.blade.php ENDPATH**/ ?>

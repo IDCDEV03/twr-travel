@@ -98,6 +98,7 @@ Route::POST('/user/change_password', $controller_path . '\UserController@update_
 //user_เช่ารถ
 Route::get('/user/car-rental', $controller_path . '\UserController@car_rental')->name('user.car-rental');
 Route::get('/user/car-rental-list', $controller_path . '\UserController@car_rental_list')->name('user.car-rental-list');
+Route::get('/user/car-rental-detail/{id}', $controller_path . '\UserController@car_rent_detail')->name('user.rent_detail');
 //user_บันทึกเช่ารถ
 Route::post('/user/add-car-rent', $controller_path . '\UserController@add_car_rent')->name('user.add_car_rent');
 
