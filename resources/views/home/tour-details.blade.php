@@ -103,6 +103,7 @@
             </div>
         </div>
     </section>
+    
     @foreach ($package_tours as $item)
     <!-- Tour Search Areas -->
     <section id="tour_details_main" class="section_padding">
@@ -178,6 +179,11 @@ $img_path = 'public/package_file/';
                                     </div>
                                     @endforeach
                             </div>
+                        </div>
+
+                        <div class="tour_details_boxed">
+                            <a href="{{asset($item->package_file)}}"><h3 class="heading_theme">ดาวน์โหลดโปรแกรมทัวร์</h3></a>
+                          
                         </div>
 
                         <div class="tour_details_boxed">

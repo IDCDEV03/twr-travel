@@ -45,7 +45,8 @@
                             <img src="<?php echo e(asset('assets_home/img/logo02.png')); ?>" alt="logo">
                         </a>
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
+                            <ul class="navbar-nav">                              
+
                                 <li class="nav-item">
                                     <a href="#" class="nav-link active">
                                         หน้าแรก
@@ -63,6 +64,13 @@
                                         </li>
                                     </ul>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a href="<?php echo e(route('about_us.show')); ?>" class="nav-link">
+                                       เกี่ยวกับเรา
+                                    </a>
+                                </li>
+
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         แพ็คเกจทัวร์
@@ -90,22 +98,10 @@
                               
                           
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                       จองรถ
-                                        <i class="fas fa-angle-down"></i>
+                                    <a href="<?php echo e(route('bus_rental.show')); ?>" class="nav-link">
+                                       รถบัสให้เช่า                                       
                                     </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="visa-details.html" class="nav-link">Visa Details</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="visa-application.html" class="nav-link">Visa Application</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="visa-info.html" class="nav-link">Business visa </a>
-                                        </li>
-                                        
-                                    </ul>
+                                   
                                 </li>
 
                                 <li class="nav-item">

@@ -107,6 +107,7 @@ Route::get('/about-us', $controller_path . '\HomeController@about_us')->name('ab
 Route::get('/contact', $controller_path . '\HomeController@contact')->name('contact.show');
 Route::get('/service', $controller_path . '\HomeController@service')->name('service.show');
 Route::get('/package/{id}', $controller_path . '\HomeController@package')->name('package.show');
+Route::get('/bus-rental', $controller_path . '\HomeController@web_car_rental')->name('bus_rental.show');
 
 //Route Register&Login
 Route::group(['namespace' => 'App\Http\Controllers'], function()

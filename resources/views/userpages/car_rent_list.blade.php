@@ -26,7 +26,7 @@
                     </div>
                 @endif
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-bordered">
                         <thead class="table-info">
                         <tr>
                             <th scope="col">#</th>
@@ -49,21 +49,21 @@
                             <td>
 
                                 @if ($item->rent_status == '0')
-                                <span class="badge bg-secondary">รอตรวจสอบ</span>
+                                <span class="txt-secondary">รอตรวจสอบ</span>
                                 @elseif ($item->rent_status == '1')
-                                <span class="badge bg-info">
+                                <span class="txt-info">
                                     ส่งใบเสนอราคาแล้ว
                                 </span>
                                 @elseif ($item->rent_status == '2')
-                                <span class="badge bg-danger">
+                                <span class="txt-danger">
                                     ยกเลิกการจอง
                                 </span>
                                 @elseif ($item->rent_status == '3')
-                                <span class="badge bg-secondary">
+                                <span class="txt-secondary">
                                     แจ้งชำระเงินแล้ว<br> รอตรวจสอบ
                                 </span>
                                 @elseif ($item->rent_status == '4')
-                                <span class="badge bg-success">
+                                <span class="txt-success">
                                    ตรวจสอบการชำระเงินเรียบร้อย
                                 </span>
                                 @endif

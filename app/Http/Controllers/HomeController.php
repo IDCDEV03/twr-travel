@@ -50,8 +50,8 @@ class HomeController extends Controller
         return view('userpages.home');
     }
 
-    public function adminHome() 
+     public function web_car_rental()
     {
-        return view('admin.list_package');
+        return view('home.web_car');
     }
 }

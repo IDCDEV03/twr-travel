@@ -155,63 +155,67 @@
         </div>
     </section>
 
-    <!-- Top Service And Tour Area-->
-    <section id="top_service_andtour">
-        <div class="container">
-            <!-- Section Heading -->
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="section_heading_center">
-                        <h2>บริการของเรา</h2>
-                    </div>
+
+   <!-- Top destinations -->
+   <section id="top_destinations" class="section_padding_top">
+    <div class="container">
+        <!-- Section Heading -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="section_heading_center">
+                    <h2>ผลงานของเรา</h2>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="top_service_boxed">
-                        <img src="<?php echo e(asset('assets_home/img/icon/s3.png')); ?>" width="120px" alt="icon">
-                        <h3>จัดอบรมสัมมนา</h3>
-
-                    </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                <div class="destinations_content_box img_animation">
+                    <img src="<?php echo e(asset('assets_home/img/tour_pic/001.jpg')); ?>" alt="img">
+                 
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="top_service_boxed">
-                        <img src="<?php echo e(asset('assets_home/img/icon/s2.png')); ?>" width="120px" alt="icon">
-                        <h3>ศึกษาดูงาน-นำเที่ยว</h3>
-
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                        <div class="destinations_content_box img_animation">
+                            <img src="<?php echo e(asset('assets_home/img/tour_pic/009.jpg')); ?>" alt="img">
+                         
+                        </div>
+                        <div class="destinations_content_box img_animation">
+                            <img src="<?php echo e(asset('assets_home/img/tour_pic/002.jpg')); ?>" alt="img">
+                        </div>
+                        <div class="destinations_content_box img_animation">
+                            <img src="<?php echo e(asset('assets_home/img/tour_pic/003.jpg')); ?>" alt="img">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="top_service_boxed">
-                        <img src="<?php echo e(asset('assets_home/img/icon/s4.png')); ?>" width="120px" alt="icon">
-                        <h3>ปรึกษาวีซ่า/ตั๋วเครื่องบิน</h3>
-
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                        <div class="destinations_content_box img_animation">
+                            <img src="<?php echo e(asset('assets_home/img/tour_pic/004-1.jpg')); ?>" alt="img">
+                        </div>
+                        <div class="destinations_content_box img_animation">
+                            <img src="<?php echo e(asset('assets_home/img/tour_pic/005.jpg')); ?>" alt="img">
+                        </div>
+                        <div class="destinations_content_box img_animation">
+                            <img src="<?php echo e(asset('assets_home/img/tour_pic/006.jpg')); ?>" alt="img">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="top_service_boxed">
-                        <img src="<?php echo e(asset('assets_home/img/icon/s5.png')); ?>" width="120px" alt="icon">
-                        <h3>แปลเอกสาร</h3>
-
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="top_service_boxed">
-                        <img src="<?php echo e(asset('assets_home/img/icon/s6.png')); ?>" width="120px" alt="icon">
-                        <h3>ท่องเที่ยวแบบ Home Stay</h3>
-
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="top_service_boxed">
-                        <img src="<?php echo e(asset('assets_home/img/icon/s7.png')); ?>" width="120px" alt="icon">
-                        <h3>ท่องเที่ยวแบบ Long Stay</h3>
-
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                        <div class="destinations_content_box img_animation">
+                            <img src="<?php echo e(asset('assets_home/img/tour_pic/007.jpg')); ?>" alt="img">
+                        </div>
+                        <div class="destinations_content_box img_animation">
+                            <img src="<?php echo e(asset('assets_home/img/tour_pic/008.jpg')); ?>" alt="img">
+                        </div>
+                        <div class="destinations_content_box img_animation">
+                            <img src="<?php echo e(asset('assets_home/img/tour_pic/010.jpg')); ?>" alt="img">
+                        </div>
+                 
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <div class="copyright_area">
         <div class="container">

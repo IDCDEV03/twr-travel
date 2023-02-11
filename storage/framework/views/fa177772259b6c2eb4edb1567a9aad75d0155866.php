@@ -103,6 +103,7 @@
             </div>
         </div>
     </section>
+    
     <?php $__currentLoopData = $package_tours; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <!-- Tour Search Areas -->
     <section id="tour_details_main" class="section_padding">
@@ -179,6 +180,11 @@ $img_path = 'public/package_file/';
                                     </div>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
+                        </div>
+
+                        <div class="tour_details_boxed">
+                            <a href="<?php echo e(asset($item->package_file)); ?>"><h3 class="heading_theme center">ดาวน์โหลดโปรแกรมทัวร์</h3></a>
+                          
                         </div>
 
                         <div class="tour_details_boxed">

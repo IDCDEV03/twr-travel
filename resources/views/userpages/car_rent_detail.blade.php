@@ -80,7 +80,7 @@
                   <hr>
                
                   <div class="m-t-15">
-                    <button class="btn btn-primary m-r-10" type="button" title=""> <i class="fa fa-shopping-basket me-1"></i>ยกเลิกการจอง</button>
+                    <button class="btn btn-danger m-r-10" type="button" title=""> <i class="fa fa-close"></i> ยกเลิกการจอง</button>
                    
                   </div>
                 </div>
