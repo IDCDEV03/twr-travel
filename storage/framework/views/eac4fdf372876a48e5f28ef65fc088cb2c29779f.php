@@ -33,50 +33,62 @@
                     <h3>รายละเอียดการเช่ารถ</h3>
                   </div>
                   <div class="product-price">
-                    ประเภทรถ                   
+                    ประเภทรถ :<?php echo e($item->car_type); ?> 
                   </div>
                 
                   <hr>
-                  <p>สถานะ :</p>
+                 
+                  <p>สถานะ :
+
+                    <?php if($item->rent_status == '0'): ?>
+                    <span class="txt-secondary f-w-100"> รอเจ้าหน้าที่ตรวจสอบและส่งใบจอง </span>
+                    <?php elseif($item->rent_status == '1'): ?>
+                    <span class="txt-info f-w-100"> ส่งใบจองแล้ว </span>
+                    <?php endif; ?>
+
+                  </p>
                   <hr>
                   <div>
                     <table class="product-page-width">
                       <tbody>
                         <tr>
                           <td> <b>ที่อยู่ต้นทาง &nbsp;&nbsp;&nbsp;:</b></td>
-                          <td class="txt-success"> <?php echo e($item->start_place); ?> </td>
+                          <td class="txt-success"> <?php echo e($item->start_place); ?> / 
+                            <?php echo e($item->start_district); ?> / <?php echo e($item->start_province); ?> </td>
                         </tr>
                         <tr>
                           <td> <b>ที่อยู่ปลายทาง &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                          <td class="txt-primary"><?php echo e($item->end_place); ?></td>
+                          <td class="txt-primary"><?php echo e($item->end_place); ?>
+
+                            / <?php echo e($item->end_district); ?> / <?php echo e($item->end_province); ?></td>
                         </tr>
                         <tr>
                           <td> <b>ประเภทการใช้รถ &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                          <td>ABC</td>
+                          <td><?php echo e($item->car_for); ?></td>
                         </tr>
                         <tr>
                           <td> <b>จำนวนผู้โดยสาร &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                          <td>Cotton</td>
+                          <td><?php echo e($item->number_people); ?></td>
                         </tr>
                         <tr>
                             <td> <b>จำนวนรถที่ต้องการ &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                            <td>Cotton</td>
+                            <td><?php echo e($item->number_of_car); ?></td>
                           </tr>
                           <tr>
                             <td> <b>วันที่เดินทางไป &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                            <td>Cotton</td>
+                            <td> <?php echo e(Carbon\Carbon::parse($item->start_travel)->format('d/m/Y')); ?></td>
                           </tr>
                           <tr>
                             <td> <b>วันที่เดินทางกลับ &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                            <td>Cotton</td>
+                            <td><?php echo e(Carbon\Carbon::parse($item->back_travel)->format('d/m/Y')); ?></td>
                           </tr>
                       </tbody>
                     </table>
                   </div>
                   <hr>
-                  <p>รายละเอียดการเดินทาง :</p>
+                  <p>รายละเอียดการเดินทาง : <?php echo e($item->travel_detail); ?></p>
                   <hr>
-                  <p>รายละเอียดอื่นๆเพิ่มเติม</p>
+                  <p>รายละเอียดอื่นๆเพิ่มเติม : <?php echo e($item->other_req); ?></p>
                   <hr>
                
                   <div class="m-t-15">
