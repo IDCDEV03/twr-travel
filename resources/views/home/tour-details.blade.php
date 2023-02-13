@@ -92,10 +92,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="common_bannner_text">
-                        <h2>Explore the evergreen forest</h2>
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><span><i class="fas fa-circle"></i></span><a href="tour-search.html">Tours</a></li>
+                        <h2>แพ็คเกจทัวร์</h2>
+                        <ul>                     
                             <li><span><i class="fas fa-circle"></i></span> Tours Details</li>
                         </ul>
                     </div>
@@ -239,87 +237,22 @@ $img_path = 'public/package_file/';
                         <div class="tour_detail_right_sidebar">
                             <div class="tour_details_right_boxed">
                                 <div class="tour_details_right_box_heading">
-                                    <h3>Standard package</h3>
+                                    <h3>สนใจจองทัวร์นี้</h3>
                                 </div>
-                                <div class="valid_date_area">
-                                    <div class="valid_date_area_one">
-                                        <h5>Valid from</h5>
-                                        <p>01 Feb 2022</p>
-                                    </div>
-                                    <div class="valid_date_area_one">
-                                        <h5>Valid till</h5>
-                                        <p>15 Feb 2022</p>
-                                    </div>
-                                </div>
-                                <div class="tour_package_details_bar_list">
-                                    <h5>Package details</h5>
-                                    <ul>
-                                        <li><i class="fas fa-circle"></i>Buffet breakfast as per the Itinerary</li>
-                                        <li><i class="fas fa-circle"></i>Visit eight villages showcasing Polynesian
-                                            culture
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Complimentary Camel safari, Bonfire,</li>
-                                        <li><i class="fas fa-circle"></i>All toll tax, parking, fuel, and driver
-                                            allowances
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Comfortable and hygienic vehicle</li>
-                                    </ul>
-                                </div>
+                          
                                 <div class="tour_package_details_bar_price">
-                                    <h5>Price</h5>
+                               
                                     <div class="tour_package_bar_price">
-                                        <h6><del>$ 35,500</del></h6>
-                                        <h3>$ 30,500 <sub>/Per serson</sub> </h3>
+ 
+                                        <h3>{{number_format($item->package_price)}}<sub> บาท/ท่าน </sub> </h3>
                                     </div>
                                 </div>
                             </div>
                             <div class="tour_select_offer_bar_bottom">
-                                <button class="btn btn_theme btn_md w-100" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Select
-                                    offer</button>
+                                <button class="btn btn_theme btn_md w-100" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">จองแพ็คเกจ</button>
                             </div>
                         </div>
-                        <div class="tour_detail_right_sidebar">
-                            <div class="tour_details_right_boxed">
-                                <div class="tour_details_right_box_heading">
-                                    <h3>Deluxe package</h3>
-                                </div>
-                                <div class="valid_date_area">
-                                    <div class="valid_date_area_one">
-                                        <h5>Valid from</h5>
-                                        <p>01 Feb 2022</p>
-                                    </div>
-                                    <div class="valid_date_area_one">
-                                        <h5>Valid till</h5>
-                                        <p>15 Feb 2022</p>
-                                    </div>
-                                </div>
-                                <div class="tour_package_details_bar_list">
-                                    <h5>Package details</h5>
-                                    <ul>
-                                        <li><i class="fas fa-circle"></i>Buffet breakfast as per the Itinerary</li>
-                                        <li><i class="fas fa-circle"></i>Visit eight villages showcasing Polynesian
-                                            culture
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Complimentary Camel safari, Bonfire,</li>
-                                        <li><i class="fas fa-circle"></i>All toll tax, parking, fuel, and driver
-                                            allowances
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Comfortable and hygienic vehicle</li>
-                                    </ul>
-                                </div>
-                                <div class="tour_package_details_bar_price">
-                                    <h5>Price</h5>
-                                    <div class="tour_package_bar_price">
-                                        <h6><del>$ 35,500</del></h6>
-                                        <h3>$ 30,500 <sub>/Per serson</sub> </h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tour_select_offer_bar_bottom">
-                                <button class="btn btn_theme btn_md w-100" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Select
-                                    offer</button>
-                            </div>
-                        </div>
+                  
 
                     </div>
                 </div>

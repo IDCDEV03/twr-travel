@@ -4,6 +4,7 @@
 
 <?php $__env->startSection('css'); ?>
 <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/css/vendors/date-picker.css')); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/css/vendors/select2.css')); ?>">
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('style'); ?>
@@ -44,9 +45,16 @@
                         <p class="h6 txt-secondary">ที่อยู่ (ต้นทาง)</p>
                         <div class="col-md-6">
                           <label class="form-label">จังหวัด</label>
-                          <input class="form-control" name="start_province" type="text">
+                          <select class="js-example-basic-single" name="start_province">         
+                              <option selected disabled value="" >เลือกจังหวัด..</option>                     
+                            <?php $__currentLoopData = $province; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                             <option value="<?php echo e($item->name_th); ?>"><?php echo e($item->name_th); ?>
+
+                            </option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                          </select>                      
+                        </div>                       
                 
-                        </div>
                         <div class="col-md-6">
                           <label class="form-label" >อำเภอ/เขต</label>
                           <input class="form-control" name="start_district" type="text" >               
@@ -66,8 +74,14 @@
                         <p class="h6 txt-info">ที่อยู่ (ปลายทาง)</p>
                         <div class="col-md-6">
                           <label class="form-label">จังหวัด</label>
-                          <input class="form-control" name="end_province" type="text">
-                
+                          <select class="js-example-basic-single" name="end_province">         
+                            <option selected disabled value="" >เลือกจังหวัด..</option>                     
+                          <?php $__currentLoopData = $province; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                           <option value="<?php echo e($item->name_th); ?>"><?php echo e($item->name_th); ?>
+
+                          </option>
+                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>  
                         </div>
                         <div class="col-md-6">
                           <label class="form-label" >อำเภอ/เขต</label>
@@ -92,7 +106,7 @@
                         </div>
                         <div class="col-md-4">
                           <label class="form-label" >วันที่เดินทางกลับ</label>
-                          <input class="datepicker-here form-control digits" type="text" id="minMaxExample2" data-language="en" name="end_travel">             
+                          <input class="datepicker-here form-control digits" type="text" id="minMaxExample2" data-language="en" name="back_travel">             
                         </div>    
                         <div class="col-md-4">
                             <label class="form-label"> ประเภทการใช้รถ </label>
@@ -190,6 +204,8 @@
     <script src="<?php echo e(asset('assets/js/datepicker/date-picker/datepicker.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/js/datepicker/date-picker/datepicker.en.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/js/datepicker/date-picker/datepicker.custom.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/select2/select2.full.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/js/select2/select2-custom.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('userLayouts.simple.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/userpages/car_rent.blade.php ENDPATH**/ ?>

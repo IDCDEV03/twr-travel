@@ -7,10 +7,7 @@
                     <div class="col-lg-6 col-md-6">
                         <ul class="topbar-list">
                             <li>
-                                <a href="#!"><i class="fab fa-facebook"></i></a>
-                                <a href="#!"><i class="fab fa-twitter-square"></i></a>
-                                <a href="#!"><i class="fab fa-instagram"></i></a>
-                                <a href="#!"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://www.facebook.com/thanwarattravel/"><i class="fab fa-facebook"></i></a>
                             </li>
                             <li><a href="#!"><span>Tel.081-8718548 , 081-2616178</span></a></li>
                             <li><a href="#!"><span>thanwarattravel@gmail.com</span></a></li>
@@ -48,21 +45,9 @@
                             <ul class="navbar-nav">                              
 
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link active">
-                                        หน้าแรก
-                                        <i class="fas fa-angle-down"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="index.html" class="nav-link">Home One</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="index-2.html" class="nav-link">Home Two</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="index-3.html" class="nav-link active">Home Three</a>
-                                        </li>
-                                    </ul>
+                                    <a href="<?php echo e(route('/')); ?>" class="nav-link active">
+                                        หน้าแรก                                      
+                                    </a>                                   
                                 </li>
 
                                 <li class="nav-item">

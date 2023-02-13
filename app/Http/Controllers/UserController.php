@@ -275,7 +275,10 @@ class UserController extends Controller
   //เช่ารถ
   public function car_rental()
   {
-    return view('userpages.car_rent');
+    $province = DB::table('provinces')
+    ->orderBy('name_th', 'ASC')
+    ->get();
+    return view('userpages.car_rent',compact('province'));
   }
 
   public function car_rental_list()

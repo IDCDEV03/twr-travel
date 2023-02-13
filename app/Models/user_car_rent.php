@@ -29,6 +29,7 @@ class user_car_rent extends Model
         'member_email',
         'member_company',
         'member_phone',
-        'other_req'
+        'other_req',
+        'rent_status'
         ];
 }
