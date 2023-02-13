@@ -105,7 +105,7 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="contact.html" class="nav-link">ติดต่อเรา</a>
+                                    <a href="{{route('contact.show')}}" class="nav-link">ติดต่อเรา</a>
                                 </li>
                             </ul>
                             <div class="others-options d-flex align-items-center">
