@@ -64,6 +64,11 @@ Route::get('/admin/userbooking/{id}', $controller_path . '\AdminController@user_
 Route::get('/admin/invoice/{id}', $controller_path . '\AdminController@admin_invoice')->name('admin.invoice');
 Route::get('/admin/list_invoice', $controller_path . '\AdminController@list_invoice')->name('admin.list_invoice');
 
+//admin_เช่ารถ
+Route::get('/admin/car_rental_data', $controller_path . '\AdminController@car_rental_data')->name('admin.car_rental_data');
+Route::get('/admin/car_rental_detail/{id}', $controller_path . '\AdminController@car_rental_detail')->name('admin.car_rental_detail');
+Route::POST('/admin/car_rental_quotation/{id}', $controller_path . '\AdminController@car_rental_quotation')->name('admin.car_rental_quotation');
+Route::get('/admin/car_rental_invoice/{id}', $controller_path . '\AdminController@car_rental_invoice')->name('admin.car_rental_invoice');
 
 });
 

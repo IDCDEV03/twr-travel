@@ -537,6 +537,89 @@ class AdminController extends Controller
     return view('admin.list_invoice',compact('list_invoice'));
   }
 
+  public function car_rental_data()
+  {
+    $car_rent = DB::table('user_car_rents')
+    ->get();
+    return view('admin.car_rental_data',compact('car_rent'));
+  }
+
+  public function car_rental_detail($id)
+  {
+    $car_rent = DB::table('user_car_rents')
+    ->where('rent_id','=',$id)
+    ->get();
+    return view('admin.car_rental_detail',compact('car_rent'));
+  }
+
+  public function car_rental_quotation(Request $request,$id)
+  {
+    $quotation_id = 'C_'.date("ymd-hs");
+    $car_file = $request->file('car_rental_file');
+
+    if ($car_file) {
+      //generate รูปภาพ
+      $name_gen = hexdec(uniqid());
+      //ดึงนามสกุลไฟล์ภาพ
+      $pk_ext = strtolower($car_file->getClientOriginalExtension());
+      $car_file_name = $name_gen . '.' . $pk_ext;
+
+      //อัพโหลดและบันทึกข้อมูล
+      $upload_location = 'public/package_file/';
+      $full_path = $upload_location . $car_file_name;
+
+      DB::table('car_rent_quotations')->insert([
+        'rent_id' => $id,
+        'car_quotation' => $quotation_id,
+        'total_price' => $request->total_price,
+        'price_deposit' => $request->price_deposit,
+        'car_rental_file' => $full_path,
+        'car_quotation_detail' => $request->car_quotation_detail,
+        'created_at' => Carbon::now()
+      ]);
+
+      DB::table('user_car_rents')
+      ->where('rent_id', '=', $id)
+      ->update([
+        'rent_status' => '1',
+         'updated_at' => Carbon::now()
+      ]);
+
+      $car_file->move($upload_location, $car_file_name);
+      return redirect()->route('admin.car_rental_data')->with('success', "ส่งใบเสนอราคาเรียบร้อยแล้ว");
+    }else
+    {
+      DB::table('car_rent_quotations')->insert([
+        'rent_id' => $id,
+        'car_quotation' => $quotation_id,
+        'total_price' => $request->total_price,
+        'price_deposit' => $request->price_deposit,
+        'car_rental_file' => 'none',
+        'car_quotation_detail' => $request->car_quotation_detail,
+        'created_at' => Carbon::now()
+      ]);
+
+      DB::table('user_car_rents')
+      ->where('rent_id', '=', $id)
+      ->update([
+        'rent_status' => '1',
+         'updated_at' => Carbon::now()
+      ]);
+
+      return redirect()->route('admin.car_rental_data')->with('success', "ส่งใบเสนอราคาเรียบร้อยแล้ว");
+    }
+
+  }
+
+  public function car_rental_invoice($id)
+  {
+    $car_invoice = DB::table('user_car_rents')
+    ->join('car_rent_quotations','user_car_rents.rent_id','=','car_rent_quotations.rent_id')
+    ->where('car_rent_quotations.rent_id','=',$id)
+    ->get();
+
+    return view('admin.car_rental_invoice',compact('car_invoice'));
+  }
 
 
 }

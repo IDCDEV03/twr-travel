@@ -13,7 +13,7 @@
    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
-    <title>ผู้ดูแลระบบ : SP Inter Tour</title>
+    <title>ผู้ดูแลระบบ : Thanwarat Travel</title>
     <!-- Google font-->
     @include('layouts.simple.css')
     @yield('style')

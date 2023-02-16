@@ -34,18 +34,14 @@
                   </div>
                   <div class="product-price">
                     ประเภทรถ :<?php echo e($item->car_type); ?> 
-                  </div>
-                
-                  <hr>
-                 
+                  </div>                
+                  <hr>                 
                   <p>สถานะ :
-
                     <?php if($item->rent_status == '0'): ?>
                     <span class="txt-secondary f-w-100"> รอเจ้าหน้าที่ตรวจสอบและส่งใบจอง </span>
                     <?php elseif($item->rent_status == '1'): ?>
                     <span class="txt-info f-w-100"> ส่งใบจองแล้ว </span>
                     <?php endif; ?>
-
                   </p>
                   <hr>
                   <div>
