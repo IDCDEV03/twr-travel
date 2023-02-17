@@ -56,15 +56,15 @@
                                 </span>
                                 @elseif ($item->rent_status == '2')
                                 <span class="txt-danger">
-                                    ยกเลิกการจอง
+                                    แจ้งชำระเงินแล้ว<br> รอตรวจสอบ 
                                 </span>
                                 @elseif ($item->rent_status == '3')
                                 <span class="txt-secondary">
-                                    แจ้งชำระเงินแล้ว<br> รอตรวจสอบ
+                                    ชำระเงินมัดจำเรียบร้อยแล้ว
                                 </span>
                                 @elseif ($item->rent_status == '4')
-                                <span class="txt-success">
-                                   ตรวจสอบการชำระเงินเรียบร้อย
+                                <span class="txt-danger">
+                                    ยกเลิกการจอง
                                 </span>
                                 @endif
 

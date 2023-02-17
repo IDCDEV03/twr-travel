@@ -49,7 +49,7 @@
                                     class="<?php echo e(Route::currentRouteName() == 'box-layout' ? 'active' : ''); ?>">แพ็คเกจทัวร์</a>
                             </li>            
                             <li>
-                                <a href="<?php echo e(route('bank')); ?>">ข้อมูลธนาคาร</a>
+                                <a href="<?php echo e(route('admin.bank')); ?>">ข้อมูลธนาคาร</a>
                             </li>
                         </ul>
                     </li>

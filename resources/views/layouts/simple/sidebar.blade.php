@@ -48,7 +48,7 @@
                                     class="{{ Route::currentRouteName() == 'box-layout' ? 'active' : '' }}">แพ็คเกจทัวร์</a>
                             </li>            
                             <li>
-                                <a href="{{ route('bank') }}">ข้อมูลธนาคาร</a>
+                                <a href="{{ route('admin.bank') }}">ข้อมูลธนาคาร</a>
                             </li>
                         </ul>
                     </li>

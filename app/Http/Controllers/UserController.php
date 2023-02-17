@@ -286,6 +286,7 @@ class UserController extends Controller
     $user_id = Auth::user()->id;
     $car_rent = DB::table('user_car_rents')
     ->where('member_id','=',$user_id)
+    ->orderBy('created_at', 'desc')
     ->get();
     return view('userpages.car_rent_list', compact('car_rent'));
   }
@@ -309,6 +310,66 @@ class UserController extends Controller
       user_car_rent::create($data);
 
       return redirect()->route('user.car-rental-list')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
+  }
+
+  public function car_rent_invoice($id)
+  {
+    $car_invoice = DB::table('user_car_rents')
+    ->join('car_rent_quotations','user_car_rents.rent_id','=','car_rent_quotations.rent_id')
+    ->where('car_rent_quotations.rent_id','=',$id)
+    ->get();
+
+    $data_bank =  DB::table('admin_banks')  
+    ->get();
+    return view('userpages.car_rent_invoice',compact('car_invoice','data_bank'));
+  }
+
+  public function car_rent_payment($id)
+  {
+    $car_payment = DB::table('user_car_rents')
+    ->join('car_rent_quotations','user_car_rents.rent_id','=','car_rent_quotations.rent_id')
+    ->where('car_rent_quotations.rent_id','=',$id)
+    ->get();
+
+    $data_bank =  DB::table('admin_banks')  
+    ->get();
+
+    return view('userpages.car_rent_payment',compact('car_payment','data_bank'));
+  }
+
+  public function insert_car_rent_payment(Request $request,$id)
+  {
+
+    $quotation_id = 'CR_'.date("ymd-hs");
+
+    $payment_slip = $request->file('payment_slip');
+    $name_gen = hexdec(uniqid());
+    $payment_ext = strtolower($payment_slip->getClientOriginalExtension());
+    $payment_slip_name = $name_gen . '.' . $payment_ext;
+    $upload_location = 'public/package_file/';
+    $full_path = $upload_location . $payment_slip_name;
+
+    DB::table('car_rental_payments')
+    ->insert(
+      [
+        'member_id' => $request->member_id,
+        'code_pay' => $quotation_id,
+        'rent_id' => $id,
+        'payment_price' => $request->payment_price,
+        'payment_bank' => $request->payment_bank,
+        'payment_slip' => $full_path,
+        'created_at' => Carbon::now()
+      ]
+    );
+
+    DB::table('user_car_rents')
+    ->where('rent_id', '=', $id)
+    ->update([
+      'rent_status' => '2',
+      'updated_at' => Carbon::now()
+    ]);
+
+    return redirect()->route('user.car-rental-list')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
   }
 
 }

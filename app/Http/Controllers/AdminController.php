@@ -418,7 +418,30 @@ class AdminController extends Controller
 
   public function bank()
   {
-    return view('admin.bank');
+    $data_bank = DB::table('admin_banks')
+    ->get();
+    return view('admin.bank',compact('data_bank'));
+  }
+
+  public function insert_bank(Request $request)
+  {
+    DB::table('admin_banks')
+    ->insert([
+      'bank_name' => $request->bank_name,
+      'bank_account_name' => $request->bank_account_name,
+      'account_number' => $request->account_number,
+      'bank_branch' => $request->bank_branch,  
+      'created_at' => Carbon::now()
+    ]);
+    return redirect()->route('admin.bank')->with('success', "เพิ่มข้อมูลเรียบร้อยแล้ว");
+  }
+
+  public function delete_bank($id)
+  {
+    DB::table('admin_banks')
+    ->where('id', '=', $id)
+    ->delete();
+    return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อยแล้ว");
   }
 
   public function payment_chk($id)
@@ -540,6 +563,7 @@ class AdminController extends Controller
   public function car_rental_data()
   {
     $car_rent = DB::table('user_car_rents')
+    ->orderBy('created_at', 'desc')
     ->get();
     return view('admin.car_rental_data',compact('car_rent'));
   }
@@ -547,7 +571,7 @@ class AdminController extends Controller
   public function car_rental_detail($id)
   {
     $car_rent = DB::table('user_car_rents')
-    ->where('rent_id','=',$id)
+    ->where('rent_id','=',$id)    
     ->get();
     return view('admin.car_rental_detail',compact('car_rent'));
   }
@@ -618,7 +642,10 @@ class AdminController extends Controller
     ->where('car_rent_quotations.rent_id','=',$id)
     ->get();
 
-    return view('admin.car_rental_invoice',compact('car_invoice'));
+    $data_bank =  DB::table('admin_banks')  
+    ->get();
+
+    return view('admin.car_rental_invoice',compact('car_invoice','data_bank'));
   }
 
 

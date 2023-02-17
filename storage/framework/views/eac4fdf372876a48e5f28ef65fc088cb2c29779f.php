@@ -40,7 +40,12 @@
                     <?php if($item->rent_status == '0'): ?>
                     <span class="txt-secondary f-w-100"> รอเจ้าหน้าที่ตรวจสอบและส่งใบจอง </span>
                     <?php elseif($item->rent_status == '1'): ?>
-                    <span class="txt-info f-w-100"> ส่งใบจองแล้ว </span>
+                    <span class="txt-info f-w-100"> ส่งใบจองแล้ว รอชำระเงิน</span>
+                    <span ><a href="<?php echo e(route('user.car_rent_invoice', ['id'=>$item->rent_id])); ?>" class="txt-danger"> >> รายละเอียดใบจอง #<?php echo e($item->rent_id); ?></a></span>
+                    <?php elseif($item->rent_status == '2'): ?>
+                    <span class="txt-danger">
+                      แจ้งชำระเงินแล้ว รอตรวจสอบ 
+                  </span>
                     <?php endif; ?>
                   </p>
                   <hr>
@@ -86,9 +91,14 @@
                   <hr>
                   <p>รายละเอียดอื่นๆเพิ่มเติม : <?php echo e($item->other_req); ?></p>
                   <hr>
-               
+              
                   <div class="m-t-15">
+
+                    <?php if($item->rent_status == '1'): ?>
+                    <a href="<?php echo e(route('user.car_rent_payment', ['id'=>$item->rent_id])); ?>" class="btn btn-primary">แจ้งโอนเงิน</a>
                     <button class="btn btn-danger m-r-10" type="button" title=""> <i class="fa fa-close"></i> ยกเลิกการจอง</button>
+                    <?php endif; ?>
+                    
                    
                   </div>
                 </div>

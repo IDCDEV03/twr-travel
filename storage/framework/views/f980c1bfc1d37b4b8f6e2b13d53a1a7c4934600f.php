@@ -1,26 +1,25 @@
-@extends('layouts.simple.master')
-@section('title', 'ข้อมูลธนาคาร')
+<?php $__env->startSection('title', 'ข้อมูลธนาคาร'); ?>
 
-@section('css')
+<?php $__env->startSection('css'); ?>
  
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('style')
-@endsection
+<?php $__env->startSection('style'); ?>
+<?php $__env->stopSection(); ?>
 
-@section('breadcrumb-title')
+<?php $__env->startSection('breadcrumb-title'); ?>
     <h3>ข้อมูลธนาคาร</h3>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                @if (session('success'))
+                <?php if(session('success')): ?>
                 <div class="alert alert-success" role="alert">
-                    <b>{{ session('success') }}</b>
+                    <b><?php echo e(session('success')); ?></b>
                 </div>
-                @endif
+                <?php endif; ?>
 
                 <div class="card">                              
 
@@ -42,22 +41,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>   
-                                    @foreach ($data_bank as  $row)                             
+                                    <?php $__currentLoopData = $data_bank; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>                             
                                             <tr>
                                             
-                                                <td>{{$row->bank_name}}</td>
-                                                <td>{{$row->bank_account_name}}</td>
-                                                <td>{{$row->account_number}}</td>
-                                                <td>{{$row->bank_branch}}</td>
+                                                <td><?php echo e($row->bank_name); ?></td>
+                                                <td><?php echo e($row->bank_account_name); ?></td>
+                                                <td><?php echo e($row->account_number); ?></td>
+                                                <td><?php echo e($row->bank_branch); ?></td>
                                                 <td>
                                                 
                                                     <a class="btn btn-info" href="#"><i class="fa fa-edit"></i> แก้ไข</a>
       
-                                                        <a href="{{ route('admin.delete_bank', ['id' => $row->id]) }}" class="btn btn-danger" onclick="return confirm('ต้องการลบ ใช่หรือไม่?');"><i class="fa fa-trash-o"></i> ลบ</a>
+                                                        <a href="<?php echo e(route('admin.delete_bank', ['id' => $row->id])); ?>" class="btn btn-danger" onclick="return confirm('ต้องการลบ ใช่หรือไม่?');"><i class="fa fa-trash-o"></i> ลบ</a>
                                                     
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -76,8 +75,8 @@
           <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">.
-            <form action="{{route('admin.insert_bank')}}" method="post">
-                @csrf
+            <form action="<?php echo e(route('admin.insert_bank')); ?>" method="post">
+                <?php echo csrf_field(); ?>
                 <div class="row">
                     <div class="col">
                       <div class="mb-3">
@@ -119,7 +118,9 @@
       </div>
     </div>
   </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('script') 
-@endsection
+<?php $__env->startSection('script'); ?> 
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.simple.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/admin/bank.blade.php ENDPATH**/ ?>
