@@ -46,6 +46,11 @@
                     <span class="txt-danger">
                       แจ้งชำระเงินแล้ว รอตรวจสอบ 
                   </span>
+                  @elseif ($item->rent_status == '3')
+                                <span class="txt-secondary">
+                                    ชำระเงินมัดจำงวดที่ 1 แล้ว
+                                </span>
+                                <span ><a href="{{ route('user.car_rent_invoice', ['id'=>$item->rent_id]) }}" class="txt-danger"> >> รายละเอียดใบจอง #{{$item->rent_id}}</a></span>
                     @endif
                   </p>
                   <hr>
@@ -92,10 +97,21 @@
                   <hr>
               
                   <div class="m-t-15">
+                    @php
+                    $date_before_pay = Carbon::parse($item->start_travel)->addDays(-15)->format('Y-m-d');
+                    $today = date('Y-m-d');
+                    @endphp
 
+                    
                     @if ($item->rent_status == '1')
                     <a href="{{ route('user.car_rent_payment', ['id'=>$item->rent_id]) }}" class="btn btn-primary">แจ้งโอนเงิน</a>
                     <button class="btn btn-danger m-r-10" type="button" title=""> <i class="fa fa-close"></i> ยกเลิกการจอง</button>
+                    @elseif ($item->rent_status == '3')
+                      @if ($today >= $date_before_pay)
+                        เกินกำหนดชำระ
+                      @else
+                      <a href="{{ route('user.car_rent_payment', ['id'=>$item->rent_id]) }}" class="btn btn-primary">แจ้งโอนเงินมัดจำ งวดที่ 2</a>
+                      @endif                                    
                     @endif
                     
                    

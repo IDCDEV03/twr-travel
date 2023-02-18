@@ -46,6 +46,11 @@
                     <span class="txt-danger">
                       แจ้งชำระเงินแล้ว รอตรวจสอบ 
                   </span>
+                  <?php elseif($item->rent_status == '3'): ?>
+                                <span class="txt-secondary">
+                                    ชำระเงินมัดจำงวดที่ 1 แล้ว
+                                </span>
+                                <span ><a href="<?php echo e(route('user.car_rent_invoice', ['id'=>$item->rent_id])); ?>" class="txt-danger"> >> รายละเอียดใบจอง #<?php echo e($item->rent_id); ?></a></span>
                     <?php endif; ?>
                   </p>
                   <hr>
@@ -93,10 +98,21 @@
                   <hr>
               
                   <div class="m-t-15">
+                    <?php
+                    $date_before_pay = Carbon::parse($item->start_travel)->addDays(-15)->format('Y-m-d');
+                    $today = date('Y-m-d');
+                    ?>
 
+                    
                     <?php if($item->rent_status == '1'): ?>
                     <a href="<?php echo e(route('user.car_rent_payment', ['id'=>$item->rent_id])); ?>" class="btn btn-primary">แจ้งโอนเงิน</a>
                     <button class="btn btn-danger m-r-10" type="button" title=""> <i class="fa fa-close"></i> ยกเลิกการจอง</button>
+                    <?php elseif($item->rent_status == '3'): ?>
+                      <?php if($today >= $date_before_pay): ?>
+                        เกินกำหนดชำระ
+                      <?php else: ?>
+                      <a href="<?php echo e(route('user.car_rent_payment', ['id'=>$item->rent_id])); ?>" class="btn btn-primary">แจ้งโอนเงินมัดจำ งวดที่ 2</a>
+                      <?php endif; ?>                                    
                     <?php endif; ?>
                     
                    

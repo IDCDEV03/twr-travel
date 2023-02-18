@@ -60,7 +60,7 @@
                                 </span>
                                 @elseif ($item->rent_status == '3')
                                 <span class="txt-secondary">
-                                    ชำระเงินมัดจำเรียบร้อยแล้ว
+                                    ชำระเงินมัดจำงวดที่ 1 แล้ว
                                 </span>
                                 @elseif ($item->rent_status == '4')
                                 <span class="txt-danger">

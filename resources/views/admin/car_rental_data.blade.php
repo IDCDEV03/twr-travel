@@ -57,7 +57,7 @@
                                             @elseif ($item->rent_status == '2')
                                                 <span class="txt-info">แจ้งโอนเงินแล้ว รอตรวจสอบ</span>
                                             @elseif ($item->rent_status == '3')
-                                                <span class="txt-success">ดำเนินการเรียบร้อยแล้ว</span>
+                                          <span class="txt-success">ชำระมัดจำงวดที่ 1 แล้ว</span>
                                             @elseif ($item->rent_status == '4')
                                                 <span class="txt-danger">ยกเลิกการจอง</span>
                                             @endif

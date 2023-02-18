@@ -73,7 +73,8 @@ Route::get('/admin/car_rental_data', $controller_path . '\AdminController@car_re
 Route::get('/admin/car_rental_detail/{id}', $controller_path . '\AdminController@car_rental_detail')->name('admin.car_rental_detail');
 Route::POST('/admin/car_rental_quotation/{id}', $controller_path . '\AdminController@car_rental_quotation')->name('admin.car_rental_quotation');
 Route::get('/admin/car_rental_invoice/{id}', $controller_path . '\AdminController@car_rental_invoice')->name('admin.car_rental_invoice');
-
+Route::get('/admin/car_rental_payment_chk/{id}', $controller_path . '\AdminController@car_rental_payment_chk')->name('admin.car_rent_payment');
+Route::get('/admin/car_update_payment/{id}', $controller_path . '\AdminController@car_update_payment')->name('admin.car_update_payment');
 
 });
 
@@ -114,6 +115,7 @@ Route::post('/user/add-car-rent', $controller_path . '\UserController@add_car_re
 Route::get('/user/car-rent-invoice/{id}', $controller_path . '\UserController@car_rent_invoice')->name('user.car_rent_invoice');
 Route::get('/user/car-rent-payment/{id}', $controller_path . '\UserController@car_rent_payment')->name('user.car_rent_payment');
 Route::POST('/user/insert_car_rent_payment/{id}', $controller_path . '\UserController@insert_car_rent_payment')->name('user.insert_car_rent_payment');
+
 
 //HOME_FRONT-END
 Route::get('/about-us', $controller_path . '\HomeController@about_us')->name('about_us.show');

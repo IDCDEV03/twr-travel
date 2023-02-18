@@ -234,19 +234,33 @@ div {
                                     </tr>
                                     <tr>
                                         <td></td>
-                        
+                                        @if($item->rent_status == '3')
                                         <td align="right">
-                                            <h6 class="mb-0 p-2">จำนวนชำระค่ามัดจำงวดที่ 1 รวมทั้งสิ้น </h6>
-                                        </td>
-                                        <td class="payment">
-                                            <h6 class="mb-0 p-2">
-                                                @php
-                                                $deposit_price = number_format($item->price_deposit);
-                                                    echo
-                                                $deposit_price;
+                                          <h6 class="mb-0 p-2">จำนวนชำระค่ามัดจำงวดที่ 2 รวมทั้งสิ้น </h6>
+                                      </td>
+                                      <td class="payment">
+                                          <h6 class="mb-0 p-2">
+                                            @php
+                                                    $result = $item->total_price - $item->price_deposit;
+                                                    echo number_format($result);
                                                 @endphp
-                                                บาท</h6>
-                                        </td>
+                                              บาท</h6>
+                                      </td>
+                                        @elseif ($item->rent_status == '2' OR $item->rent_status == '1' OR $item->rent_status == '0')
+                                        <td align="right">
+                                          <h6 class="mb-0 p-2">จำนวนชำระค่ามัดจำงวดที่ 1 รวมทั้งสิ้น </h6>
+                                      </td>
+                                      <td class="payment">
+                                          <h6 class="mb-0 p-2">
+                                              @php
+                                              $deposit_price = number_format($item->price_deposit);
+                                                  echo
+                                              $deposit_price;
+                                              @endphp
+                                              บาท</h6>
+                                      </td>
+                                        @endif
+                                       
                                     </tr>
                                 </tbody>
                             </table>
@@ -272,7 +286,7 @@ div {
                               </div>
                             </div>
                             <div class="col-md-4">
-                              @if($item->rent_status == '2')
+                              @if($item->rent_status == '3')
                               <span class="txt-success">
                                <strong>หมายเหตุ : ดำเนินการชำระมัดจำงวดที่ 1 แล้ว 
                                </strong>

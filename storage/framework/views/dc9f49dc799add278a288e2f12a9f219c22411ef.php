@@ -48,6 +48,15 @@
                     <span class="txt-secondary f-w-100"> รอเจ้าหน้าที่ตรวจสอบและส่งใบจอง </span>
                     <?php elseif($item->rent_status == '1'): ?>
                     <span class="txt-info f-w-100"> ส่งใบจองแล้ว </span>
+                    <?php elseif($item->rent_status == '2'): ?>
+                    <span class="txt-info f-w-100"> แจ้งโอนเงินแล้ว รอตรวจสอบ 
+                         <a href="<?php echo e(route('admin.car_rent_payment', ['id'=>$item->rent_id])); ?>"> >> คลิก ตรวจสอบยอดแจ้งโอน</a>
+                    </span>
+                    <?php elseif($item->rent_status == '3'): ?>
+                    <span class="txt-secondary"> ชำระเงินมัดจำงวดที่ 1 แล้ว 
+                        <a href="<?php echo e(route('admin.car_rental_invoice', ['id'=>$item->rent_id])); ?>"> >> ใบจอง #<?php echo e($item->rent_id); ?></a>
+
+                    </span>
                     <?php endif; ?>
                   </p>
                   <hr>

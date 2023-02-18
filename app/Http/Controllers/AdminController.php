@@ -648,5 +648,27 @@ class AdminController extends Controller
     return view('admin.car_rental_invoice',compact('car_invoice','data_bank'));
   }
 
+  public function car_rental_payment_chk($id)
+  {
+    $car_payment = DB::table('car_rental_payments')
+    ->join('car_rent_quotations','car_rental_payments.rent_id','=','car_rent_quotations.rent_id')
+    ->join('user_car_rents','car_rental_payments.rent_id','=','user_car_rents.rent_id')
+    ->where('car_rental_payments.rent_id','=',$id)
+    ->get();
+
+    return view('admin.car_rental_payment_chk',compact('car_payment'));
+  }
+
+  public function car_update_payment($id)
+  {
+    DB::table('user_car_rents')
+      ->where('rent_id', '=', $id)
+      ->update([
+        'rent_status' => '3',
+        'updated_at' => Carbon::now()
+      ]);
+  
+    return redirect()->route('admin.car_rental_data')->with('success', "ตรวจสอบยอดชำระเรียบร้อยแล้ว");
+  }
 
 }
