@@ -61,6 +61,10 @@
                         แจ้งชำระเงินงวดที่ 2 รอตรวจสอบ  
                         <a href="{{ route('admin.car_rent_payment', ['id'=>$item->rent_id]) }}"> >> คลิก ตรวจสอบยอดแจ้งโอน</a>
                     </span>
+                    @elseif ($item->rent_status == '6')
+                    <span class="txt-success">
+                        ชำระเงินครบเรียบร้อยแล้ว   <a href="{{ route('admin.car_rental_invoice', ['id'=>$item->rent_id]) }}"> >> ใบจอง #{{$item->rent_id}}</a>
+                    </span>
                     @endif
                   </p>
                   <hr>

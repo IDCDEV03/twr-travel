@@ -55,6 +55,11 @@
                       <span class="txt-secondary">
                           แจ้งชำระเงินแล้ว รอตรวจสอบ 
                       </span>
+                      @elseif ($item->rent_status == '6')
+                                <span class="txt-success">
+                                    ดำเนินการเรียบร้อยแล้ว
+                                </span>
+                                <a href="{{ route('user.car_rent_invoice', ['id'=>$item->rent_id]) }}" class="txt-danger"> >> ใบจองบริการ #{{$item->rent_id}}</a>
                     @endif
                   </p>
                   <hr>

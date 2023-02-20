@@ -218,12 +218,19 @@ div {
                                         <td>
                                             <p class="m-0">งวดที่ 2</p>
                                         </td>
-                                        <td>
-                                            <label>ชำระส่วนที่เหลือ (ก่อนวันเดินทาง 15 วัน ภายในวันที่
-                                                {{Carbon::parse($item->start_travel)->addDays(-15)->format('d/m/Y')}}
-                                                )
-                                            </label>
+                                        @if ($item->rent_status == '6')
+                                        <td> ชำระส่วนที่เหลือ 
+
                                         </td>
+                                        @else
+                                        <td>
+                                          <label>ชำระส่วนที่เหลือ (ก่อนวันเดินทาง 15 วัน ภายในวันที่
+                                              {{Carbon::parse($item->start_travel)->addDays(-15)->format('d/m/Y')}}
+                                              )
+                                          </label>
+                                      
+                                        @endif
+                                      
                                         <td>
                                             <p class="itemtext">
                                                 @php
@@ -258,6 +265,13 @@ div {
                                               $deposit_price;
                                               @endphp
                                               บาท</h6>
+                                      </td>
+                                      @elseif($item->rent_status == '6')
+                                      <td align="right">
+                                          ชำระเงินเรียบร้อยแล้ว จำนวน {{$total_price}} บาท 
+                                      </td>
+                                      <td>
+
                                       </td>
                                         @endif
                                        

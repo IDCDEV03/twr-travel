@@ -16,5 +16,6 @@ class car_rental_payment extends Model
         'payment_price',
         'payment_bank',
         'payment_slip',
+        'pay_num',
     ];
 }

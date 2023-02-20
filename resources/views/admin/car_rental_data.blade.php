@@ -64,6 +64,10 @@
                                                 <span class="txt-info">
                                                     แจ้งชำระเงินงวดที่ 2 รอตรวจสอบ
                                                 </span>
+                                                @elseif ($item->rent_status == '6')
+                                                <span class="txt-success">
+                                                    ชำระเงินครบเรียบร้อยแล้ว
+                                                </span>
                                             @endif
                                         </td>
                                         <td>

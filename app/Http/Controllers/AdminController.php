@@ -651,23 +651,44 @@ class AdminController extends Controller
   public function car_rental_payment_chk($id)
   {
     $car_payment = DB::table('car_rental_payments')
-    ->join('car_rent_quotations','car_rental_payments.rent_id','=','car_rent_quotations.rent_id')
     ->join('user_car_rents','car_rental_payments.rent_id','=','user_car_rents.rent_id')
     ->where('car_rental_payments.rent_id','=',$id)
-    ->get();
+    ->get([
+      'car_rental_payments.member_id',
+      'car_rental_payments.code_pay',
+      'car_rental_payments.rent_id as car_rent2',
+      'car_rental_payments.payment_price',
+      'car_rental_payments.payment_bank',
+      'car_rental_payments.payment_slip',
+      'car_rental_payments.pay_num',
+      'car_rental_payments.created_at',
+      'user_car_rents.rent_id',
+      'user_car_rents.member_name',
+      'user_car_rents.rent_status',
+    ]);
 
     return view('admin.car_rental_payment_chk',compact('car_payment'));
   }
 
-  public function car_update_payment($id)
+  public function car_update_payment($id,$pay_num)
   {
-    DB::table('user_car_rents')
-      ->where('rent_id', '=', $id)
-      ->update([
-        'rent_status' => '3',
-        'updated_at' => Carbon::now()
-      ]);
-  
+    if ($pay_num == 'pay1')
+      {
+        DB::table('user_car_rents')
+          ->where('rent_id', '=', $id)
+          ->update([
+            'rent_status' => '3',
+            'updated_at' => Carbon::now()
+          ]);
+      }elseif ($pay_num == 'pay2')
+      {
+        DB::table('user_car_rents')
+          ->where('rent_id', '=', $id)
+          ->update([
+            'rent_status' => '6',
+            'updated_at' => Carbon::now()
+          ]);
+      }
     return redirect()->route('admin.car_rental_data')->with('success', "ตรวจสอบยอดชำระเรียบร้อยแล้ว");
   }
 

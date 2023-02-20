@@ -16,56 +16,55 @@
         <div class="row">
             <div class="col-sm-12">
 
-                <?php $__currentLoopData = $car_payment; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+             
                     <div class="col-sm-12 col-xl-12">
                         <div class="card shadow-none border">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6"><span class="h5">ใบจองแพ็คเกจ</span>
-                                        <a class="btn btn-warning txt-dark" type="button" href="<?php echo e(route('admin.car_rental_invoice', ['id' => request()->id])); ?>" >#<?php echo e($row->car_quotation); ?></a>
-                                    </div>
-                                    <div class="col-md-6">
-                                      
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <span class="h5">สลิปการโอนเงิน</span><br>
-                                        <img src="<?php echo e(asset($row->payment_slip)); ?>" class="img-fluid" width="350px">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <ul class="h5 f-w-100">
-                                            <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>โอนชำระผ่าน :
-                                                <?php echo e($row->payment_bank); ?></li>
-                                            <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>จำนวนเงิน :
-                                                <?php echo e(number_format($row->payment_price)); ?> บาท</li>
-                                            <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>แจ้งโอนเมื่อ :
-                                                <?php echo e(Carbon\Carbon::parse($row->created_at)->format('d/m/Y H:i')); ?></li>
-                                        </ul>
-                                        <hr>
-                                        <span class="txt-secondary">
-                                            คงเหลือยอดชำระ :
+                               <a href="<?php echo e(route('admin.car_rental_detail', ['id' => request()->id])); ?>">รายละเอียดการจอง</a> | <a href="<?php echo e(route('admin.car_rental_invoice', ['id'=>request()->id])); ?>">เอกสารใบจอง</a>
+                               <hr>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead class="table-success">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">ธนาคารที่โอนเข้า</th>
+                                            <th scope="col">จำนวนเงิน</th>                           
+                                            <th scope="col">วัน/เวลาที่แจ้งโอน</th>
+                                            <th>สลิป</th>
+                                            <th scope="col">ยืนยันยอด</th>
+                                       
+                                        </tr>
+                                        </thead>
+                                        <tbody>
                                             <?php
-                                                $result = $row->total_price - $row->price_deposit;
-                                                echo number_format($result);
+                                             $i = '1';
                                             ?>
-                                            บาท </span>
-                                        <hr>
-                                    
-                                        <a href="<?php echo e(route('admin.car_update_payment', ['id'=>$row->rent_id])); ?>"
-                                            class="btn btn-lg btn-primary" type="button"
-                                            onclick="alert('ต้องการยืนยันยอดชำระใช่หรือไม่')">ยืนยันการชำระเงิน</a>
-                                        <button class="btn btn-lg btn-danger" type="button">ยอดชำระไม่ถูกต้อง</button>
-                                        <hr>
-                                    </div>
-
+                                            <?php $__currentLoopData = $car_payment; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <tr>
+                                                <th scope="row"><?php echo e($i++); ?></th>
+                                                <td><?php echo e($item->payment_bank); ?></td>
+                                                <td><?php echo e(number_format($item->payment_price)); ?></td>         
+                                                <td> <?php echo e(Carbon\Carbon::parse($item->created_at)->format('d/m/Y H:i')); ?></td>
+                                                <td> <img src="<?php echo e(asset($item->payment_slip)); ?>" class="img-fluid" width="350px"></td>
+                                                <td>
+                       <?php if($item->rent_status == '2' AND $item->pay_num == 'pay1'): ?>
+                       <a href="<?php echo e(route('admin.car_update_payment', ['id'=>$item->rent_id, 'pay_num'=>'pay1'])); ?>" class="btn btn-lg btn-primary" type="button" onclick="alert('ต้องการยืนยันยอดชำระใช่หรือไม่')">ยืนยันการชำระเงิน</a>
+                      <?php elseif($item->rent_status == '5' AND $item->pay_num == 'pay2'): ?>
+                    <a href="<?php echo e(route('admin.car_update_payment', ['id'=>$item->rent_id, 'pay_num'=>'pay2'])); ?>" class="btn btn-lg btn-primary" type="button"
+                    onclick="alert('ต้องการยืนยันยอดชำระใช่หรือไม่')">ยืนยันการชำระเงิน
+                    </a>
+                                                    <?php endif; ?>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </tbody>
+                                    </table>
                                 </div>
-
+                               
                             </div>
                         </div>
                     </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+               
 
             </div>
         </div>

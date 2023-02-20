@@ -358,6 +358,7 @@ class UserController extends Controller
         'payment_price' => $request->payment_price,
         'payment_bank' => $request->payment_bank,
         'payment_slip' => $full_path,
+        'pay_num' => $request->pay_num,
         'created_at' => Carbon::now()
       ]
     );
@@ -368,7 +369,8 @@ class UserController extends Controller
       'rent_status' => $request->rent_status,
       'updated_at' => Carbon::now()
     ]);
-
+    
+    $payment_slip->move($upload_location, $payment_slip_name);
     return redirect()->route('user.car-rental-list')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
   }
 

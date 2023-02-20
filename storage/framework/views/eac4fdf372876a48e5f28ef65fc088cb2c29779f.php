@@ -47,14 +47,19 @@
                       แจ้งชำระเงินแล้ว รอตรวจสอบ 
                   </span>
                   <?php elseif($item->rent_status == '3'): ?>
-                                <span class="txt-secondary">
-                                    ชำระเงินมัดจำงวดที่ 1 แล้ว
+                    <span class="txt-secondary">
+                        ชำระเงินมัดจำงวดที่ 1 แล้ว
+                    </span>
+                    <span ><a href="<?php echo e(route('user.car_rent_invoice', ['id'=>$item->rent_id])); ?>" class="txt-danger"> >> รายละเอียดใบจอง #<?php echo e($item->rent_id); ?></a></span>
+                   <?php elseif($item->rent_status == '5'): ?>
+                      <span class="txt-secondary">
+                          แจ้งชำระเงินแล้ว รอตรวจสอบ 
+                      </span>
+                      <?php elseif($item->rent_status == '6'): ?>
+                                <span class="txt-success">
+                                    ดำเนินการเรียบร้อยแล้ว
                                 </span>
-                                <span ><a href="<?php echo e(route('user.car_rent_invoice', ['id'=>$item->rent_id])); ?>" class="txt-danger"> >> รายละเอียดใบจอง #<?php echo e($item->rent_id); ?></a></span>
-                                <?php elseif($item->rent_status == '5'): ?>
-                                <span class="txt-secondary">
-                                    แจ้งชำระเงินแล้ว รอตรวจสอบ 
-                                </span>
+                                <a href="<?php echo e(route('user.car_rent_invoice', ['id'=>$item->rent_id])); ?>" class="txt-danger"> >> ใบจองบริการ #<?php echo e($item->rent_id); ?></a>
                     <?php endif; ?>
                   </p>
                   <hr>

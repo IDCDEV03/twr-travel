@@ -43,11 +43,13 @@
                  method="POST" enctype="multipart/form-data">
                  <?php echo csrf_field(); ?>
                     <input type="hidden" value="<?php echo e($item->member_id); ?>" name="member_id">
-                    <?php if($item->rent_status == '3'): ?>
-                        <input type="hidden" name="rent_status" value="5">
-                    <?php elseif($item->rent_status == '1'): ?>
-                       <input type="hidden" name="rent_status" value="2">
-                    <?php endif; ?>
+                        <?php if($item->rent_status == '3'): ?>
+                            <input type="hidden" name="rent_status" value="5">
+                            <input type="hidden" name="pay_num" value="pay2">
+                        <?php elseif($item->rent_status == '1'): ?>
+                        <input type="hidden" name="rent_status" value="2">
+                        <input type="hidden" name="pay_num" value="pay1">
+                        <?php endif; ?>
                     <div class="row g-3">                
                       <div class="col-md-12">
                         <label class="form-label">จำนวนเงินที่โอน</label>

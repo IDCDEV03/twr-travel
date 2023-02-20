@@ -45,8 +45,10 @@
                     <input type="hidden" value="{{$item->member_id}}" name="member_id">
                         @if ($item->rent_status == '3')
                             <input type="hidden" name="rent_status" value="5">
+                            <input type="hidden" name="pay_num" value="pay2">
                         @elseif ($item->rent_status == '1')
                         <input type="hidden" name="rent_status" value="2">
+                        <input type="hidden" name="pay_num" value="pay1">
                         @endif
                     <div class="row g-3">                
                       <div class="col-md-12">

@@ -61,6 +61,10 @@
                         แจ้งชำระเงินงวดที่ 2 รอตรวจสอบ  
                         <a href="<?php echo e(route('admin.car_rent_payment', ['id'=>$item->rent_id])); ?>"> >> คลิก ตรวจสอบยอดแจ้งโอน</a>
                     </span>
+                    <?php elseif($item->rent_status == '6'): ?>
+                    <span class="txt-success">
+                        ชำระเงินครบเรียบร้อยแล้ว   <a href="<?php echo e(route('admin.car_rental_invoice', ['id'=>$item->rent_id])); ?>"> >> ใบจอง #<?php echo e($item->rent_id); ?></a>
+                    </span>
                     <?php endif; ?>
                   </p>
                   <hr>

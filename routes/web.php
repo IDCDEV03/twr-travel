@@ -74,7 +74,7 @@ Route::get('/admin/car_rental_detail/{id}', $controller_path . '\AdminController
 Route::POST('/admin/car_rental_quotation/{id}', $controller_path . '\AdminController@car_rental_quotation')->name('admin.car_rental_quotation');
 Route::get('/admin/car_rental_invoice/{id}', $controller_path . '\AdminController@car_rental_invoice')->name('admin.car_rental_invoice');
 Route::get('/admin/car_rental_payment_chk/{id}', $controller_path . '\AdminController@car_rental_payment_chk')->name('admin.car_rent_payment');
-Route::get('/admin/car_update_payment/{id}', $controller_path . '\AdminController@car_update_payment')->name('admin.car_update_payment');
+Route::get('/admin/car_update_payment/{id}/{pay_num}', $controller_path . '\AdminController@car_update_payment')->name('admin.car_update_payment');
 
 });
 

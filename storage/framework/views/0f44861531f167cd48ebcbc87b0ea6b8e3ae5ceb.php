@@ -71,6 +71,10 @@
                                 <span class="txt-secondary">
                                     แจ้งชำระเงินแล้ว<br> รอตรวจสอบ 
                                 </span>
+                                <?php elseif($item->rent_status == '6'): ?>
+                                <span class="txt-success">
+                                    ดำเนินการเรียบร้อยแล้ว
+                                </span>
                                 <?php endif; ?>
 
                             </td>

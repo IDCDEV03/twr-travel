@@ -16,56 +16,55 @@
         <div class="row">
             <div class="col-sm-12">
 
-                @foreach ($car_payment as $row)
+             
                     <div class="col-sm-12 col-xl-12">
                         <div class="card shadow-none border">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6"><span class="h5">ใบจองแพ็คเกจ</span>
-                                        <a class="btn btn-warning txt-dark" type="button" href="{{ route('admin.car_rental_invoice', ['id' => request()->id]) }}" >#{{ $row->car_quotation }}</a>
-                                    </div>
-                                    <div class="col-md-6">
-                                      
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <span class="h5">สลิปการโอนเงิน</span><br>
-                                        <img src="{{ asset($row->payment_slip) }}" class="img-fluid" width="350px">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <ul class="h5 f-w-100">
-                                            <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>โอนชำระผ่าน :
-                                                {{ $row->payment_bank }}</li>
-                                            <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>จำนวนเงิน :
-                                                {{ number_format($row->payment_price) }} บาท</li>
-                                            <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>แจ้งโอนเมื่อ :
-                                                {{ Carbon\Carbon::parse($row->created_at)->format('d/m/Y H:i') }}</li>
-                                        </ul>
-                                        <hr>
-                                        <span class="txt-secondary">
-                                            คงเหลือยอดชำระ :
+                               <a href="{{route('admin.car_rental_detail', ['id' => request()->id])}}">รายละเอียดการจอง</a> | <a href="{{ route('admin.car_rental_invoice', ['id'=>request()->id]) }}">เอกสารใบจอง</a>
+                               <hr>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead class="table-success">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">ธนาคารที่โอนเข้า</th>
+                                            <th scope="col">จำนวนเงิน</th>                           
+                                            <th scope="col">วัน/เวลาที่แจ้งโอน</th>
+                                            <th>สลิป</th>
+                                            <th scope="col">ยืนยันยอด</th>
+                                       
+                                        </tr>
+                                        </thead>
+                                        <tbody>
                                             @php
-                                                $result = $row->total_price - $row->price_deposit;
-                                                echo number_format($result);
+                                             $i = '1';
                                             @endphp
-                                            บาท </span>
-                                        <hr>
-                                    
-                                        <a href="{{ route('admin.car_update_payment', ['id'=>$row->rent_id]) }}"
-                                            class="btn btn-lg btn-primary" type="button"
-                                            onclick="alert('ต้องการยืนยันยอดชำระใช่หรือไม่')">ยืนยันการชำระเงิน</a>
-                                        <button class="btn btn-lg btn-danger" type="button">ยอดชำระไม่ถูกต้อง</button>
-                                        <hr>
-                                    </div>
-
+                                            @foreach ($car_payment as $item)
+                                            <tr>
+                                                <th scope="row">{{$i++}}</th>
+                                                <td>{{$item->payment_bank}}</td>
+                                                <td>{{number_format($item->payment_price)}}</td>         
+                                                <td> {{ Carbon\Carbon::parse($item->created_at)->format('d/m/Y H:i') }}</td>
+                                                <td> <img src="{{ asset($item->payment_slip) }}" class="img-fluid" width="350px"></td>
+                                                <td>
+                       @if ($item->rent_status == '2' AND $item->pay_num == 'pay1')
+                       <a href="{{ route('admin.car_update_payment', ['id'=>$item->rent_id, 'pay_num'=>'pay1']) }}" class="btn btn-lg btn-primary" type="button" onclick="alert('ต้องการยืนยันยอดชำระใช่หรือไม่')">ยืนยันการชำระเงิน</a>
+                      @elseif ($item->rent_status == '5' AND $item->pay_num == 'pay2')
+                    <a href="{{ route('admin.car_update_payment', ['id'=>$item->rent_id, 'pay_num'=>'pay2']) }}" class="btn btn-lg btn-primary" type="button"
+                    onclick="alert('ต้องการยืนยันยอดชำระใช่หรือไม่')">ยืนยันการชำระเงิน
+                    </a>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
-
+                               
                             </div>
                         </div>
                     </div>
-                @endforeach
+               
 
             </div>
         </div>
