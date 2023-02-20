@@ -61,6 +61,10 @@
                                           <span class="txt-success">ชำระมัดจำงวดที่ 1 แล้ว</span>
                                             <?php elseif($item->rent_status == '4'): ?>
                                                 <span class="txt-danger">ยกเลิกการจอง</span>
+                                            <?php elseif($item->rent_status == '5'): ?>
+                                                <span class="txt-info">
+                                                    แจ้งชำระเงินงวดที่ 2 รอตรวจสอบ
+                                                </span>
                                             <?php endif; ?>
                                         </td>
                                         <td>

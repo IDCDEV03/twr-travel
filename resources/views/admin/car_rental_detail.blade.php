@@ -55,7 +55,11 @@
                     @elseif ($item->rent_status == '3')
                     <span class="txt-secondary"> ชำระเงินมัดจำงวดที่ 1 แล้ว 
                         <a href="{{ route('admin.car_rental_invoice', ['id'=>$item->rent_id]) }}"> >> ใบจอง #{{$item->rent_id}}</a>
-
+                    </span>
+                    @elseif ($item->rent_status == '5')
+                    <span class="txt-info">
+                        แจ้งชำระเงินงวดที่ 2 รอตรวจสอบ  
+                        <a href="{{ route('admin.car_rent_payment', ['id'=>$item->rent_id]) }}"> >> คลิก ตรวจสอบยอดแจ้งโอน</a>
                     </span>
                     @endif
                   </p>

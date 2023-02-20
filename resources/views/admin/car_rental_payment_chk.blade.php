@@ -52,6 +52,7 @@
                                             @endphp
                                             บาท </span>
                                         <hr>
+                                    
                                         <a href="{{ route('admin.car_update_payment', ['id'=>$row->rent_id]) }}"
                                             class="btn btn-lg btn-primary" type="button"
                                             onclick="alert('ต้องการยืนยันยอดชำระใช่หรือไม่')">ยืนยันการชำระเงิน</a>

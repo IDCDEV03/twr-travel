@@ -67,6 +67,10 @@
                                 <span class="txt-danger">
                                     ยกเลิกการจอง
                                 </span>
+                                <?php elseif($item->rent_status == '5'): ?>
+                                <span class="txt-secondary">
+                                    แจ้งชำระเงินแล้ว<br> รอตรวจสอบ 
+                                </span>
                                 <?php endif; ?>
 
                             </td>

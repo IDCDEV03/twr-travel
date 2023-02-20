@@ -55,7 +55,11 @@
                     <?php elseif($item->rent_status == '3'): ?>
                     <span class="txt-secondary"> ชำระเงินมัดจำงวดที่ 1 แล้ว 
                         <a href="<?php echo e(route('admin.car_rental_invoice', ['id'=>$item->rent_id])); ?>"> >> ใบจอง #<?php echo e($item->rent_id); ?></a>
-
+                    </span>
+                    <?php elseif($item->rent_status == '5'): ?>
+                    <span class="txt-info">
+                        แจ้งชำระเงินงวดที่ 2 รอตรวจสอบ  
+                        <a href="<?php echo e(route('admin.car_rent_payment', ['id'=>$item->rent_id])); ?>"> >> คลิก ตรวจสอบยอดแจ้งโอน</a>
                     </span>
                     <?php endif; ?>
                   </p>

@@ -60,6 +60,10 @@
                                           <span class="txt-success">ชำระมัดจำงวดที่ 1 แล้ว</span>
                                             @elseif ($item->rent_status == '4')
                                                 <span class="txt-danger">ยกเลิกการจอง</span>
+                                            @elseif ($item->rent_status == '5')
+                                                <span class="txt-info">
+                                                    แจ้งชำระเงินงวดที่ 2 รอตรวจสอบ
+                                                </span>
                                             @endif
                                         </td>
                                         <td>

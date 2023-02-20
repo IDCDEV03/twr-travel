@@ -47,10 +47,14 @@
                       แจ้งชำระเงินแล้ว รอตรวจสอบ 
                   </span>
                   @elseif ($item->rent_status == '3')
-                                <span class="txt-secondary">
-                                    ชำระเงินมัดจำงวดที่ 1 แล้ว
-                                </span>
-                                <span ><a href="{{ route('user.car_rent_invoice', ['id'=>$item->rent_id]) }}" class="txt-danger"> >> รายละเอียดใบจอง #{{$item->rent_id}}</a></span>
+                    <span class="txt-secondary">
+                        ชำระเงินมัดจำงวดที่ 1 แล้ว
+                    </span>
+                    <span ><a href="{{ route('user.car_rent_invoice', ['id'=>$item->rent_id]) }}" class="txt-danger"> >> รายละเอียดใบจอง #{{$item->rent_id}}</a></span>
+                   @elseif ($item->rent_status == '5')
+                      <span class="txt-secondary">
+                          แจ้งชำระเงินแล้ว รอตรวจสอบ 
+                      </span>
                     @endif
                   </p>
                   <hr>
@@ -107,11 +111,11 @@
                     <a href="{{ route('user.car_rent_payment', ['id'=>$item->rent_id]) }}" class="btn btn-primary">แจ้งโอนเงิน</a>
                     <button class="btn btn-danger m-r-10" type="button" title=""> <i class="fa fa-close"></i> ยกเลิกการจอง</button>
                     @elseif ($item->rent_status == '3')
-                      @if ($today >= $date_before_pay)
-                        เกินกำหนดชำระ
-                      @else
-                      <a href="{{ route('user.car_rent_payment', ['id'=>$item->rent_id]) }}" class="btn btn-primary">แจ้งโอนเงินมัดจำ งวดที่ 2</a>
-                      @endif                                    
+                        @if ($today >= $date_before_pay)
+                          เกินกำหนดชำระ
+                        @else
+                        <a href="{{ route('user.car_rent_payment', ['id'=>$item->rent_id]) }}" class="btn btn-primary">แจ้งโอนเงินมัดจำ งวดที่ 2</a>
+                        @endif                                    
                     @endif
                     
                    

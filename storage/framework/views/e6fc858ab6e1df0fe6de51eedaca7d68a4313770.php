@@ -23,18 +23,14 @@
            
                 <div class="card">
                     <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6 "><span>ใบจองบริการที่ #<?php echo e($item->car_quotation); ?></span></div>
-                    <div class="col-md-6 "><span>จำนวนเงินมัดจำที่ต้องชำระ: 
-                        <?php
-                        $deposit_price = number_format($item->price_deposit);
-                        echo $deposit_price;
-                    ?>    
-                    บาท
-                    </span></div>
+                        <div class="row">
+                            <div class="col-md-6 "><span>ใบจองบริการที่ 
+                                <u><a href="<?php echo e(route('user.car_rent_invoice', ['id'=>$item->rent_id])); ?>" class="txt-danger"> #<?php echo e($item->car_quotation); ?></a></u></span></div>
+                            <div class="col-md-6 ">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
      
             
                 <div class="card">
@@ -47,6 +43,11 @@
                  method="POST" enctype="multipart/form-data">
                  <?php echo csrf_field(); ?>
                     <input type="hidden" value="<?php echo e($item->member_id); ?>" name="member_id">
+                    <?php if($item->rent_status == '3'): ?>
+                        <input type="hidden" name="rent_status" value="5">
+                    <?php elseif($item->rent_status == '1'): ?>
+                       <input type="hidden" name="rent_status" value="2">
+                    <?php endif; ?>
                     <div class="row g-3">                
                       <div class="col-md-12">
                         <label class="form-label">จำนวนเงินที่โอน</label>

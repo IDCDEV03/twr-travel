@@ -51,6 +51,10 @@
                                     ชำระเงินมัดจำงวดที่ 1 แล้ว
                                 </span>
                                 <span ><a href="<?php echo e(route('user.car_rent_invoice', ['id'=>$item->rent_id])); ?>" class="txt-danger"> >> รายละเอียดใบจอง #<?php echo e($item->rent_id); ?></a></span>
+                                <?php elseif($item->rent_status == '5'): ?>
+                                <span class="txt-secondary">
+                                    แจ้งชำระเงินแล้ว รอตรวจสอบ 
+                                </span>
                     <?php endif; ?>
                   </p>
                   <hr>
@@ -108,11 +112,11 @@
                     <a href="<?php echo e(route('user.car_rent_payment', ['id'=>$item->rent_id])); ?>" class="btn btn-primary">แจ้งโอนเงิน</a>
                     <button class="btn btn-danger m-r-10" type="button" title=""> <i class="fa fa-close"></i> ยกเลิกการจอง</button>
                     <?php elseif($item->rent_status == '3'): ?>
-                      <?php if($today >= $date_before_pay): ?>
-                        เกินกำหนดชำระ
-                      <?php else: ?>
-                      <a href="<?php echo e(route('user.car_rent_payment', ['id'=>$item->rent_id])); ?>" class="btn btn-primary">แจ้งโอนเงินมัดจำ งวดที่ 2</a>
-                      <?php endif; ?>                                    
+                        <?php if($today >= $date_before_pay): ?>
+                          เกินกำหนดชำระ
+                        <?php else: ?>
+                        <a href="<?php echo e(route('user.car_rent_payment', ['id'=>$item->rent_id])); ?>" class="btn btn-primary">แจ้งโอนเงินมัดจำ งวดที่ 2</a>
+                        <?php endif; ?>                                    
                     <?php endif; ?>
                     
                    

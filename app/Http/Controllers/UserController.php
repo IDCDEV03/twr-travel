@@ -365,7 +365,7 @@ class UserController extends Controller
     DB::table('user_car_rents')
     ->where('rent_id', '=', $id)
     ->update([
-      'rent_status' => '2',
+      'rent_status' => $request->rent_status,
       'updated_at' => Carbon::now()
     ]);
 

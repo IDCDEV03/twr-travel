@@ -23,18 +23,14 @@
            
                 <div class="card">
                     <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6 "><span>ใบจองบริการที่ #{{$item->car_quotation}}</span></div>
-                    <div class="col-md-6 "><span>จำนวนเงินมัดจำที่ต้องชำระ: 
-                        @php
-                        $deposit_price = number_format($item->price_deposit);
-                        echo $deposit_price;
-                    @endphp    
-                    บาท
-                    </span></div>
+                        <div class="row">
+                            <div class="col-md-6 "><span>ใบจองบริการที่ 
+                                <u><a href="{{ route('user.car_rent_invoice', ['id'=>$item->rent_id]) }}" class="txt-danger"> #{{$item->car_quotation}}</a></u></span></div>
+                            <div class="col-md-6 ">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
      
             
                 <div class="card">
@@ -47,6 +43,11 @@
                  method="POST" enctype="multipart/form-data">
                  @csrf
                     <input type="hidden" value="{{$item->member_id}}" name="member_id">
+                        @if ($item->rent_status == '3')
+                            <input type="hidden" name="rent_status" value="5">
+                        @elseif ($item->rent_status == '1')
+                        <input type="hidden" name="rent_status" value="2">
+                        @endif
                     <div class="row g-3">                
                       <div class="col-md-12">
                         <label class="form-label">จำนวนเงินที่โอน</label>
