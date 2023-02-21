@@ -50,7 +50,7 @@ div {
 }
     </style>
     <style type="text/css">
-        @media  print {
+        @media print {
             #non-printable {
                 display: none;
             }
@@ -228,7 +228,6 @@ div {
                                         </td>
                                         <?php if($item->rent_status == '6'): ?>
                                         <td> ชำระส่วนที่เหลือ 
-
                                         </td>
                                         <?php else: ?>
                                         <td>
@@ -236,11 +235,9 @@ div {
                                               <?php echo e(Carbon::parse($item->start_travel)->addDays(-15)->format('d/m/Y')); ?>
 
                                               )
-                                          </label>
-                                      
+                                          </label>                                      
                                         <?php endif; ?>
-                                      
-                                        <td>
+                                         <td>
                                             <p class="itemtext">
                                                 <?php
                                                     $result = $item->total_price - $item->price_deposit;

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Mail\BookingConfirm;
 use Illuminate\Support\Facades\Mail;
 
+
 class UserController extends Controller
 {
   public function book_package($id,$pkid)
@@ -41,9 +42,9 @@ class UserController extends Controller
     return view('userpages.private_package', compact('package_all', 'users'));
   }
 
-  public function insert_booking(Request $request)
-  {
 
+  public function insert_booking(Request $request)
+  {        
     $ิbooking_id = Str::random(12);
 
     //บันทึกข้อมูล
@@ -62,8 +63,13 @@ class UserController extends Controller
       'created_at' => Carbon::now()
     ]);
 
-    $this->booking_mail($request->member_id);
+    //Line_Alert
+    $msg_alrert = "มีรายการสั่งจองแพ็คเกจทัวร์";    
+    $this->LineAlert($msg_alrert);
 
+    //Email_Notify
+    $this->booking_mail($request->member_id);
+   
     return redirect()->route('userPages.home')->with('success', "บันทึกข้อมูลการสั่งจองเรียบร้อยแล้ว กรุณารอเจ้าหน้าที่ตรวจสอบ");
   }
 
@@ -74,7 +80,23 @@ class UserController extends Controller
     Mail::to($email)->send(new BookingConfirm($user_email));
   }
 
-  
+  public function LineAlert($msg)
+  {
+    $sToken = "hGoonBimIYNxmIfPnZkNsPViNWaBpSMC0FH3bA1g8o3";
+    $sMessage = $msg; 
+    
+    $chOne = curl_init(); 
+    curl_setopt( $chOne, CURLOPT_URL, "https://notify-api.line.me/api/notify"); 
+    curl_setopt( $chOne, CURLOPT_SSL_VERIFYHOST, 0); 
+    curl_setopt( $chOne, CURLOPT_SSL_VERIFYPEER, 0); 
+    curl_setopt( $chOne, CURLOPT_POST, 1); 
+    curl_setopt( $chOne, CURLOPT_POSTFIELDS, "message=".$sMessage); 
+    $headers = array( 'Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer '.$sToken.'', );
+    curl_setopt($chOne, CURLOPT_HTTPHEADER, $headers); 
+    curl_setopt( $chOne, CURLOPT_RETURNTRANSFER, 1); 
+    $result = curl_exec( $chOne ); 
+  }
+
 
   public function booking_status()
   {
@@ -169,7 +191,11 @@ class UserController extends Controller
       ->update([
         'booking_status' => '4',
         'updated_at' => Carbon::now()
-      ]);
+      ]);    
+
+    //Line Alert
+    $msg_alrert = "มีการแจ้งโอนเงินแพ็คเกจทัวร์";
+    $this->LineAlert($msg_alrert);
 
     $payment_slip->move($upload_location, $payment_slip_name);
     return redirect()->route('booking_status')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
@@ -309,6 +335,10 @@ class UserController extends Controller
 
       user_car_rent::create($data);
 
+      //Line Alert  
+      $msg_alrert = "มีรายการสั่งจองบริการเช่ารถ";
+      $this->LineAlert($msg_alrert);
+
       return redirect()->route('user.car-rental-list')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
   }
 
@@ -370,6 +400,10 @@ class UserController extends Controller
       'updated_at' => Carbon::now()
     ]);
     
+    //Line Alert  
+    $msg_alrert = "มีการแจ้งโอนเงินบริการเช่ารถ";
+    $this->LineAlert($msg_alrert);
+
     $payment_slip->move($upload_location, $payment_slip_name);
     return redirect()->route('user.car-rental-list')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
   }

@@ -220,18 +220,15 @@ div {
                                         </td>
                                         @if ($item->rent_status == '6')
                                         <td> ชำระส่วนที่เหลือ 
-
                                         </td>
                                         @else
                                         <td>
                                           <label>ชำระส่วนที่เหลือ (ก่อนวันเดินทาง 15 วัน ภายในวันที่
                                               {{Carbon::parse($item->start_travel)->addDays(-15)->format('d/m/Y')}}
                                               )
-                                          </label>
-                                      
+                                          </label>                                      
                                         @endif
-                                      
-                                        <td>
+                                         <td>
                                             <p class="itemtext">
                                                 @php
                                                     $result = $item->total_price - $item->price_deposit;
