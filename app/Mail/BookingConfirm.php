@@ -28,7 +28,7 @@ class BookingConfirm extends Mailable
      */
     public function build()
     {
-        return $this->subject('ได้รับข้อมูลการสั่งจองเรียบร้อยแล้ว')
+        return $this->subject('อีเมลยืนยันรับคำสั่งจองแพ็คเกจ')
         ->view('userpages.booking_mail');
     
     }

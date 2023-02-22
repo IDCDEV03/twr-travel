@@ -28,7 +28,7 @@ class QuotationSend extends Mailable
      */
     public function build()
     {
-        return $this->subject('อีเมลแจ้งการสั่งจองแพ็คเกจทัวร์')
+        return $this->subject('อีเมลแจ้งสถานะการสั่งจองแพ็คเกจทัวร์')
         ->view('userpages.quotation_mail');
     }
 }

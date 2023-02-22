@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Pagination\Paginator;
-use App\Models\member_booking_package;
+use App\Models\user_car_rent;
 use App\Models\package_img;
 use App\Models\package_tour;
 use App\Models\ListCar;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Mail\ConfirmPayment_Pay1;
 use Carbon\Carbon;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 use Illuminate\Http\Request;
@@ -680,6 +681,7 @@ class AdminController extends Controller
             'rent_status' => '3',
             'updated_at' => Carbon::now()
           ]);
+          $this->car_rent_mail($id);
       }elseif ($pay_num == 'pay2')
       {
         DB::table('user_car_rents')
@@ -690,6 +692,13 @@ class AdminController extends Controller
           ]);
       }
     return redirect()->route('admin.car_rental_data')->with('success', "ตรวจสอบยอดชำระเรียบร้อยแล้ว");
+  }
+
+  public function car_rent_mail ($id)
+  {
+    $user_email = user_car_rent::where('rent_id','=',$id)->firstOrFail();  
+    $email = $user_email->member_email; 
+    Mail::to($email)->send(new ConfirmPayment_Pay1($user_email));
   }
 
 }
