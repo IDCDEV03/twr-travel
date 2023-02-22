@@ -696,7 +696,7 @@ class AdminController extends Controller
 
   public function car_rent_mail ($id)
   {
-    $user_email = user_car_rent::where('rent_id','=',$id)->get();  
+    $user_email = user_car_rent::where('rent_id','=',$id)->firstOrFail();  
     $email = $user_email->member_email; 
     Mail::to($email)->send(new ConfirmPayment_Pay1($user_email));
   }
