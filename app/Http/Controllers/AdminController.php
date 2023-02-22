@@ -11,6 +11,7 @@ use App\Models\ListCar;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Mail\ConfirmPayment_Pay1;
+use App\Mail\ConfirmPayment_Pay2;
 use Carbon\Carbon;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 use Illuminate\Http\Request;
@@ -681,7 +682,7 @@ class AdminController extends Controller
             'rent_status' => '3',
             'updated_at' => Carbon::now()
           ]);
-          $this->car_rent_mail($id);
+          $this->car_rent_mail1($id);
       }elseif ($pay_num == 'pay2')
       {
         DB::table('user_car_rents')
@@ -690,15 +691,22 @@ class AdminController extends Controller
             'rent_status' => '6',
             'updated_at' => Carbon::now()
           ]);
+          $this->car_rent_mail2($id);
       }
     return redirect()->route('admin.car_rental_data')->with('success', "ตรวจสอบยอดชำระเรียบร้อยแล้ว");
   }
 
-  public function car_rent_mail ($id)
+  public function car_rent_mail1 ($id)
   {
     $user_email = user_car_rent::where('rent_id','=',$id)->firstOrFail();  
     $email = $user_email->member_email; 
     Mail::to($email)->send(new ConfirmPayment_Pay1($user_email));
   }
 
+  public function car_rent_mail2 ($id)
+  {
+    $user_email = user_car_rent::where('rent_id','=',$id)->firstOrFail();  
+    $email = $user_email->member_email; 
+    Mail::to($email)->send(new ConfirmPayment_Pay2($user_email));
+  }
 }
