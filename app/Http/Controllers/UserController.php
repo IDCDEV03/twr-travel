@@ -46,7 +46,6 @@ class UserController extends Controller
   public function insert_booking(Request $request)
   {        
     $ิbooking_id = Str::random(12);
-
     //บันทึกข้อมูล
     member_booking_package::insert([
       'booking_id' => $ิbooking_id,
@@ -400,7 +399,7 @@ class UserController extends Controller
       'updated_at' => Carbon::now()
     ]);
     
-    //Line Alert  
+    //Line_Alert  
     $msg_alrert = "มีการแจ้งโอนเงินบริการเช่ารถ";
     $this->LineAlert($msg_alrert);
 

@@ -196,4 +196,4 @@
     <script src="<?php echo e(asset('assets/js/dashboard/default.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('Layouts.simple.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/admin/car_rental_detail.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.simple.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/admin/car_rental_detail.blade.php ENDPATH**/ ?>

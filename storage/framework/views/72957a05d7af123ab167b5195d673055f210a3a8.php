@@ -9,7 +9,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('breadcrumb-title'); ?>
-    <h3>รายการใบสั่งจอง</h3>
+    <h3>รายการใบสั่งจอง (ดำเนินการเรียบร้อย)</h3>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>

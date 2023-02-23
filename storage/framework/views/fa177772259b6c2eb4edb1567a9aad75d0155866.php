@@ -201,29 +201,18 @@ $img_path = 'public/package_file/';
 
                             </div>
                         </div>
-
+                        <?php $__currentLoopData = $condition; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>  
                         <div class="tour_details_boxed">
                             <h3 class="heading_theme">เงื่อนไข</h3>
                             <div class="tour_details_boxed_inner">
                                 <p>
-                                    Stet clitaStet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                                    sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                    eirmod.
+                                    <?php echo $row->package_condition; ?>
+
                                 </p>
-                                <ul>
-                                    <li><i class="fas fa-circle"></i>Buffet breakfast as per the Itinerary</li>
-                                    <li><i class="fas fa-circle"></i>Visit eight villages showcasing Polynesian culture
-                                    </li>
-                                    <li><i class="fas fa-circle"></i>Complimentary Camel safari, Bonfire, and Cultural
-                                        Dance at Camp</li>
-                                    <li><i class="fas fa-circle"></i>All toll tax, parking, fuel, and driver allowances
-                                    </li>
-                                    <li><i class="fas fa-circle"></i>Comfortable and hygienic vehicle (SUV/Sedan) for
-                                        sightseeing on all days as per the itinerary.</li>
-                                </ul>
+                              
                             </div>
                         </div>
-
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
 

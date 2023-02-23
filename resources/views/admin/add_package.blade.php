@@ -176,7 +176,7 @@
                                         @error('package_img')
                                         <span class="text-danger my-2">
                                             << {{ $message }} >> </span>
-                                    @enderror
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

@@ -55,6 +55,8 @@ Route::get('/admin/setting', $controller_path . '\AdminController@admin_setting'
 Route::get('/admin/setting_update/{id}', $controller_path .'\AdminController@setting_update')->name('admin_setting_update');
 Route::post('/admin/data_update/{id}', $controller_path .'\AdminController@data_update')->name('admin.data_update');
 Route::POST('/admin/update_password', $controller_path . '\AdminController@admin_update_password')->name('admin.update_password');
+Route::get('/admin/condition/{id}', $controller_path .'\AdminController@admin_setting_condition')->name('admin.condition_setting');
+Route::post('/admin/insert_condition', $controller_path .'\AdminController@insert_condition')->name('admin.insert_condition');
 
 //admin_ตรวจสอบยอดโอนชำระ
 Route::get('/admin/payment_chk/{id}', $controller_path . '\AdminController@payment_chk')->name('admin.payment_chk');

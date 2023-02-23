@@ -33,7 +33,11 @@ class HomeController extends Controller
         $package_img = DB::table('package_imgs')
         ->where('package_id','=', $id)
         ->get();
-        return view('home.tour-details',compact('package_tours','package_img'));
+
+        $condition = DB::table('package__conditions')
+        ->where('id','=','1')
+        ->get();
+        return view('home.tour-details',compact('package_tours','package_img','condition'));
     }
 
     public function contact()

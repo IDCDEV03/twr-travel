@@ -29,7 +29,16 @@ class AdminController extends Controller
     $userbooking = DB::table('member_booking_packages')
       ->where('booking_status', '=', 0)
       ->get();
-    return view('admin.index', compact('userbooking'));
+
+      $user_payment_tour = DB::table('member_booking_packages')
+      ->where('booking_status', '=', '4')
+      ->get();
+
+      $user_car_rental = DB::table('user_car_rents')
+      ->where('rent_status','=','0')
+      ->get();
+
+    return view('admin.index', compact('userbooking','user_payment_tour','user_car_rental'));
   }
 
   public function index()
@@ -48,7 +57,18 @@ class AdminController extends Controller
     $package_tour = DB::table('member_booking_packages')
       ->join('package_tours', 'member_booking_packages.package_id', '=', 'package_tours.package_id')
       ->orderBy('member_booking_packages.created_at', 'desc')
-      ->get();
+      ->where('member_booking_packages.booking_status','!=', '5')
+      ->get([
+        'member_booking_packages.booking_id',
+        'member_booking_packages.member_name',
+        'member_booking_packages.number_of_travel',
+        'member_booking_packages.created_at',
+        'member_booking_packages.booking_status',
+        'member_booking_packages.package_id',
+        'package_tours.package_id',
+        'package_tours.package_name',
+        'package_tours.code_tour'
+      ]);
     return view('admin.booking_chk', compact('package_tour'));
   }
 
@@ -499,6 +519,25 @@ class AdminController extends Controller
       ->where('id', '=', $id)
       ->get();
     return view('admin.user_detail', compact('user_data_booking', 'user_profile'));
+  }
+
+  public function admin_setting_condition ($id)
+  {
+    $condition = DB::table('package__conditions')
+    ->where('id','=',1)
+    ->get();
+    return view('admin.admin_condition_setting',compact('condition'));
+  }
+
+  public function insert_condition (Request $request)
+  {
+    DB::table('package__conditions')
+    ->where('id', '=', 1)
+    ->update([
+      'package_condition' => $request->package_condition,
+      'updated_at' => Carbon::now()
+    ]);
+    return redirect()->route('admin_setting')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
   }
 
   public function setting_update($id)

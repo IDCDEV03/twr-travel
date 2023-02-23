@@ -29,6 +29,8 @@
           @endif
 
                         <a href="{{ route('admin_setting_update', ['id' => Auth::user()->id]) }}" class="btn btn-pill btn-outline-primary-2x" type="button"> แก้ไขข้อมูลผู้ดูแลระบบ </a>
+
+                        <a href="{{ route('admin.condition_setting', ['id' => 1]) }}" class="btn btn-pill btn-outline-secondary-2x" type="button"> แก้ไขข้อมูลเงื่อนไขการสั่งจองแพ็คเกจทัวร์ </a>
  
                     </div>
                 </div>
