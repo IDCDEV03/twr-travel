@@ -19,7 +19,9 @@ class IsAdmin
         if (auth()->user()->is_admin == 1)
         {
             return $next($request);
-        }
+        }else
+        {
         return redirect()->route('login.show')->with('error', 'เฉพาะผู้ดูแลระบบเท่านั้น');
+        }
     }
 }
