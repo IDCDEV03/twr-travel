@@ -33,7 +33,7 @@ class LoginController extends Controller
         $credentials = $request->getCredentials();
 
         if(!Auth::validate($credentials)):
-            return redirect()->to('login')
+            return redirect()->to('login.show')
                 ->withErrors(trans('auth.failed'));
         endif;
 
@@ -60,10 +60,10 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user) 
     {
-        if (auth()->user()->is_admin == 1)
+        if (auth()->user()->is_admin == '1')
         {
             return redirect()->intended('/admin/index');
-        }else
+        }elseif(auth()->user()->is_admin == '0')
         {
             return redirect()->intended('/home');
         }        
