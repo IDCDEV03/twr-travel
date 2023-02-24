@@ -14,9 +14,17 @@
                         </ul>
                     </div>
                     <div class="col-lg-6 col-md-6">
+                       
                         <ul class="topbar-others-options">
+                            @auth
+                            <li><a href="{{route('userPages.home')}}">{{auth()->user()->member_name}}</a></li> 
+                            <li><a href="{{ route('logout.perform') }}">ออกจากระบบ</a></li>                           
+                            @endauth
+                            
+                            @guest                       
                             <li><a href="{{route('login.show')}}">เข้าสู่ระบบ</a></li>
                             <li><a href="{{route('register.show')}}">สมัครสมาชิก</a></li>
+                            @endguest
                         </ul>
                     </div>
                 </div>

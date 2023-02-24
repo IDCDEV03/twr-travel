@@ -14,9 +14,17 @@
                         </ul>
                     </div>
                     <div class="col-lg-6 col-md-6">
+                       
                         <ul class="topbar-others-options">
+                            <?php if(auth()->guard()->check()): ?>
+                            <li><a href="<?php echo e(route('userPages.home')); ?>"><?php echo e(auth()->user()->member_name); ?></a></li> 
+                            <li><a href="<?php echo e(route('logout.perform')); ?>">ออกจากระบบ</a></li>                           
+                            <?php endif; ?>
+                            
+                            <?php if(auth()->guard()->guest()): ?>                       
                             <li><a href="<?php echo e(route('login.show')); ?>">เข้าสู่ระบบ</a></li>
                             <li><a href="<?php echo e(route('register.show')); ?>">สมัครสมาชิก</a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
