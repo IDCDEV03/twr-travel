@@ -80,6 +80,7 @@ Route::get('/admin/car_update_payment/{id}/{pay_num}', $controller_path . '\Admi
 
 });
 
+
 //User
 Route::get('/userpages/book_package/{id}/package/{pkid}', $controller_path . '\UserController@book_package')->name('book_package');
 

@@ -22,9 +22,6 @@ class IsAdmin
         }elseif(auth()->user()->is_admin == '0')
         {
         return redirect()->route('login.show')->with('error', 'เฉพาะผู้ดูแลระบบเท่านั้น');
-        }else
-        {
-            
         }
     }
 }

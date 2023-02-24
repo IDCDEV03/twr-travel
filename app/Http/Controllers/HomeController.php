@@ -51,7 +51,14 @@ class HomeController extends Controller
 
     public function index() 
     {            
-        return view('userpages.home');
+        $role=Auth::user()->is_admin;
+        if($role == '0')
+        {
+            return view('userpages.home');
+        }else
+        {
+            return redirect()->route('login.show')->with('error', 'กรุณาล็อคอินเข้าสู่ระบบ');
+        }
     }
 
      public function web_car_rental()

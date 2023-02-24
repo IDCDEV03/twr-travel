@@ -28,21 +28,21 @@ class AdminController extends Controller
   {
     $role=Auth::user()->is_admin;
     if($role == '1')
-    {
-    $userbooking = DB::table('member_booking_packages')
-      ->where('booking_status', '=', 0)
-      ->get();
+      {
+      $userbooking = DB::table('member_booking_packages')
+        ->where('booking_status', '=', 0)
+        ->get();
 
-      $user_payment_tour = DB::table('member_booking_packages')
-      ->where('booking_status', '=', '4')
-      ->get();
+        $user_payment_tour = DB::table('member_booking_packages')
+        ->where('booking_status', '=', '4')
+        ->get();
 
-      $user_car_rental = DB::table('user_car_rents')
-      ->where('rent_status','=','0')
-      ->get();
+        $user_car_rental = DB::table('user_car_rents')
+        ->where('rent_status','=','0')
+        ->get();
 
-    return view('admin.index', compact('userbooking','user_payment_tour','user_car_rental'));
-    }
+      return view('admin.index', compact('userbooking','user_payment_tour','user_car_rental'));
+      }
     else
     {
       return redirect()->route('login.show')->with('error', 'เฉพาะผู้ดูแลระบบเท่านั้น');
