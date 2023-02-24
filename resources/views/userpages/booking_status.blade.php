@@ -62,21 +62,21 @@
                                 <td>
 
                                     @if ($row->booking_status == '0')
-                                    <span class="badge bg-secondary">รอตรวจสอบ</span>
+                                    <span class="txt-secondary">รอตรวจสอบ</span>
                                     @elseif ($row->booking_status == '1')
-                                    <span class="badge bg-info">
+                                    <span class="txt-info">
                                         ส่งใบเสนอราคาแล้ว
                                     </span>
                                     @elseif ($row->booking_status == '2')
-                                    <span class="badge bg-danger">
+                                    <span class="txt-danger">
                                         ยกเลิกการจอง
                                     </span>
                                     @elseif ($row->booking_status == '4')
-                                    <span class="badge bg-secondary">
+                                    <span class="txt-secondary">
                                         แจ้งชำระเงินแล้ว<br> รอตรวจสอบ
                                     </span>
                                     @elseif ($row->booking_status == '5')
-                                    <span class="badge bg-success">
+                                    <span class="txt-success">
                                        ตรวจสอบการชำระเงินเรียบร้อย
                                     </span>
                                     @endif

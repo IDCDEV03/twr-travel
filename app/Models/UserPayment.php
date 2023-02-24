@@ -10,10 +10,12 @@ class UserPayment extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
+        'booking_id',
         'quotation_id',
         'payment_price',
         'payment_bank',
         'payment_slip',
         'payment_status',
+        'pay_num',
     ];
 }

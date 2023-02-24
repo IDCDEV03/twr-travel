@@ -13,7 +13,7 @@
       <div class="col-12 p-0">
          <div class="login-card">
             <div>
-               <div><a class="logo" href="{{ route('index') }}"><img class="img-fluid for-light" src="{{asset('assets/images/logo/login.png')}}" alt="looginpage"><img class="img-fluid for-dark" src="{{asset('assets/images/logo/logo_dark.png')}}" alt="looginpage"></a></div>
+               <div><a class="logo" href="{{ route('/') }}"><img class="img-fluid for-light" src="{{asset('assets/images/logo/login.png')}}" alt="looginpage"><img class="img-fluid for-dark" src="{{asset('assets/images/logo/logo_dark.png')}}" alt="looginpage"></a></div>
                <div class="login-main">
 
                   @if (session('error'))
@@ -49,8 +49,7 @@
                         <div class="checkbox p-0">
                            <input id="checkbox1" type="checkbox" name="remember">
                            <label class="text-muted" for="checkbox1">Remember password</label>
-                        </div>
-                        <a class="link" href="#">ลืมรหัสผ่าน?</a>
+                        </div>                       
                         <button class="btn btn-primary btn-block" type="submit">เข้าสู่ระบบ</button>
                      </div>
                      <p class="mt-4 mb-0">ยังไม่ได้เป็นสมาชิก?<a class="ms-2" href="{{ route('register.show') }}">สมัครสมาชิกใหม่</a></p>

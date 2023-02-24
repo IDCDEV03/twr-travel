@@ -344,8 +344,7 @@ class AdminController extends Controller
         'total_price' => $request->total_price,
         'price_deposit' => $request->price_deposit,
         'package_file' => $full_path,
-        'quotation_detail' => $request->quotation_detail,
-        'quotation_status' => '0',
+        'quotation_detail' => $request->quotation_detail, 
         'created_at' => Carbon::now()
       ]);
       $package_file->move($upload_location, $package_file_name);
@@ -361,7 +360,6 @@ class AdminController extends Controller
         'price_deposit' => $request->price_deposit,
         'package_file' => 'none',
         'quotation_detail' => $request->quotation_detail,
-        'quotation_status' => '0',
         'created_at' => Carbon::now()
       ]);
 
@@ -491,12 +489,6 @@ class AdminController extends Controller
       ->where('quotation_id', '=', $id)
       ->update([
         'payment_status' => '2',
-        'updated_at' => Carbon::now()
-      ]);
-    DB::table('booking_quotations')
-      ->where('quotation_id', '=', $id)
-      ->update([
-        'quotation_status' => '2',
         'updated_at' => Carbon::now()
       ]);
     DB::table('member_booking_packages')

@@ -128,8 +128,7 @@
  </div>
 
     </div>
-    </div>
-    </div>
+
     <script type="text/javascript">
         var session_layout = '{{ session()->get('layout') }}';
     </script>

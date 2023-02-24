@@ -1,39 +1,22 @@
-@extends('userLayouts.simple.master')
+<?php $__env->startSection('title', 'สั่งจองแพ็คเกจทัวร์'); ?>
 
-@section('title', 'สั่งจองแพ็คเกจทัวร์')
+<?php $__env->startSection('css'); ?>
+<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/css/vendors/select2.css')); ?>">
+<?php $__env->stopSection(); ?>
 
-@section('css')
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/select2.css')}}">
-@endsection
+<?php $__env->startSection('style'); ?>
+<?php $__env->stopSection(); ?>
 
-@section('style')
-@endsection
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container-fluid">
-  @foreach ($package_all as $item)
-  <div class="card">
-    <div class="card-body">
-      <h4>{{ $item->package_name }}</h4>
-   {!! $item->package_detail !!}
-    </div>
-  </div>
-@endforeach
-@foreach ($package_all as $item)
-<div class="card">
-  <div class="card-body">
-    <a href="{{ asset($item->package_file) }}" class="txt-secondary h3"><u>ดาวน์โหลดโปรแกรมทัวร์</u></a>
-  </div>
-</div>
-@endforeach
 	
 	<div class="card">
         <div class="card-header">
-          <h5>สั่งจองแพ็คเกจทัวร์</h5>
+          <h5>สั่งจองแพ็คเกจทัวร์ส่วนตัว</h5>
         </div>
 
-        <form class="form needs-validation" method="POST" action="{{ route('insert_booking') }}">
-          @csrf
+        <form class="form needs-validation" method="POST" action="<?php echo e(route('insert_booking')); ?>">
+          <?php echo csrf_field(); ?>
           <div class="card-body">
             <div class="row">
               <div class="col">
@@ -41,38 +24,52 @@
                   <label class="form-label">ชื่อผู้สั่งจอง
                     <span class="text-danger">*</span>                    
                   </label>
-                  <input class="form-control" type="text" placeholder="ระบุชื่อ-นามสกุล" name="member_name" value="{{ Auth::user()->member_name }}" required>
-                  <input type="hidden" name="member_id" value="{{ Auth::user()->id }}">
+                  <input class="form-control" type="text" placeholder="ระบุชื่อ-นามสกุล" name="member_name" value="<?php echo e(Auth::user()->member_name); ?>" required>
+                  <input type="hidden" name="member_id" value="<?php echo e(Auth::user()->id); ?>">
                 </div>
               </div>
             </div>
-@foreach ($users as $row)
+    <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <div class="row">
                 <div class="col">
                   <div class="mb-3">
-                    <label class="form-label">อีเมล (สำหรับรับข้อมูลแจ้งการสั่งจอง)
+                    <label class="form-label">อีเมล
                       <span class="text-danger">*</span> 
                     </label>
                     <input class="form-control" type="email" 
                     placeholder="กรุณาระบุอีเมลสำหรับการติดต่อรับใบเสนอราคา"
-                    name="member_email" value="{{ $row->email }}">
+                    name="member_email" value="<?php echo e($row->email); ?>" readonly>
                   </div>
                 </div>
               </div>
-@endforeach
-@foreach ($package_all as $item)
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               <div class="row">
                 <div class="col">
                   <div class="mb-3">
                     <label class="form-label">แพ็คเกจที่ต้องการจอง
                       <span class="text-danger">*</span> 
                     </label>
-                    <input type="hidden" value="{{request()->pkid}}" name="package_id">
-                    <input class="form-control" value="{{ $item->package_name }}" readonly>
+                    <select class="js-example-basic-single col-sm-12 " name="package_name">
+                      <option value="" disabled selected>เลือกแพ็คเกจที่ท่านสนใจ</option>
+                      <optgroup label="ในประเทศ">                        
+                        <?php $__currentLoopData = $package_all; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($item->package_type == '1'): ?>
+                        <option value="<?php echo e($item->package_id); ?>"><?php echo e($item->package_name); ?></option>
+                        <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                      </optgroup>
+                      <optgroup label="ต่างประเทศ">
+                        <?php $__currentLoopData = $package_all; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($item->package_type == '2'): ?>
+                        <option value="<?php echo e($item->package_id); ?>"><?php echo e($item->package_name); ?></option>
+                        <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                      </optgroup>
+                    </select>
                   </div>
                 </div>
               </div>
-@endforeach
+
 
               <div class="row">
                 <div class="col">
@@ -135,20 +132,22 @@
             <input class="btn btn-light" type="reset" value="ยกเลิก">
           </div>
         </form>
-    
+     
 		
 	
 	</div>
 </div>
 <script type="text/javascript">
-	var session_layout = '{{ session()->get('layout') }}';
+	var session_layout = '<?php echo e(session()->get('layout')); ?>';
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('script')
-<script src="{{asset('assets/js/notify/bootstrap-notify.min.js')}}"></script>
-<script src="{{asset('assets/js/dashboard/default.js')}}"></script>
-<script src="{{asset('assets/js/form-validation-custom.js')}}"></script>
-<script src="{{asset('assets/js/select2/select2.full.min.js')}}"></script>
-<script src="{{asset('assets/js/select2/select2-custom.js')}}"></script>
-@endsection
+<?php $__env->startSection('script'); ?>
+<script src="<?php echo e(asset('assets/js/notify/bootstrap-notify.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/js/dashboard/default.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/js/form-validation-custom.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/js/select2/select2.full.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/js/select2/select2-custom.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('userLayouts.simple.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/userpages/private_package.blade.php ENDPATH**/ ?>

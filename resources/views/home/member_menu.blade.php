@@ -17,7 +17,7 @@
                        
                         <ul class="topbar-others-options">
                             @auth
-                            <li><a href="{{route('userPages.home')}}">{{auth()->user()->member_name}}</a></li> 
+                            <li><a href="{{route('userPages.home')}}">{{auth()->user()->username}}</a></li> 
                             <li><a href="{{ route('logout.perform') }}">ออกจากระบบ</a></li>                           
                             @endauth
                             
@@ -63,38 +63,10 @@
                                        เกี่ยวกับเรา
                                     </a>
                                 </li>
-
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        แพ็คเกจทัวร์
-                                        <i class="fas fa-angle-down"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="tour-search.html" class="nav-link">Tour</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="tour-details.html" class="nav-link">Tour Details</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="tour-booking-submission.html" class="nav-link">Tour Booking</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="top-destinations.html" class="nav-link">Top Destination</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="top-destinations-details.html" class="nav-link">Destination
-                                                Details</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                              
-                          
-                                <li class="nav-item">
+                                 <li class="nav-item">
                                     <a href="{{route('bus_rental.show')}}" class="nav-link">
-                                       รถบัสให้เช่า                                       
-                                    </a>
-                                   
+                                       รถบัสให้เช่า       
+                                    </a>  
                                 </li>
 
                                 <li class="nav-item">
@@ -103,39 +75,18 @@
                             </ul>
                             <div class="others-options d-flex align-items-center">
                                 <div class="option-item">
-                                    <a href="#" class="search-box">
-                                        <i class="bi bi-search"></i></a>
+                                   
                                 </div>
+                                @guest
                                 <div class="option-item">
                                     <a href="{{route('register.show')}}" class="btn  btn_navber">สมัครสมาชิก</a>
                                 </div>
+                                @endguest
+                             
                             </div>
                         </div>
                     </nav>
                 </div>
-            </div>
-            <div class="others-option-for-responsive">
-                <div class="container">
-                    <div class="dot-menu">
-                        <div class="inner">
-                            <div class="circle circle-one"></div>
-                            <div class="circle circle-two"></div>
-                            <div class="circle circle-three"></div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="option-inner">
-                            <div class="others-options d-flex align-items-center">
-                                <div class="option-item">
-                                    <a href="#" class="search-box"><i class="fas fa-search"></i></a>
-                                </div>
-                                <div class="option-item">
-                                    <a href="contact.html" class="btn  btn_navber">Get free quote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>           
         </div>
     </header>

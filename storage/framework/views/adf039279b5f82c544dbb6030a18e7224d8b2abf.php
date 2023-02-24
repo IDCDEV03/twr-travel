@@ -18,6 +18,13 @@
     </div>
   </div>
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+<?php $__currentLoopData = $package_all; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+<div class="card">
+  <div class="card-body">
+    <a href="<?php echo e(asset($item->package_file)); ?>" class="txt-secondary h3"><u>ดาวน์โหลดโปรแกรมทัวร์</u></a>
+  </div>
+</div>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 	
 	<div class="card">
         <div class="card-header">
@@ -42,12 +49,12 @@
               <div class="row">
                 <div class="col">
                   <div class="mb-3">
-                    <label class="form-label">อีเมล
+                    <label class="form-label">อีเมล (สำหรับรับข้อมูลแจ้งการสั่งจอง)
                       <span class="text-danger">*</span> 
                     </label>
                     <input class="form-control" type="email" 
                     placeholder="กรุณาระบุอีเมลสำหรับการติดต่อรับใบเสนอราคา"
-                    name="member_email" value="<?php echo e($row->email); ?>" readonly>
+                    name="member_email" value="<?php echo e($row->email); ?>">
                   </div>
                 </div>
               </div>

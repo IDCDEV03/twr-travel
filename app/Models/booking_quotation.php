@@ -15,7 +15,6 @@ class booking_quotation extends Model
         'total_price',
         'price_deposit',
         'package_file',
-        'quotation_detail',
-        'quotation_status',
+        'quotation_detail',     
     ];
 }

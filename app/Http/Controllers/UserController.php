@@ -136,10 +136,14 @@ class UserController extends Controller
 
   public function user_payment($id)
   {
-    $payment = DB::table('booking_quotations')
-      ->where('booking_quotations.quotation_id', '=', $id)
+    $payment = DB::table('member_booking_packages')
+    ->join('booking_quotations', 'member_booking_packages.booking_id', '=', 'booking_quotations.booking_id')
+      ->where('booking_quotations.booking_id', '=', $id)
       ->get();
-    return view('userpages.user_payment', compact('payment'));
+
+      $data_bank =  DB::table('admin_banks')  
+      ->get();
+    return view('userpages.user_payment', compact('payment','data_bank'));
   }
 
   public function add_payment(Request $request)
@@ -208,8 +212,28 @@ class UserController extends Controller
       ->join('package_tours', 'booking_quotations.package_id', '=', 'package_tours.package_id')
       ->join('users','member_booking_packages.member_id','=','users.id')
       ->where('booking_quotations.booking_id', '=', $id)
+      ->get([
+        'member_booking_packages.created_at',
+        'member_booking_packages.booking_id',
+        'member_booking_packages.member_id',
+        'member_booking_packages.member_name',
+        'member_booking_packages.member_email',
+        'member_booking_packages.number_of_travel',
+        'member_booking_packages.date_start',
+        'member_booking_packages.date_end',
+        'member_booking_packages.booking_status',
+        'booking_quotations.quotation_id',
+        'booking_quotations.total_price',
+        'booking_quotations.price_deposit',
+        'package_tours.package_name',
+        'package_tours.code_tour',
+        'package_tours.package_total_day',     
+        'users.user_phone',
+      ]);
+
+      $data_bank =  DB::table('admin_banks')  
       ->get();
-    return view('userpages.user_invoice', compact('invoice'));
+    return view('userpages.user_invoice', compact('invoice','data_bank'));
   }
 
   public function user_cancel_booking($id)

@@ -7,34 +7,34 @@
     <!-- Title -->
     <title>ธัญวรัตม์ ทราเวล</title>
     <!-- Bootstrap css -->
-    <link rel="stylesheet" href="{{asset('assets_home/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets_home/css/bootstrap.min.css')); ?>">
     <!-- animate css -->
-    <link rel="stylesheet" href="{{asset('assets_home/css/animate.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets_home/css/animate.min.css')); ?>">
     <!-- Fontawesome css -->
-    <link rel="stylesheet" href="{{asset('assets_home/css/fontawesome.all.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets_home/css/fontawesome.all.min.css')); ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
         <!-- Slick css -->
-        <link rel="stylesheet" type="text/css" href="{{asset('assets_home/css/slick.min.css')}}" />
+        <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets_home/css/slick.min.css')); ?>" />
         <!--slick-theme.css-->
-        <link rel="stylesheet" type="text/css" href="{{asset('assets_home/css/slick-theme.min.css')}}" />
+        <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets_home/css/slick-theme.min.css')); ?>" />
         <!-- Rangeslider css -->
-        <link rel="stylesheet" href="{{asset('assets_home/css/nouislider.css')}}" />
+        <link rel="stylesheet" href="<?php echo e(asset('assets_home/css/nouislider.css')); ?>" />
     <!-- popup css -->
-    <link rel="stylesheet" href="{{asset('assets_home/css/popup.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets_home/css/popup.css')); ?>">
     <!-- owl.carousel css -->
-    <link rel="stylesheet" href="{{asset('assets_home/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets_home/css/owl.carousel.min.css')); ?>">
     <!-- owl.theme.default css -->
-    <link rel="stylesheet" href="{{asset('assets_home/css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets_home/css/owl.theme.default.min.css')); ?>">
     <!-- navber css -->
-    <link rel="stylesheet" href="{{asset('assets_home/css/navber.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets_home/css/navber.css')); ?>">
     <!-- meanmenu css -->
-    <link rel="stylesheet" href="{{asset('assets_home/css/meanmenu.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets_home/css/meanmenu.css')); ?>">
     <!-- Style css -->
-    <link rel="stylesheet" href="{{asset('assets_home/css/style.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets_home/css/style.css')); ?>">
     <!-- Responsive css -->
-    <link rel="stylesheet" href="{{asset('assets_home/css/responsive.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets_home/css/responsive.css')); ?>">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{asset('assets_home/img/favicon.png')}}">
+    <link rel="icon" type="image/png" href="<?php echo e(asset('assets_home/img/favicon.png')); ?>">
 </head>
 
 <body>
@@ -62,7 +62,7 @@
 
     <!-- Header Area -->
 
-    @include('home.member_menu')
+    <?php echo $__env->make('home.member_menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 
     <!-- search -->
@@ -111,12 +111,12 @@
                         <div class="card-body">
                             
                             <div class="d-grid gap-2 d-md-flex justify-content-md-center"> 
-                                @auth
-                                <a href="{{route('user.car-rental')}}" class="btn btn-lg btn-info" type="button">ขอใบเสนอราคา</a>
-                                @endauth          
-                                @guest
-                                <a href="{{route('login.show')}}" class="btn btn-lg btn-info" type="button">ขอใบเสนอราคา</a>
-                                @endguest   
+                                <?php if(auth()->guard()->check()): ?>
+                                <a href="<?php echo e(route('user.car-rental')); ?>" class="btn btn-lg btn-info" type="button">ขอใบเสนอราคา</a>
+                                <?php endif; ?>          
+                                <?php if(auth()->guard()->guest()): ?>
+                                <a href="<?php echo e(route('login.show')); ?>" class="btn btn-lg btn-info" type="button">ขอใบเสนอราคา</a>
+                                <?php endif; ?>   
                             </div>
 
                         </div>
@@ -141,27 +141,27 @@
                
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/001.jpg')}}" alt="img">
+                        <img src="<?php echo e(asset('assets_home/img/car/001.jpg')); ?>" alt="img">
                       
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/002.jpg')}}" alt="img">
-                      
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                    <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/003.jpg')}}" alt="img">
+                        <img src="<?php echo e(asset('assets_home/img/car/002.jpg')); ?>" alt="img">
                       
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/004.jpg')}}" alt="img">
+                        <img src="<?php echo e(asset('assets_home/img/car/003.jpg')); ?>" alt="img">
+                      
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                    <div class="tour_guides_boxed">
+                        <img src="<?php echo e(asset('assets_home/img/car/004.jpg')); ?>" alt="img">
                       
                     </div>
                 </div>
@@ -171,52 +171,25 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/008.jpg')}}" alt="img">                      
+                        <img src="<?php echo e(asset('assets_home/img/car/008.jpg')); ?>" alt="img">                      
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/005.jpg')}}" alt="img">                      
+                        <img src="<?php echo e(asset('assets_home/img/car/005.jpg')); ?>" alt="img">                      
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/006.jpg')}}" alt="img">                      
+                        <img src="<?php echo e(asset('assets_home/img/car/006.jpg')); ?>" alt="img">                      
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/007.jpg')}}" alt="img">                      
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                    <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/009.jpg')}}" alt="img">                      
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                    <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/010.jpg')}}" alt="img">                      
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                    <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/011.jpg')}}" alt="img">                      
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                    <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/012-1.jpg')}}" alt="img">                      
+                        <img src="<?php echo e(asset('assets_home/img/car/007.jpg')); ?>" alt="img">                      
                     </div>
                 </div>
 
@@ -225,25 +198,52 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/013.jpg')}}" alt="img">                      
+                        <img src="<?php echo e(asset('assets_home/img/car/009.jpg')); ?>" alt="img">                      
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/014.jpg')}}" alt="img">                      
+                        <img src="<?php echo e(asset('assets_home/img/car/010.jpg')); ?>" alt="img">                      
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/015-1.jpg')}}" alt="img">                      
+                        <img src="<?php echo e(asset('assets_home/img/car/011.jpg')); ?>" alt="img">                      
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="tour_guides_boxed">
-                        <img src="{{asset('assets_home/img/car/016.jpg')}}" alt="img">                      
+                        <img src="<?php echo e(asset('assets_home/img/car/012-1.jpg')); ?>" alt="img">                      
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                    <div class="tour_guides_boxed">
+                        <img src="<?php echo e(asset('assets_home/img/car/013.jpg')); ?>" alt="img">                      
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                    <div class="tour_guides_boxed">
+                        <img src="<?php echo e(asset('assets_home/img/car/014.jpg')); ?>" alt="img">                      
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                    <div class="tour_guides_boxed">
+                        <img src="<?php echo e(asset('assets_home/img/car/015-1.jpg')); ?>" alt="img">                      
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                    <div class="tour_guides_boxed">
+                        <img src="<?php echo e(asset('assets_home/img/car/016.jpg')); ?>" alt="img">                      
                     </div>
                 </div>
 
@@ -258,12 +258,12 @@
             <div class="row align-items-center">
                 <div class="co-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="copyright_left">
-                        <p>Copyright © @php echo date('Y'); @endphp All Rights Reserved</p>
+                        <p>Copyright © <?php echo date('Y'); ?> All Rights Reserved</p>
                     </div>
                 </div>
                 <div class="co-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="copyright_right">
-                        <img src="{{asset('assets_home/img/common/cards.png')}}" alt="img">
+                        <img src="<?php echo e(asset('assets_home/img/common/cards.png')); ?>" alt="img">
                     </div>
                 </div>
             </div>
@@ -279,22 +279,22 @@
 
    
 
-    <script src="{{asset('assets_home/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="<?php echo e(asset('assets_home/js/jquery-3.6.0.min.js')); ?>"></script>
     <!-- Bootstrap js -->
-    <script src="{{asset('assets_home/js/bootstrap.bundle.js')}}"></script>
+    <script src="<?php echo e(asset('assets_home/js/bootstrap.bundle.js')); ?>"></script>
     <!-- Meanu js -->
-    <script src="{{asset('assets_home/js/jquery.magnific-popup.min.js')}}"></script>
+    <script src="<?php echo e(asset('assets_home/js/jquery.magnific-popup.min.js')); ?>"></script>
      <!-- Slick js -->
-     <script src="{{asset('assets_home/js/slick.min.js')}}"></script>
-     <script src="{{asset('assets_home/js/slick-slider.js')}}"></script>
+     <script src="<?php echo e(asset('assets_home/js/slick.min.js')); ?>"></script>
+     <script src="<?php echo e(asset('assets_home/js/slick-slider.js')); ?>"></script>
     <!-- Meanu js -->
-    <script src="{{asset('assets_home/js/jquery.meanmenu.js')}}"></script>
+    <script src="<?php echo e(asset('assets_home/js/jquery.meanmenu.js')); ?>"></script>
     <!-- owl carousel js -->
-    <script src="{{asset('assets_home/js/owl.carousel.min.js')}}"></script>
+    <script src="<?php echo e(asset('assets_home/js/owl.carousel.min.js')); ?>"></script>
     <!-- wow.js -->
-    <script src="{{asset('assets_home/js/wow.min.js')}}"></script>
+    <script src="<?php echo e(asset('assets_home/js/wow.min.js')); ?>"></script>
     <!-- Custom js -->
-    <script src="{{asset('assets_home/js/custom.js')}}"></script>
-    <script src="{{asset('assets_home/js/add-form.js')}}"></script>
+    <script src="<?php echo e(asset('assets_home/js/custom.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets_home/js/add-form.js')); ?>"></script>
 
-</body>
+</body><?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/home/web_car.blade.php ENDPATH**/ ?>

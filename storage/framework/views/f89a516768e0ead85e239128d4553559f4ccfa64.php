@@ -1,28 +1,29 @@
-@extends('userLayouts.authentication.master')
-@section('title', 'สมัครสมาชิกใหม่')
 
-@section('css')
-@endsection
+<?php $__env->startSection('title', 'สมัครสมาชิกใหม่'); ?>
 
-@section('style')
-@endsection
+<?php $__env->startSection('css'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('style'); ?>
+<?php $__env->stopSection(); ?>
 
 
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container-fluid p-0">
         <div class="row m-0">
             <div class="col-12 p-0">
                 <div class="login-card">
                     <div>
-                        <div><a class="logo" href="{{ route('/') }}"><img class="img-fluid for-light"
-                                    src="{{ asset('assets/images/logo/login.png') }}" alt="looginpage"><img
-                                    class="img-fluid for-dark" src="{{ asset('assets/images/logo/logo_dark.png') }}"
+                        <div><a class="logo" href="<?php echo e(route('/')); ?>"><img class="img-fluid for-light"
+                                    src="<?php echo e(asset('assets/images/logo/login.png')); ?>" alt="looginpage"><img
+                                    class="img-fluid for-dark" src="<?php echo e(asset('assets/images/logo/logo_dark.png')); ?>"
                                     alt="looginpage"></a></div>
                         <div class="login-main">
 
-                            <form class="theme-form" action="{{ route('register.perform') }}" method="POST">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                {{ csrf_field() }}
+                            <form class="theme-form" action="<?php echo e(route('register.perform')); ?>" method="POST">
+                                <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" />
+                                <?php echo e(csrf_field()); ?>
+
                                 
                                 <h4>สมัครสมาชิกใหม่</h4>
                                 <p>กรุณากรอกข้อมูลเพื่อสมัครสมาชิกเว็บไซต์ของเรา</p>                         
@@ -30,10 +31,10 @@
                                 <div class="form-group">
                                     <label class="col-form-label pt-0">Username</label>
                                     <input class="form-control" name="username" type="text" required
-                                        placeholder="ระบุ username" value="{{ old('username') }}" autofocus>
-                                    @if ($errors->has('username'))
-                                        <span class="text-danger text-left">{{ $errors->first('username') }}</span>
-                                    @endif
+                                        placeholder="ระบุ username" value="<?php echo e(old('username')); ?>" autofocus>
+                                    <?php if($errors->has('username')): ?>
+                                        <span class="text-danger text-left"><?php echo e($errors->first('username')); ?></span>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="form-group">
@@ -45,10 +46,10 @@
                                 <div class="form-group">
                                     <label class="col-form-label">Email </label>
                                     <input class="form-control" type="email" required
-                                        placeholder="อีเมลสำหรับการเข้าสู่ระบบ" name="email" value="{{ old('email') }}">
-                                    @if ($errors->has('email'))
-                                        <span class="text-danger text-left">{{ $errors->first('email') }}</span>
-                                    @endif
+                                        placeholder="อีเมลสำหรับการเข้าสู่ระบบ" name="email" value="<?php echo e(old('email')); ?>">
+                                    <?php if($errors->has('email')): ?>
+                                        <span class="text-danger text-left"><?php echo e($errors->first('email')); ?></span>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="form-group">
@@ -60,23 +61,23 @@
                                 <div class="form-group">
                                     <label class="col-form-label">Password</label>
                                     <input class="form-control" type="password" name="password" required=""
-                                        placeholder="รหัสผ่าน 6 ตัวอักษรขึ้นไป" value="{{ old('password') }}">
+                                        placeholder="รหัสผ่าน 6 ตัวอักษรขึ้นไป" value="<?php echo e(old('password')); ?>">
 
-                                    @if ($errors->has('password'))
-                                        <span class="text-danger text-left">{{ $errors->first('password') }}</span>
-                                    @endif
+                                    <?php if($errors->has('password')): ?>
+                                        <span class="text-danger text-left"><?php echo e($errors->first('password')); ?></span>
+                                    <?php endif; ?>
                                 </div>
 
 
                                 <div class="form-group">
                                     <label class="col-form-label">Confirm Password</label>
                                     <input class="form-control" type="password" name="password_confirmation" placeholder="ยืนยันรหัสผ่านอีกครั้ง"
-                                        value="{{ old('password_confirmation') }}" required>
+                                        value="<?php echo e(old('password_confirmation')); ?>" required>
 
-                                    @if ($errors->has('password_confirmation'))
+                                    <?php if($errors->has('password_confirmation')): ?>
                                         <span
-                                            class="text-danger text-left">{{ $errors->first('password_confirmation') }}</span>
-                                    @endif
+                                            class="text-danger text-left"><?php echo e($errors->first('password_confirmation')); ?></span>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="form-group mb-0">
@@ -86,7 +87,7 @@
                                     <div class="mb-0">
                                 <label class="text-muted">เป็นสมาชิกอยู่แล้ว?
                                   <a class="ms-2"
-                                                href="{{route('login.show')}}">คลิกที่นี่ เพื่อเข้าสู่ระบบ</a></label>
+                                                href="<?php echo e(route('login.show')); ?>">คลิกที่นี่ เพื่อเข้าสู่ระบบ</a></label>
                                     </div>
                                 </div>
                             </form>
@@ -96,7 +97,9 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('script')
-@endsection
+<?php $__env->startSection('script'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('userLayouts.authentication.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/auth/register.blade.php ENDPATH**/ ?>
