@@ -60,12 +60,15 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user) 
     {
-        if (auth()->user()->is_admin == '1')
+        if (auth()->check() && auth()->user()->is_admin == '1')
         {
             return redirect()->intended('/admin/index');
-        }elseif(auth()->user()->is_admin == '0')
+        }elseif(auth()->check() && auth()->user()->is_admin == '0')
         {
             return redirect()->intended('/home');
-        }        
+        }else
+        {
+            return redirect()->route('login.show')->with('error', 'กรุณาล็อคอินเข้าสู่ระบบ');
+        }
     }
 }
