@@ -57,7 +57,7 @@ class HomeController extends Controller
             return view('userpages.home');
         }else
         {
-            return redirect()->route('login.show')->with('error', 'กรุณาล็อคอินเข้าสู่ระบบ');
+        return redirect()->route('login.show')->with('error', 'กรุณาล็อคอินเข้าสู่ระบบ');
         }
     }
 
