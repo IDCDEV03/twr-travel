@@ -39,15 +39,16 @@
                        <span>กรอกข้อมูลการโอนเงินของท่าน พร้อมแนบรูปหลักฐาน</span>
                     </div>
                     <div class="card-body">
-                <form class="needs-validation" novalidate="" action="{{ route('user.insert_car_rent_payment', ['id'=>$item->booking_id]) }}"
+                <form class="needs-validation" novalidate="" action="{{ route('user_add_payment', ['id'=>$item->booking_id]) }}"
                  method="POST" enctype="multipart/form-data">
                  @csrf
                     <input type="hidden" value="{{$item->member_id}}" name="member_id">
-                        @if ($item->booking_status == '3')
-                            <input type="hidden" name="rent_status" value="5">
+                    <input type="hidden" value="{{$item->quotation_id}}" name="quotation_id">
+                        @if ($item->booking_status == '5')
+                            <input type="hidden" name="booking_status" value="6">
                             <input type="hidden" name="pay_num" value="pay2">
                         @elseif ($item->booking_status == '1')
-                        <input type="hidden" name="rent_status" value="2">
+                        <input type="hidden" name="booking_status" value="4">
                         <input type="hidden" name="pay_num" value="pay1">
                         @endif
                     <div class="row g-3">                
@@ -62,7 +63,7 @@
                     </div>
                     <br>
                     <div class="col-sm-12">
-                        <h6>ธนาคารที่โอนชำระ</h6>
+                        <h6>ธนาคารที่โอนเงินเข้า</h6>
                     </div>
                     <div class="col">
                         <select class="form-select digits" name="payment_bank">

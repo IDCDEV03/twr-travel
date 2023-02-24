@@ -94,7 +94,7 @@ Route::get('/user/booking_detail/{id}', $controller_path . '\UserController@book
 Route::get('/user/quotation/{id}', $controller_path . '\UserController@user_quotation')->name('user_quotation');
 Route::get('/user/payment/{id}', $controller_path . '\UserController@user_payment')->name('user_payment');
 
-Route::post('/user/add_payment', $controller_path . '\UserController@add_payment')->name('user_add_payment');
+Route::post('/user/add_payment/{id}', $controller_path . '\UserController@add_payment')->name('user_add_payment');
 //User_ลิสต์แพ็คเกจ
 Route::get('/user/all_packages', $controller_path . '\UserController@all_packages')->name('user.all_packages');
 

@@ -146,7 +146,7 @@ class UserController extends Controller
     return view('userpages.user_payment', compact('payment','data_bank'));
   }
 
-  public function add_payment(Request $request)
+  public function add_payment(Request $request,$id)
   {
     $request->validate(
       [
@@ -172,27 +172,22 @@ class UserController extends Controller
 
     DB::table('user_payments')->insert(
       [
-        'user_id' => $request->user_id,
+        'user_id' => $request->member_id,
         'quotation_id' => $request->quotation_id,
         'payment_price' => $request->payment_price,
         'payment_bank' => $request->payment_bank,
         'payment_slip' => $full_path,
         'payment_status' => '1',
+        'pay_num' => $request->pay_num,
+        'booking_id' => $id,
         'created_at' => Carbon::now()
       ]
     );
 
-    DB::table('booking_quotations')
-      ->where('quotation_id', '=', $request->quotation_id)
+      DB::table('member_booking_packages')
+      ->where('booking_id', '=', $id)
       ->update([
-        'quotation_status' => '1',
-        'updated_at' => Carbon::now()
-      ]);
-
-    DB::table('member_booking_packages')
-      ->where('booking_id', '=', $request->booking_id)
-      ->update([
-        'booking_status' => '4',
+        'booking_status' => $request->booking_status,
         'updated_at' => Carbon::now()
       ]);    
 
@@ -238,13 +233,7 @@ class UserController extends Controller
 
   public function user_cancel_booking($id)
   {
-    DB::table('booking_quotations')
-      ->where('booking_id', '=', $id)
-      ->update([
-        'quotation_status' => '4',
-        'updated_at' => Carbon::now()
-      ]);
-
+   
     DB::table('member_booking_packages')
       ->where('booking_id', '=', $id)
       ->update([
