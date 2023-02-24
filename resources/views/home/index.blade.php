@@ -81,8 +81,13 @@
                         <div class="card-body">
                             
                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                <a href="{{route('register.show')}}" class="btn btn-lg btn-primary me-md-2" type="button">สมัครสมาชิก</a>
-                                <a href="{{route('login.show')}}" class="btn btn-lg btn-success" type="button">เข้าสู่ระบบ</a>
+                            @auth
+                            <a href="{{route('userPages.home')}}" class="btn btn-lg btn-primary me-md-2" type="button">หน้าสมาชิก</a>
+                            @endauth
+                            @guest
+                            <a href="{{route('register.show')}}" class="btn btn-lg btn-primary me-md-2" type="button">สมัครสมาชิก</a>
+                            <a href="{{route('login.show')}}" class="btn btn-lg btn-success" type="button">เข้าสู่ระบบ</a>
+                            @endguest                              
                               </div>
 
                         </div>

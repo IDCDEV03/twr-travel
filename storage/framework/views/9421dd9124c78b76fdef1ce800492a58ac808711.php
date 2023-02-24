@@ -81,8 +81,13 @@
                         <div class="card-body">
                             
                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                <a href="<?php echo e(route('register.show')); ?>" class="btn btn-lg btn-primary me-md-2" type="button">สมัครสมาชิก</a>
-                                <a href="<?php echo e(route('login.show')); ?>" class="btn btn-lg btn-success" type="button">เข้าสู่ระบบ</a>
+                            <?php if(auth()->guard()->check()): ?>
+                            <a href="<?php echo e(route('userPages.home')); ?>" class="btn btn-lg btn-primary me-md-2" type="button">หน้าสมาชิก</a>
+                            <?php endif; ?>
+                            <?php if(auth()->guard()->guest()): ?>
+                            <a href="<?php echo e(route('register.show')); ?>" class="btn btn-lg btn-primary me-md-2" type="button">สมัครสมาชิก</a>
+                            <a href="<?php echo e(route('login.show')); ?>" class="btn btn-lg btn-success" type="button">เข้าสู่ระบบ</a>
+                            <?php endif; ?>                              
                               </div>
 
                         </div>
