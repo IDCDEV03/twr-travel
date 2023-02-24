@@ -26,6 +26,9 @@ class AdminController extends Controller
 
   public function home()
   {
+    $role=Auth::user()->is_admin;
+    if($role == '1')
+    {
     $userbooking = DB::table('member_booking_packages')
       ->where('booking_status', '=', 0)
       ->get();
@@ -39,6 +42,11 @@ class AdminController extends Controller
       ->get();
 
     return view('admin.index', compact('userbooking','user_payment_tour','user_car_rental'));
+    }
+    else
+    {
+      return redirect()->route('login.show')->with('error', 'เฉพาะผู้ดูแลระบบเท่านั้น');
+    }
   }
 
   public function index()
