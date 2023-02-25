@@ -8,7 +8,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('breadcrumb-title'); ?>
-    <h3>ตรวจสอบการแจ้งชำระเงิน (แพ็คเกจทัวร์)</h3>
+    <h3>ตรวจสอบการแจ้งชำระเงิน</h3>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -20,11 +20,11 @@
                     <div class="col-sm-12 col-xl-12">
                         <div class="card shadow-none border">
                             <div class="card-body">
-                               <a href="<?php echo e(route('booking_cf', ['id' => request()->id])); ?>">รายละเอียดการจอง</a> | <a href="<?php echo e(route('admin.invoice', ['id'=>request()->id])); ?>">เอกสารใบจอง</a>
+                               <a href="<?php echo e(route('admin.car_rental_detail', ['id' => request()->id])); ?>">รายละเอียดการจอง</a> | <a href="<?php echo e(route('admin.car_rental_invoice', ['id'=>request()->id])); ?>">เอกสารใบจอง</a>
                                <hr>
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
-                                        <thead class="table-info">
+                                        <thead class="table-success">
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">ธนาคารที่โอนเข้า</th>
@@ -39,7 +39,7 @@
                                             <?php
                                              $i = '1';
                                             ?>
-                                            <?php $__currentLoopData = $user_payment; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php $__currentLoopData = $car_payment; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
                                                 <th scope="row"><?php echo e($i++); ?></th>
                                                 <td><?php echo e($item->payment_bank); ?></td>
@@ -47,10 +47,10 @@
                                                 <td> <?php echo e(Carbon\Carbon::parse($item->created_at)->format('d/m/Y H:i')); ?></td>
                                                 <td> <img src="<?php echo e(asset($item->payment_slip)); ?>" class="img-fluid" width="350px"></td>
                                                 <td>
-                       <?php if($item->booking_status == '4' AND $item->pay_num == 'pay1'): ?>
-                       <a href="<?php echo e(route('admin.car_update_payment', ['id'=>$item->booking_id, 'pay_num'=>'pay1'])); ?>" class="btn btn-lg btn-primary" type="button" onclick="alert('ต้องการยืนยันยอดชำระใช่หรือไม่')">ยืนยันการชำระเงิน</a>
-                      <?php elseif($item->booking_status == '5' AND $item->pay_num == 'pay2'): ?>
-                    <a href="<?php echo e(route('admin.car_update_payment', ['id'=>$item->booking_id, 'pay_num'=>'pay2'])); ?>" class="btn btn-lg btn-primary" type="button"
+                       <?php if($item->rent_status == '2' AND $item->pay_num == 'pay1'): ?>
+                       <a href="<?php echo e(route('admin.car_update_payment', ['id'=>$item->rent_id, 'pay_num'=>'pay1'])); ?>" class="btn btn-lg btn-primary" type="button" onclick="alert('ต้องการยืนยันยอดชำระใช่หรือไม่')">ยืนยันการชำระเงิน</a>
+                      <?php elseif($item->rent_status == '5' AND $item->pay_num == 'pay2'): ?>
+                    <a href="<?php echo e(route('admin.car_update_payment', ['id'=>$item->rent_id, 'pay_num'=>'pay2'])); ?>" class="btn btn-lg btn-primary" type="button"
                     onclick="alert('ต้องการยืนยันยอดชำระใช่หรือไม่')">ยืนยันการชำระเงิน
                     </a>
                                                     <?php endif; ?>
@@ -75,4 +75,4 @@
 <?php $__env->startSection('script'); ?>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.simple.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/admin/payment_chk.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.simple.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/admin/car_rental_payment_chk.blade.php ENDPATH**/ ?>

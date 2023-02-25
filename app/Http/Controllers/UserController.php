@@ -347,7 +347,7 @@ class UserController extends Controller
 
       user_car_rent::create($data);
 
-      //Line Alert  
+      //Line_Alert  
       $msg_alrert = "มีรายการสั่งจองบริการเช่ารถ";
       $this->LineAlert($msg_alrert);
 

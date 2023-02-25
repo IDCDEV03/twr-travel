@@ -474,12 +474,22 @@ class AdminController extends Controller
 
   public function payment_chk($id)
   {
-    $user_payment = DB::table('user_payments')
-      ->leftjoin('booking_quotations', 'user_payments.quotation_id', '=', 'booking_quotations.quotation_id')
-      ->leftjoin('package_tours', 'booking_quotations.package_id', '=', 'package_tours.package_id')
-      ->leftjoin('member_booking_packages', 'booking_quotations.booking_id', '=', 'member_booking_packages.booking_id')
-      ->where('booking_quotations.booking_id', '=', $id)
-      ->get();
+    $user_payment = DB::table('user_payments')  
+    ->join('member_booking_packages','user_payments.booking_id','=','member_booking_packages.booking_id')  
+      ->where('member_booking_packages.booking_id', '=', $id)
+      ->get([
+        'user_payments.booking_id',
+        'user_payments.quotation_id',
+        'user_payments.pay_num',
+        'user_payments.payment_price',
+        'user_payments.payment_bank',
+        'user_payments.payment_slip',
+        'user_payments.payment_status',
+        'user_payments.created_at',
+        'member_booking_packages.booking_id',
+        'member_booking_packages.member_name',
+        'member_booking_packages.booking_status'
+      ]);
     return view('admin.payment_chk', compact('user_payment'));
   }
 
