@@ -9,9 +9,12 @@ use App\Models\package_img;
 use App\Models\package_tour;
 use App\Models\ListCar;
 use App\Models\User;
+use App\Models\member_booking_package;
 use App\Http\Controllers\Controller;
 use App\Mail\ConfirmPayment_Pay1;
 use App\Mail\ConfirmPayment_Pay2;
+use App\Mail\ConfirmPayment_Package1;
+use App\Mail\ConfirmPayment_Package2;
 use Carbon\Carbon;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 use Illuminate\Http\Request;
@@ -493,20 +496,33 @@ class AdminController extends Controller
     return view('admin.payment_chk', compact('user_payment'));
   }
 
-  public function update_payment($id, $bkid)
+  public function update_payment($id, $pay_num)
   {
+    if ($pay_num == 'pay1')
+    {
     DB::table('user_payments')
-      ->where('quotation_id', '=', $id)
+      ->where('booking_id', '=', $id)
       ->update([
         'payment_status' => '2',
         'updated_at' => Carbon::now()
       ]);
     DB::table('member_booking_packages')
-      ->where('booking_id', '=', $bkid)
+      ->where('booking_id', '=', $id)
       ->update([
         'booking_status' => '5',
         'updated_at' => Carbon::now()
       ]);
+      $this->package_payment_mail1($id);
+ 
+    }elseif ($pay_num == 'pay2'){
+      DB::table('member_booking_packages')
+      ->where('booking_id', '=', $id)
+      ->update([
+        'booking_status' => '7',
+        'updated_at' => Carbon::now()
+      ]);
+      $this->package_payment_mail2($id);
+    }
     return redirect()->route('booking_chk')->with('success', "ตรวจสอบยอดชำระเรียบร้อยแล้ว");
   }
 
@@ -744,7 +760,7 @@ class AdminController extends Controller
       }
     return redirect()->route('admin.car_rental_data')->with('success', "ตรวจสอบยอดชำระเรียบร้อยแล้ว");
   }
-
+//EMAIL
   public function car_rent_mail1 ($id)
   {
     $user_email = user_car_rent::where('rent_id','=',$id)->firstOrFail();  
@@ -758,4 +774,20 @@ class AdminController extends Controller
     $email = $user_email->member_email; 
     Mail::to($email)->send(new ConfirmPayment_Pay2($user_email));
   }
+
+  public function package_payment_mail1 ($id)
+  {
+    $user_email = member_booking_package::where('booking','=',$id)->firstOrFail();  
+    $email = $user_email->member_email; 
+    Mail::to($email)->send(new ConfirmPayment_Package1($user_email));
+  }
+
+  public function package_payment_mail2 ($id)
+  {
+    $user_email = member_booking_package::where('booking','=',$id)->firstOrFail();  
+    $email = $user_email->member_email; 
+    Mail::to($email)->send(new ConfirmPayment_Package2($user_email));
+  }
+
+
 }

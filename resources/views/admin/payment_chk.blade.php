@@ -48,9 +48,9 @@
                                                 <td> <img src="{{ asset($item->payment_slip) }}" class="img-fluid" width="350px"></td>
                                                 <td>
                        @if ($item->booking_status == '4' AND $item->pay_num == 'pay1')
-                       <a href="{{ route('admin.car_update_payment', ['id'=>$item->booking_id, 'pay_num'=>'pay1']) }}" class="btn btn-lg btn-primary" type="button" onclick="alert('ต้องการยืนยันยอดชำระใช่หรือไม่')">ยืนยันการชำระเงิน</a>
+                       <a href="{{ route('admin.update_payment', ['id'=>$item->booking_id, 'pay_num'=>'pay1']) }}" class="btn btn-lg btn-primary" type="button" onclick="alert('ต้องการยืนยันยอดชำระใช่หรือไม่')">ยืนยันการชำระเงิน</a>
                       @elseif ($item->booking_status == '5' AND $item->pay_num == 'pay2')
-                    <a href="{{ route('admin.car_update_payment', ['id'=>$item->booking_id, 'pay_num'=>'pay2']) }}" class="btn btn-lg btn-primary" type="button"
+                    <a href="{{ route('admin.update_payment', ['id'=>$item->booking_id, 'pay_num'=>'pay2']) }}" class="btn btn-lg btn-primary" type="button"
                     onclick="alert('ต้องการยืนยันยอดชำระใช่หรือไม่')">ยืนยันการชำระเงิน
                     </a>
                                                     @endif

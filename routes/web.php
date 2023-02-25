@@ -61,7 +61,7 @@ Route::post('/admin/insert_condition', $controller_path .'\AdminController@inser
 //admin_ตรวจสอบยอดโอนชำระ
 Route::get('/admin/payment_chk/{id}', $controller_path . '\AdminController@payment_chk')->name('admin.payment_chk');
 //admin_บันทึกยอดโอนชำระ
-Route::get('/admin/update_payment/{id}/{bkid}', $controller_path . '\AdminController@update_payment')->name('admin.update_payment');
+Route::get('/admin/update_payment/{id}/{pay_num}', $controller_path . '\AdminController@update_payment')->name('admin.update_payment');
 //admin_userdata
 Route::get('/admin/userdata', $controller_path . '\AdminController@user_data')->name('admin.user_data');
 Route::get('/admin/userbooking/{id}', $controller_path . '\AdminController@user_data_booking')->name('admin.user_data_booking');
