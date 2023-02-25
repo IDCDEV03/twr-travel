@@ -98,13 +98,23 @@
                             ยกเลิกใบเสนอราคา
                         </span></h5>
                         <?php elseif($item->booking_status == '4'): ?>
-                        <h5><span class="f-w-300 badge bg-secondary">
+                        <span class="f-w-300 h5 txt-secondary">
                             แจ้งชำระเงินแล้ว รอตรวจสอบ
-                        </span></h5>
+                        </span>
                         <?php elseif($item->booking_status == '5'): ?>
-                        <h5><span class="badge bg-success f-w-100">
-                            ตรวจสอบการชำระเงินเรียบร้อยแล้ว
-                        </span></h5>
+                        <span class="txt-success f-w-100 h5">
+                            ชำระมัดจำงวดที่ 1 เรียบร้อยแล้ว
+                            <a href="<?php echo e(route('admin.invoice', ['id'=>$item->booking_id])); ?>"> >> ตรวจสอบใบจอง </a>
+                        </span>
+                        <?php elseif($item->booking_status == '6'): ?>
+                        <span class="f-w-300 h5 txt-secondary">
+                            แจ้งชำระเงินงวดที่ 2 รอตรวจสอบ 
+                            <a href="<?php echo e(route('admin.invoice', ['id'=>$item->booking_id])); ?>"> >> ตรวจสอบใบจอง </a>
+                        </span>
+                        <?php elseif($item->booking_status == '7'): ?>
+                        <span class="f-w-300 h5 txt-success">
+                            ดำเนินการเรียบร้อยแล้ว
+                        </span>
                         <?php endif; ?>
 
                     </div>
@@ -187,7 +197,7 @@
                     </div>
                 </div>
             </div>
-        <?php elseif($item->booking_status == '4'): ?>
+        <?php elseif($item->booking_status == '4' OR $item->booking_status == '6'): ?>
         <div class="card">
             <div class="card-body">
                 <div class="row">

@@ -68,7 +68,7 @@ class AdminController extends Controller
     $package_tour = DB::table('member_booking_packages')
       ->join('package_tours', 'member_booking_packages.package_id', '=', 'package_tours.package_id')
       ->orderBy('member_booking_packages.created_at', 'desc')
-      ->where('member_booking_packages.booking_status','!=', '5')
+      ->where('member_booking_packages.booking_status','!=', '7')
       ->get([
         'member_booking_packages.booking_id',
         'member_booking_packages.member_name',
@@ -500,18 +500,21 @@ class AdminController extends Controller
   {
     if ($pay_num == 'pay1')
     {
+
     DB::table('user_payments')
       ->where('booking_id', '=', $id)
       ->update([
         'payment_status' => '2',
         'updated_at' => Carbon::now()
       ]);
+
     DB::table('member_booking_packages')
-      ->where('booking_id', '=', $id)
+    ->where('booking_id', '=', $id)
       ->update([
         'booking_status' => '5',
         'updated_at' => Carbon::now()
       ]);
+      
       $this->package_payment_mail1($id);
  
     }elseif ($pay_num == 'pay2'){
@@ -608,12 +611,32 @@ class AdminController extends Controller
   public function admin_invoice($id)
   {
     $invoice = DB::table('booking_quotations')
-      ->join('member_booking_packages', 'booking_quotations.booking_id', '=', 'member_booking_packages.booking_id')
-      ->join('package_tours', 'booking_quotations.package_id', '=', 'package_tours.package_id')
-      ->join('users','member_booking_packages.member_id','=','users.id')
-      ->where('booking_quotations.booking_id', '=', $id)
-      ->get();
-    return view('admin.invoice', compact('invoice'));
+    ->join('member_booking_packages', 'booking_quotations.booking_id', '=', 'member_booking_packages.booking_id')
+    ->join('package_tours', 'booking_quotations.package_id', '=', 'package_tours.package_id')
+    ->join('users','member_booking_packages.member_id','=','users.id')
+    ->where('booking_quotations.booking_id', '=', $id)
+    ->get([
+      'member_booking_packages.created_at',
+      'member_booking_packages.booking_id',
+      'member_booking_packages.member_id',
+      'member_booking_packages.member_name',
+      'member_booking_packages.member_email',
+      'member_booking_packages.number_of_travel',
+      'member_booking_packages.date_start',
+      'member_booking_packages.date_end',
+      'member_booking_packages.booking_status',
+      'booking_quotations.quotation_id',
+      'booking_quotations.total_price',
+      'booking_quotations.price_deposit',
+      'package_tours.package_name',
+      'package_tours.code_tour',
+      'package_tours.package_total_day',     
+      'users.user_phone',
+    ]);
+
+    $data_bank =  DB::table('admin_banks')  
+    ->get();
+    return view('admin.invoice', compact('invoice','data_bank'));
   }
  
   public function list_invoice()
@@ -621,7 +644,7 @@ class AdminController extends Controller
     $list_invoice = DB::table('member_booking_packages')
     ->join('package_tours','package_tours.package_id','=','member_booking_packages.package_id')
     ->join('booking_quotations','booking_quotations.booking_id','=','member_booking_packages.booking_id')
-    ->where('member_booking_packages.booking_status','=','5')
+    ->where('member_booking_packages.booking_status','=','7')
     ->orderBy('booking_quotations.updated_at', 'desc')
     ->get();
     return view('admin.list_invoice',compact('list_invoice'));
@@ -777,14 +800,14 @@ class AdminController extends Controller
 
   public function package_payment_mail1 ($id)
   {
-    $user_email = member_booking_package::where('booking','=',$id)->firstOrFail();  
+    $user_email = member_booking_package::where('booking_id','=',$id)->firstOrFail();  
     $email = $user_email->member_email; 
     Mail::to($email)->send(new ConfirmPayment_Package1($user_email));
   }
 
   public function package_payment_mail2 ($id)
   {
-    $user_email = member_booking_package::where('booking','=',$id)->firstOrFail();  
+    $user_email = member_booking_package::where('booking_id','=',$id)->firstOrFail();  
     $email = $user_email->member_email; 
     Mail::to($email)->send(new ConfirmPayment_Package2($user_email));
   }

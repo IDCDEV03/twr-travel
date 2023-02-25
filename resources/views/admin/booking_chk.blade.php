@@ -72,7 +72,12 @@
                             </span>
                             @elseif ($row->booking_status == '5')
                             <span class="txt-success f-w-100">
-                                ดำเนินการเรียบร้อย
+                                ชำระมัดจำงวดที่ 1 แล้ว
+                               
+                            </span>
+                            @elseif ($row->booking_status == '6')
+                            <span class="txt-secondary f-w-100">
+                                แจ้งชำระเงินงวดที่ 2 <br> รอตรวจสอบ
                             </span>
                             @endif
                                              

@@ -28,7 +28,7 @@
            <a href="<?php echo e(route('booking_chk')); ?>" class="btn btn-pill btn-outline-warning-2x"><i data-feather="chevrons-right"></i> คลิกเพื่อตรวจสอบคำสั่งซื้อ</a> 
         </div>
         <?php else: ?>
-        <div class="alert alert-danger dark" role="alert"><strong>ไม่มีคำสั่งซื้อใหม่</strong></div>
+        <div class="alert alert-danger dark" role="alert"><strong>ไม่มีคำสั่งจองแพ็คเกจใหม่</strong></div>
         <?php endif; ?>
 
         <?php if(count($user_payment_tour) >= 1): ?>

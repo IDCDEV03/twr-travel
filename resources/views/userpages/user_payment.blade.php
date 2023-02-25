@@ -20,19 +20,17 @@
       
                 @foreach ($payment as $item)
 
-           
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6 "><span>ใบแพ็คเกจทัวร์ที่ 
+                            <div class="col-md-6 "><span>ใบจองแพ็คเกจทัวร์ที่ 
                                 <u><a href="{{url('/user/invoice/'.$item->booking_id)}}" class="txt-danger"> #{{$item->quotation_id}}</a></u></span></div>
                             <div class="col-md-6 ">
                             </div>
                         </div>
                     </div>
                 </div>
-     
-            
+                 
                 <div class="card">
                     <div class="card-header">
                        <h5>แจ้งหลักฐานการชำระเงิน</h5> 

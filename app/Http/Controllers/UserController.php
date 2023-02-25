@@ -191,7 +191,7 @@ class UserController extends Controller
         'updated_at' => Carbon::now()
       ]);    
 
-    //Line Alert
+    //Line_Alert
     $msg_alrert = "มีการแจ้งโอนเงินแพ็คเกจทัวร์";
     $this->LineAlert($msg_alrert);
 

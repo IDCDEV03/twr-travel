@@ -58,13 +58,23 @@
     </span> 
     @elseif ($item->booking_status == '5')
     <span class="txt-success f-w-100">
-    ตรวจสอบการชำระเงินเรียบร้อย
+        ชำระเงินมัดจำงวดที่ 1 แล้ว
     </span>    
-    <a href="{{url('/user/quotation/'.$item->booking_id)}}" class="txt-secondary"> คลิกที่นี่ </a>เพื่อตรวจสอบใบจองแพ็คเกจ</span>
+    <a href="{{url('/user/invoice/'.$item->booking_id)}}" class="txt-secondary"> คลิกที่นี่ </a>เพื่อตรวจสอบใบจองแพ็คเกจ</span>
     @elseif ($item->booking_status == '2')
     <span class="txt-danger f-w-100">
         ยกเลิกการจอง
         </span>     
+     @elseif ($item->booking_status == '6')
+    <span class="txt-secondary f-w-100">
+        แจ้งชำระเงินงวดที่ 2 แล้ว รอตรวจสอบ
+    </span>    
+    <a href="{{url('/user/invoice/'.$item->booking_id)}}" class="txt-secondary"> คลิกที่นี่ </a>เพื่อตรวจสอบใบจองแพ็คเกจ</span>
+    @elseif ($item->booking_status == '7')
+    <span class="txt-success f-w-100">
+        ดำเนินการชำระเงินเรียบร้อยแล้ว
+    </span>    
+    <a href="{{url('/user/invoice/'.$item->booking_id)}}" class="txt-secondary"> คลิกที่นี่ </a>เพื่อตรวจสอบใบจองแพ็คเกจ</span>
 @endif 
 </p>
 <hr>
@@ -115,8 +125,11 @@
                         class="btn btn-primary">แจ้งโอนเงิน</a>
                         <a href="{{ route('cancel_booking', ['id' => request()->id]) }}" class="btn btn-danger btn-sm" type="button" 
                         onclick="return confirm('ต้องการยกเลิกการจองใช่หรือไม่?')">ยกเลิกการสั่งจอง</a>
+                        @elseif($item->booking_status == '5')
+                        <a href="{{ route('user_payment', ['id' => $item->booking_id]) }}" 
+                            class="btn btn-primary">แจ้งโอนเงิน มัดจำงวดที่ 2</a>
                         @endif
-                    @endforeach
+                        @endforeach
 
 
 

@@ -59,13 +59,23 @@
     </span> 
     <?php elseif($item->booking_status == '5'): ?>
     <span class="txt-success f-w-100">
-    ตรวจสอบการชำระเงินเรียบร้อย
+        ชำระเงินมัดจำงวดที่ 1 แล้ว
     </span>    
-    <a href="<?php echo e(url('/user/quotation/'.$item->booking_id)); ?>" class="txt-secondary"> คลิกที่นี่ </a>เพื่อตรวจสอบใบจองแพ็คเกจ</span>
+    <a href="<?php echo e(url('/user/invoice/'.$item->booking_id)); ?>" class="txt-secondary"> คลิกที่นี่ </a>เพื่อตรวจสอบใบจองแพ็คเกจ</span>
     <?php elseif($item->booking_status == '2'): ?>
     <span class="txt-danger f-w-100">
         ยกเลิกการจอง
         </span>     
+     <?php elseif($item->booking_status == '6'): ?>
+    <span class="txt-secondary f-w-100">
+        แจ้งชำระเงินงวดที่ 2 แล้ว รอตรวจสอบ
+    </span>    
+    <a href="<?php echo e(url('/user/invoice/'.$item->booking_id)); ?>" class="txt-secondary"> คลิกที่นี่ </a>เพื่อตรวจสอบใบจองแพ็คเกจ</span>
+    <?php elseif($item->booking_status == '7'): ?>
+    <span class="txt-success f-w-100">
+        ดำเนินการชำระเงินเรียบร้อยแล้ว
+    </span>    
+    <a href="<?php echo e(url('/user/invoice/'.$item->booking_id)); ?>" class="txt-secondary"> คลิกที่นี่ </a>เพื่อตรวจสอบใบจองแพ็คเกจ</span>
 <?php endif; ?> 
 </p>
 <hr>
@@ -117,8 +127,11 @@
                         class="btn btn-primary">แจ้งโอนเงิน</a>
                         <a href="<?php echo e(route('cancel_booking', ['id' => request()->id])); ?>" class="btn btn-danger btn-sm" type="button" 
                         onclick="return confirm('ต้องการยกเลิกการจองใช่หรือไม่?')">ยกเลิกการสั่งจอง</a>
+                        <?php elseif($item->booking_status == '5'): ?>
+                        <a href="<?php echo e(route('user_payment', ['id' => $item->booking_id])); ?>" 
+                            class="btn btn-primary">แจ้งโอนเงิน มัดจำงวดที่ 2</a>
                         <?php endif; ?>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
 

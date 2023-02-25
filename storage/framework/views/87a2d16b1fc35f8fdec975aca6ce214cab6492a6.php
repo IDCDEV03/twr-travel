@@ -77,8 +77,16 @@
                                     </span>
                                     <?php elseif($row->booking_status == '5'): ?>
                                     <span class="txt-success">
-                                       ตรวจสอบการชำระเงินเรียบร้อย
+                                       ชำระเงินมัดจำงวดที่ 1 แล้ว
                                     </span>
+                                    <?php elseif($row->booking_status == '6'): ?>
+                                    <span class="txt-secondary">
+                                        แจ้งชำระเงินแล้ว<br> รอตรวจสอบ
+                                    </span>
+                                    <?php elseif($row->booking_status == '7'): ?>
+                                    <span class="txt-success">
+                                        ดำเนินการชำระเงินเรียบร้อยแล้ว
+                                     </span>
                                     <?php endif; ?>
 
                                 </td>
