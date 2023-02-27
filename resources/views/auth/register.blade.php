@@ -53,8 +53,7 @@
 
                                 <div class="form-group">
                                     <label class="col-form-label pt-0">เบอร์โทรศัพท์</label>
-                                    <input class="form-control" name="user_phone" type="text" required
-                                        placeholder="ระบุเฉพาะตัวเลขเท่านั้น">
+                <input class="form-control" name="user_phone" type="text" required  placeholder="ระบุเฉพาะตัวเลขเท่านั้น">
                                 </div>
 
                                 <div class="form-group">
