@@ -158,6 +158,7 @@ div {
                                         <td class="item">
                                             <h6 class="p-2 mb-0">คำอธิบาย</h6>
                                         </td>
+                                        <td ><h6 class="p-2 mb-0">มัดจำ (บาท)</h6></td>
                                         <td class="Rate">
                                             <h6 class="p-2 mb-0">ราคา (บาท)</h6>
                                         </td>
@@ -175,19 +176,12 @@ div {
                                                 {{ Carbon\Carbon::parse($item->start_travel)->format('d/m/Y') }}
                                                 -
                                                 {{ Carbon\Carbon::parse($item->back_travel)->format('d/m/Y') }}
-                                                <br>
-                                                <span>สถานที่ : {{$item->start_place}} , 
-                                                  {{$item->start_district}} ,{{$item->start_province}} - {{$item->end_place}}
-                                                  , {{$item->end_district}} , {{$item->end_province}}</span>
                                             </label>
                                         </td>
-                        
+                                       <td></td>
                                         <td>
                                             <p class="itemtext">
-                                                @php
-                                                    $total_price = number_format($item->total_price);
-                                                    echo $total_price;
-                                                @endphp</p>
+                                                {{number_format($item->total_price)}}</p>
                                         </td>
                                     </tr>
                                     <tr >
@@ -196,13 +190,13 @@ div {
                                         </td>
                                         <td class="txt-secondary">
                                             <label>มัดจำ 
-                                            @if ($item->rent_status == '1' OR $item->rent_status == '2')
-                                                (กรุณาชำระภายในวันที่ 
-                                                {{Carbon::parse($item->created_at)->addDays(5)->format('d/m/Y')}}
-                                                )
-                                            @elseif ($item->rent_status == '3')
-                                            (ชำระเงินมัดจำเรียบร้อยแล้ว)
-                                            @endif
+                                              @if ($item->rent_status == '0' OR $item->rent_status == '1' OR $item->rent_status =='2')
+                                              (กรุณาชำระภายในวันที่ 
+                                              {{Carbon::parse($item->created_at)->addDays(7)->format('d/m/Y')}}
+                                              )
+                                          @elseif ($item->rent_status == '3' OR $item->rent_status == '6')
+                                          (ชำระเงินเรียบร้อยแล้ว)
+                                          @endif</label>
                                             </label>
                                         </td>
                         
@@ -213,48 +207,48 @@ div {
                                                     echo $deposit_price;
                                                 @endphp</p>
                                         </td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <p class="m-0">งวดที่ 2</p>
                                         </td>
-                                        @if ($item->rent_status == '6')
-                                        <td> ชำระส่วนที่เหลือ 
-                                        </td>
-                                        @else
                                         <td>
-                                          <label>ชำระส่วนที่เหลือ (ก่อนวันเดินทาง 15 วัน ภายในวันที่
-                                              {{Carbon::parse($item->start_travel)->addDays(-15)->format('d/m/Y')}}
+                                            <label>ชำระส่วนที่เหลือ  
+                                              @if ($item->rent_status == '6')
+                                              (ชำระเงินเรียบร้อยแล้ว)
+                                              @else
+                                              (ก่อนวันเดินทาง 10 วัน ภายในวันที่
+                                              {{Carbon::parse($item->start_travel)->addDays(-10)->format('d/m/Y')}}
                                               )
-                                          </label>                                      
-                                        @endif
-                                         <td>
+                                              @endif</label>
+                                        </td>
+                                        <td>
                                             <p class="itemtext">
                                                 @php
                                                     $result = $item->total_price - $item->price_deposit;
                                                     echo number_format($result);
                                                 @endphp</p>
                                         </td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        @if($item->rent_status == '3')
+                        
+                                        @if ($item->rent_status == '3' OR $item->rent_status == '5')
                                         <td align="right">
-                                          <h6 class="mb-0 p-2">จำนวนชำระค่ามัดจำงวดที่ 2 รวมทั้งสิ้น </h6>
-                                      </td>
-                                      <td class="payment">
-                                          <h6 class="mb-0 p-2">
-                                            @php
-                                                    $result = $item->total_price - $item->price_deposit;
-                                                    echo number_format($result);
-                                                @endphp
-                                              บาท</h6>
-                                      </td>
-                                        @elseif ($item->rent_status == '2' OR $item->rent_status == '1' OR $item->rent_status == '0')
-                                        <td align="right">
+                                            <h6 class="mb-0 p-2">คงเหลือจำนวนชำระงวดที่ 2 รวมทั้งสิ้น</h6>
+                                        </td>
+                                        <td class="payment" colspan="2">
+                                            <h6 class="mb-0 p-2">
+                                                {{number_format($result)}}
+                                                บาท</h6>
+                                        </td>
+                                    @elseif ($item->rent_status == '0' OR $item->rent_status == '1' OR $item->rent_status == '2')
+                                      <td align="right">
                                           <h6 class="mb-0 p-2">จำนวนชำระค่ามัดจำงวดที่ 1 รวมทั้งสิ้น </h6>
                                       </td>
-                                      <td class="payment">
+                                      <td class="payment" colspan="2">
                                           <h6 class="mb-0 p-2">
                                               @php
                                               $deposit_price = number_format($item->price_deposit);
@@ -263,15 +257,16 @@ div {
                                               @endphp
                                               บาท</h6>
                                       </td>
-                                      @elseif($item->rent_status == '6')
+                                      @elseif ($item->rent_status == '6')
                                       <td align="right">
-                                          ชำระเงินเรียบร้อยแล้ว จำนวน {{$total_price}} บาท 
-                                      </td>
-                                      <td>
-
-                                      </td>
-                                        @endif
-                                       
+                                        <h6 class="mb-0 p-2"> จำนวนเงินที่ชำระ </h6>
+                                    </td>
+                                    <td align="middle" colspan="2">
+                                      <span class="mb-0 p-2">
+                                        {{number_format($item->total_price)}} บาท
+                                      </span>
+                                    </td>
+                                    @endif
                                     </tr>
                                 </tbody>
                             </table>
@@ -282,22 +277,24 @@ div {
                               <div>
                                 <p class="legal"><strong>การชำระเงิน</strong>
                                   <ul>
-                                    <li>โอนชำระผ่านบัญชี</li>
-                                    @foreach ($data_bank as $row)
-                                    <li>{{$row->bank_name}}
-                                        /
-                                        เลขที่บัญชี : {{$row->account_number}} /                                 ชื่อบัญชี : {{$row->bank_account_name}} /                        
-                                    {{$row->bank_branch}}                             
-                                    </li>
-                                    @endforeach  
-                              
+                                      <li>โอนชำระผ่านบัญชี</li>
+                                      @foreach ($data_bank as $row)
+                                      <li>{{$row->bank_name}}
+                                          /
+                                          เลขที่บัญชี : {{$row->account_number}} /                                 ชื่อบัญชี : {{$row->bank_account_name}} /                        
+                                      {{$row->bank_branch}}                             
+                                      </li>
+                                      @endforeach  
+                                      
+                                  </p>
+                                      </li>
                                   </ul>
                                   </p>
                               
                               </div>
                             </div>
                             <div class="col-md-4">
-                              @if($item->rent_status == '3')
+                              @if($item->rent_status == '2')
                               <span class="txt-success">
                                <strong>หมายเหตุ : ดำเนินการชำระมัดจำงวดที่ 1 แล้ว 
                                </strong>
