@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\QuotationSend;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\File; 
 
 class AdminController extends Controller
 {
@@ -454,6 +455,28 @@ class AdminController extends Controller
     return view('admin.bank',compact('data_bank'));
   }
 
+  public function data_update_bank($id)
+  {
+    $data_bank =  DB::table('admin_banks')
+    ->where('id','=', $id)
+    ->get();
+    return view('admin.bank_edit',compact('data_bank'));
+  }
+
+  public function update_bank(Request $request,$id)
+  {
+    DB::table('admin_banks')
+    ->where('id','=', $id)
+    ->update([
+      'bank_name' => $request->bank_name,
+      'bank_account_name' => $request->bank_account_name,
+      'account_number' => $request->account_number,
+      'bank_branch' => $request->bank_branch,  
+      'updated_at' => Carbon::now()
+    ]);
+    return redirect()->route('admin.bank')->with('success', "แก้ไขข้อมูลเรียบร้อยแล้ว");
+  }
+
   public function insert_bank(Request $request)
   {
     DB::table('admin_banks')
@@ -814,15 +837,36 @@ public function user_data_booking($id)
   return view('admin.user_detail', compact('user_data_booking', 'user_profile'));
 }
 
+//DELETE
 public function delete_user($id)
   {
     DB::table('users')
     ->leftjoin('user_payments', 'users.id','=','user_payments.user_id')
-    ->leftjoin('user_car_rents', 'users.id' ,'=', 'user_car_rents.user_id')
+    ->leftjoin('user_car_rents', 'users.id' ,'=', 'user_car_rents.member_id')
     ->leftJoin('member_booking_packages','users.id','=','member_booking_packages.member_id')
     ->leftJoin('car_rental_payments','users.id','car_rental_payments.member_id')
     ->where('users.id', '=', $id)
     ->delete();
+    return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อยแล้ว");
+  }
+
+  public function delete_package($id)
+  {  
+    $delete_file_pk = DB::table('package_tours')
+    ->where('package_id','=', $id)
+    ->first();
+    $file1 = $delete_file_pk->package_cover;
+    $file2 = $delete_file_pk->package_file;
+    File::delete($file1,$file2);
+
+
+    DB::table('package_tours')
+    ->leftJoin('member_booking_packages','package_tours.package_id','=','member_booking_packages.package_id')
+    ->leftJoin('booking_quotations','package_tours.package_id','=','booking_quotations.package_id')
+    ->leftJoin('package_imgs','package_tours.package_id','=','package_imgs.package_id')
+    ->where('package_tours.package_id','=',$id)
+    ->delete();
+
     return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อยแล้ว");
   }
 

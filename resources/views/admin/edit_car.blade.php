@@ -55,7 +55,7 @@
                                 </div>
                               </div>
                               <div class="card-footer">
-                                <button class="btn btn-secondary" type="submit">บันทึกข้อมูล</button>                                
+                               <button class="btn btn-secondary" type="submit">บันทึกข้อมูล<button>              
                               </div>                            
                             </form>
                     </div>

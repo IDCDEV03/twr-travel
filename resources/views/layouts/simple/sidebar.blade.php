@@ -67,9 +67,7 @@
                             <li><a href="{{ route('admin.user_data') }}">ข้อมูลสมาชิก</a></li>
                             <li><a href="{{ route('booking_chk') }}"> ข้อมูลสั่งจองทัวร์</a></li>
                             <li><a href="{{ route('admin.car_rental_data') }}">ข้อมูลเช่ารถ</a></li>
-                            <li><a href="{{ route('admin.list_invoice') }}">รายการใบสั่งจอง</a></li>
-                            <li><a href=""> รายงาน</a></li>
-                           
+                            <li><a href="{{ route('admin.list_invoice') }}">รายการใบสั่งจอง</a></li>  
                         </ul>
                     </li>
 

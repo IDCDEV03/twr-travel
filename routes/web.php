@@ -27,12 +27,15 @@ Route::get('/admin/add_car', $controller_path . '\AdminController@add_car')->nam
 Route::post('/admin/add_listcar', $controller_path . '\AdminController@add_listcar')->name('add_listcar');
 Route::get('/admin/edit_car/{id}', $controller_path . '\AdminController@edit_car')->name('edit_car');
 Route::post('/admin/update_car/{id}', $controller_path . '\AdminController@update_car')->name('update_car');
+
 //admin_ธนาคาร
 Route::get('/admin/bank', $controller_path . '\AdminController@bank')->name('admin.bank');
 Route::POST('/admin/insert_bank', $controller_path . '\AdminController@insert_bank')->name('admin.insert_bank');
 Route::get('/admin/delete_bank/{id}', $controller_path . '\AdminController@delete_bank')->name('admin.delete_bank');
+Route::get('/admin/data_update_bank/{id}', $controller_path . '\AdminController@data_update_bank')->name('admin.data_update_bank');
+Route::get('/admin/update_bank/{id}', $controller_path . '\AdminController@update_bank')->name('admin.update_bank');
 
-
+//package_booking
 Route::get('/admin/index', $controller_path . '\AdminController@home')->name('admin_index');
 Route::get('/admin/booking_chk', $controller_path . '\AdminController@booking_chk')->name('booking_chk');
 Route::get('/admin/booking_cf/{id}', $controller_path . '\AdminController@booking_cf')->name('booking_cf');
@@ -41,6 +44,7 @@ Route::get('/admin/package_detail/{id}', $controller_path . '\AdminController@pa
 Route::get('/admin/edit_pk/{id}', $controller_path . '\AdminController@edit_pk')->name('edit_pk');
 Route::get('/admin/edit_pk_img/{id}', $controller_path . '\AdminController@edit_pk_img')->name('edit_pk_img');
 Route::post('/admin/update_package/{id}', $controller_path . '\AdminController@update_package')->name('admin.update_package');
+Route::get('/admin/delete_package/{id}', $controller_path . '\AdminController@delete_package')->name('admin.delete_package');
 
 //adminส่งใบเสนอราคา
 Route::post('/admin/add_quotation/{id}', $controller_path . '\AdminController@add_quotation')->name('admin.quotation');
@@ -65,6 +69,7 @@ Route::get('/admin/update_payment/{id}/{pay_num}', $controller_path . '\AdminCon
 //admin_userdata
 Route::get('/admin/userdata', $controller_path . '\AdminController@user_data')->name('admin.user_data');
 Route::get('/admin/userbooking/{id}', $controller_path . '\AdminController@user_data_booking')->name('admin.user_data_booking');
+Route::get('/admin/delete_user/{id}', $controller_path . '\AdminController@delete_user')->name('admin.delete_user');
 
 //admin_invoice
 Route::get('/admin/invoice/{id}', $controller_path . '\AdminController@admin_invoice')->name('admin.invoice');

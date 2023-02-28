@@ -50,7 +50,7 @@
                                                 <td><?php echo e($row->bank_branch); ?></td>
                                                 <td>
                                                 
-                                                    <a class="btn btn-info" href="#"><i class="fa fa-edit"></i> แก้ไข</a>
+                                                    <a class="btn btn-info" href="<?php echo e(route('admin.data_update_bank', ['id' => $row->id])); ?>"><i class="fa fa-edit"></i> แก้ไข</a>
       
                                                         <a href="<?php echo e(route('admin.delete_bank', ['id' => $row->id])); ?>" class="btn btn-danger" onclick="return confirm('ต้องการลบ ใช่หรือไม่?');"><i class="fa fa-trash-o"></i> ลบ</a>
                                                     

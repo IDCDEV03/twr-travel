@@ -82,7 +82,11 @@
                                                 <div class="btn-group" role="group">
                                                     <a href="{{url('/admin/package_detail/'.$row->package_id)}}" class="btn btn-primary">
                                                         <i class="fa fa-edit"></i></a>
-                                                    <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                           <a href="{{ route('admin.delete_package', 
+                           ['id' => $row->package_id]) }}" class="btn btn-danger" 
+                           onclick="return confirm('ต้องการลบ ใช่หรือไม่?');">
+                            <i class="fa fa-trash-o">
+                                </i></a>
                                                 </div>
                                             </td>
                                         </tr>
