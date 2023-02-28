@@ -1,4 +1,4 @@
-Laravel 8 version - Cuba Theme Support 
+Laravel 8 version 
 
 1) Laravel Jetstream.  ( https://jetstream.laravel.com/1.x/introduction.html#laravel-jetstream )
 2) Livewire + Blade   ( https://jetstream.laravel.com/1.x/introduction.html#livewire-blade) or without Jetstream ( https://laravel-livewire.com/docs/2.x/quickstart)
