@@ -19,7 +19,13 @@
 
                 <div class="card">   
                     <div class="card-body">
-                       
+
+                        @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            <b>{{ session('success') }}</b>
+                        </div>
+                        @endif
+                        
                         <table class="cell-border hover" id="basic-1">
                             <thead>
                                 <tr>

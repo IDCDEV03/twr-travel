@@ -159,16 +159,14 @@
                 </div>
 
             <div class="row g-3">                              
-              <div class="col-md-6">
-                <label class="form-label">ชื่อหน่วยงาน/บริษัท (ถ้ามี)</label>
-                <input class="form-control" name="member_company" type="text">
-
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">เบอร์โทรศัพท์</label>
-                <input class="form-control" name="member_phone" type="text" value="{{Auth::user()->user_phone}}" >               
-              </div>   
-                            
+                <div class="col-md-6">
+                  <label class="form-label">ชื่อหน่วยงาน/บริษัท (ถ้ามี)</label>
+                  <input class="form-control" name="member_company" type="text">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">เบอร์โทรศัพท์</label>
+                  <input class="form-control" name="member_phone" type="text" value="{{Auth::user()->user_phone}}" >               
+                </div>                               
             </div>
 
                         <div class="row">

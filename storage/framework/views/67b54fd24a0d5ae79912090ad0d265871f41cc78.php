@@ -19,7 +19,13 @@
 
                 <div class="card">   
                     <div class="card-body">
-                       
+
+                        <?php if(session('success')): ?>
+                        <div class="alert alert-success" role="alert">
+                            <b><?php echo e(session('success')); ?></b>
+                        </div>
+                        <?php endif; ?>
+                        
                         <table class="cell-border hover" id="basic-1">
                             <thead>
                                 <tr>

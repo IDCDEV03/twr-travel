@@ -62,6 +62,13 @@ class UserController extends Controller
       'created_at' => Carbon::now()
     ]);
 
+    DB::table('users')
+    ->where('id', '=', $request->member_id)
+    ->update([
+    'user_phone' => $request->member_phone,
+    'updated_at' => Carbon::now()
+    ]);
+  
     //Line_Alert
     $msg_alrert = "มีรายการสั่งจองแพ็คเกจทัวร์";    
     $this->LineAlert($msg_alrert);

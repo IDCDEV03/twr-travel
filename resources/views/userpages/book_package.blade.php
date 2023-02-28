@@ -60,6 +60,16 @@
                 </div>
               </div>
 @endforeach
+<div class="row">
+  <div class="col">
+    <div class="mb-3">
+      <label class="form-label">เบอร์โทรศัพท์ 
+        <span class="text-danger">*</span> 
+      </label>
+      <input class="form-control" type="number" name="member_phone" placeholder="ระบุเป็นตัวเลขเท่านั้น" required>
+    </div>
+  </div>
+</div>
 @foreach ($package_all as $item)
               <div class="row">
                 <div class="col">

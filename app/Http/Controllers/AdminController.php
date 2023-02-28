@@ -529,26 +529,6 @@ class AdminController extends Controller
     return redirect()->route('booking_chk')->with('success', "ตรวจสอบยอดชำระเรียบร้อยแล้ว");
   }
 
-  public function user_data()
-  {
-    $user_data = DB::table('users')
-      ->where('is_admin', '=', '0')
-      ->get();
-    return view('admin.user_data', compact('user_data'));
-  }
-
-  public function user_data_booking($id)
-  {
-    $user_data_booking = DB::table('member_booking_packages')
-      ->join('package_tours', 'member_booking_packages.package_id', '=', 'package_tours.package_id')
-      ->where('member_id', '=', $id)
-      ->get();
-
-    $user_profile = DB::table('users')
-      ->where('id', '=', $id)
-      ->get();
-    return view('admin.user_detail', compact('user_data_booking', 'user_profile'));
-  }
 
   public function admin_setting_condition ($id)
   {
@@ -812,5 +792,38 @@ class AdminController extends Controller
     Mail::to($email)->send(new ConfirmPayment_Package2($user_email));
   }
 
+//USER
+public function user_data()
+{
+  $user_data = DB::table('users')
+    ->where('is_admin', '=', '0')
+    ->get();
+  return view('admin.user_data', compact('user_data'));
+}
+
+public function user_data_booking($id)
+{
+  $user_data_booking = DB::table('member_booking_packages')
+    ->join('package_tours', 'member_booking_packages.package_id', '=', 'package_tours.package_id')
+    ->where('member_id', '=', $id)
+    ->get();
+
+  $user_profile = DB::table('users')
+    ->where('id', '=', $id)
+    ->get();
+  return view('admin.user_detail', compact('user_data_booking', 'user_profile'));
+}
+
+public function delete_user($id)
+  {
+    DB::table('users')
+    ->leftjoin('user_payments', 'users.id','=','user_payments.user_id')
+    ->leftjoin('user_car_rents', 'users.id' ,'=', 'user_car_rents.user_id')
+    ->leftJoin('member_booking_packages','users.id','=','member_booking_packages.member_id')
+    ->leftJoin('car_rental_payments','users.id','car_rental_payments.member_id')
+    ->where('users.id', '=', $id)
+    ->delete();
+    return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อยแล้ว");
+  }
 
 }

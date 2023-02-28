@@ -59,6 +59,16 @@
                 </div>
               </div>
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+<div class="row">
+  <div class="col">
+    <div class="mb-3">
+      <label class="form-label">เบอร์โทรศัพท์ 
+        <span class="text-danger">*</span> 
+      </label>
+      <input class="form-control" type="number" name="member_phone" placeholder="ระบุเป็นตัวเลขเท่านั้น" required>
+    </div>
+  </div>
+</div>
 <?php $__currentLoopData = $package_all; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <div class="row">
                 <div class="col">
