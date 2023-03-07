@@ -18,4 +18,6 @@
 <!-- Responsive css-->
 <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/css/responsive.css')); ?>">
 
+
+
 <?php /**PATH C:\xampp\htdocs\twr_travel\resources\views/layouts/simple/css.blade.php ENDPATH**/ ?>

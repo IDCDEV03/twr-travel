@@ -10,6 +10,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/css/banks.css')); ?>">
 
 <style>
 body {
@@ -201,7 +202,7 @@ div {
                                           <label>มัดจำ                     
                                             <?php if($item->booking_status == '1' OR $item->booking_status == '2'): ?>
                                             (กรุณาชำระภายในวันที่ 
-                                            <?php echo e(Carbon::parse($item->created_at)->addDays(7)->format('d/m/Y')); ?>
+                                            <?php echo e(Carbon::parse($item->created_at)->addDays(3)->format('d/m/Y')); ?>
 
                                             )
                                         <?php elseif($item->booking_status == '5' OR $item->booking_status == '7'): ?>
@@ -227,8 +228,8 @@ div {
                                             <?php if($item->booking_status == '7'): ?>
                                             (ชำระเงินเรียบร้อยแล้ว)
                                             <?php else: ?>
-                                            (ก่อนวันเดินทาง 10 วัน ภายในวันที่
-                                            <?php echo e(Carbon::parse($item->date_start)->addDays(-10)->format('d/m/Y')); ?>
+                                            (ก่อนวันเดินทาง 15 วัน ภายในวันที่
+                                            <?php echo e(Carbon::parse($item->date_start)->addDays(-15)->format('d/m/Y')); ?>
 
                                             )
                                             <?php endif; ?>
@@ -291,10 +292,31 @@ div {
                                   <ul>
                                     <li>โอนชำระผ่านบัญชี</li>
                                     <?php $__currentLoopData = $data_bank; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><?php echo e($row->bank_name); ?>
+                                    <li>
+                                  <?php
+                                  $bank_name = $row->bank_name;
+                                  ?> 
+                                   <?php if($bank_name == 'ธนาคารกรุงไทย'): ?>
+                                   <img src="<?php echo e(asset('svg/ktb.png')); ?>" width="22px">
+                                   <?php elseif($bank_name == 'ธนาคารกสิกรไทย'): ?>
+                                   <img src="<?php echo e(asset('svg/kbank.png')); ?>" width="22px">
+                                   <?php elseif($bank_name == 'ธนาคารกรุงเทพ'): ?>
+                                   <img src="<?php echo e(asset('svg/bbl.png')); ?>" width="22px">
+                                   <?php elseif($bank_name == 'ธนาคารทีเอ็มบีธนชาต'): ?>
+                                   <img src="<?php echo e(asset('svg/ttb.png')); ?>" width="22px">
+                                   <?php elseif($bank_name == 'ธนาคารไทยพาณิชย์'): ?>
+                                   <img src="<?php echo e(asset('svg/scb.png')); ?>" width="22px">
+                                   <?php elseif($bank_name == 'ธนาคารกรุงศรีอยุธยา'): ?>
+                                   <img src="<?php echo e(asset('svg/bay.png')); ?>" width="22px">
+                                   <?php elseif($bank_name == 'ธนาคารยูโอบี'): ?>
+                                   <img src="<?php echo e(asset('svg/uob.png')); ?>" width="22px">
+                                   <?php elseif($bank_name == 'ธนาคารออมสิน'): ?>
+                                   <img src="<?php echo e(asset('svg/gsb.png')); ?>" width="22px">
+                                   <?php endif; ?>
+                                      <?php echo e($row->bank_name); ?>
 
-                                        /
-                                        เลขที่บัญชี : <?php echo e($row->account_number); ?> /                                 ชื่อบัญชี : <?php echo e($row->bank_account_name); ?> /                        
+                                        |
+                                        เลขที่บัญชี : <?php echo e($row->account_number); ?> /                                ชื่อบัญชี : <?php echo e($row->bank_account_name); ?> |                        
                                     <?php echo e($row->bank_branch); ?>                             
                                     </li>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  

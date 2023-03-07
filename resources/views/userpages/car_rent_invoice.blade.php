@@ -279,7 +279,28 @@ div {
                                   <ul>
                                       <li>โอนชำระผ่านบัญชี</li>
                                       @foreach ($data_bank as $row)
-                                      <li>{{$row->bank_name}}
+                                      <li>
+                                        @php
+                                        $bank_name = $row->bank_name;
+                                        @endphp 
+                                         @if ($bank_name == 'ธนาคารกรุงไทย')
+                                         <img src="{{ asset('svg/ktb.png')}}" width="22px">
+                                         @elseif ($bank_name == 'ธนาคารกสิกรไทย')
+                                         <img src="{{ asset('svg/kbank.png')}}" width="22px">
+                                         @elseif ($bank_name == 'ธนาคารกรุงเทพ')
+                                         <img src="{{ asset('svg/bbl.png')}}" width="22px">
+                                         @elseif ($bank_name == 'ธนาคารทีเอ็มบีธนชาต')
+                                         <img src="{{ asset('svg/ttb.png')}}" width="22px">
+                                         @elseif ($bank_name == 'ธนาคารไทยพาณิชย์')
+                                         <img src="{{ asset('svg/scb.png')}}" width="22px">
+                                         @elseif ($bank_name == 'ธนาคารกรุงศรีอยุธยา')
+                                         <img src="{{ asset('svg/bay.png')}}" width="22px">
+                                         @elseif ($bank_name == 'ธนาคารยูโอบี')
+                                         <img src="{{ asset('svg/uob.png')}}" width="22px">
+                                         @elseif ($bank_name == 'ธนาคารออมสิน')
+                                         <img src="{{ asset('svg/gsb.png')}}" width="22px">
+                                         @endif
+                                        {{$row->bank_name}}
                                           /
                                           เลขที่บัญชี : {{$row->account_number}} /                                 ชื่อบัญชี : {{$row->bank_account_name}} /                        
                                       {{$row->bank_branch}}                             

@@ -288,7 +288,28 @@ div {
                                   <ul>
                                       <li>โอนชำระผ่านบัญชี</li>
                                       <?php $__currentLoopData = $data_bank; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                      <li><?php echo e($row->bank_name); ?>
+                                      <li>
+                                        <?php
+                                        $bank_name = $row->bank_name;
+                                        ?> 
+                                         <?php if($bank_name == 'ธนาคารกรุงไทย'): ?>
+                                         <img src="<?php echo e(asset('svg/ktb.png')); ?>" width="22px">
+                                         <?php elseif($bank_name == 'ธนาคารกสิกรไทย'): ?>
+                                         <img src="<?php echo e(asset('svg/kbank.png')); ?>" width="22px">
+                                         <?php elseif($bank_name == 'ธนาคารกรุงเทพ'): ?>
+                                         <img src="<?php echo e(asset('svg/bbl.png')); ?>" width="22px">
+                                         <?php elseif($bank_name == 'ธนาคารทีเอ็มบีธนชาต'): ?>
+                                         <img src="<?php echo e(asset('svg/ttb.png')); ?>" width="22px">
+                                         <?php elseif($bank_name == 'ธนาคารไทยพาณิชย์'): ?>
+                                         <img src="<?php echo e(asset('svg/scb.png')); ?>" width="22px">
+                                         <?php elseif($bank_name == 'ธนาคารกรุงศรีอยุธยา'): ?>
+                                         <img src="<?php echo e(asset('svg/bay.png')); ?>" width="22px">
+                                         <?php elseif($bank_name == 'ธนาคารยูโอบี'): ?>
+                                         <img src="<?php echo e(asset('svg/uob.png')); ?>" width="22px">
+                                         <?php elseif($bank_name == 'ธนาคารออมสิน'): ?>
+                                         <img src="<?php echo e(asset('svg/gsb.png')); ?>" width="22px">
+                                         <?php endif; ?>
+                                        <?php echo e($row->bank_name); ?>
 
                                           /
                                           เลขที่บัญชี : <?php echo e($row->account_number); ?> /                                 ชื่อบัญชี : <?php echo e($row->bank_account_name); ?> /                        
