@@ -50,6 +50,9 @@
                             <li>
                                 <a href="{{ route('admin.bank') }}">ข้อมูลธนาคาร</a>
                             </li>
+                            <li>
+                                <a href="#">รายงานยอดขาย</a>
+                            </li>
                         </ul>
                     </li>
 

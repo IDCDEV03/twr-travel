@@ -137,7 +137,7 @@
               
                       </div>
                       <div class="col-md-6">
-                        <label class="form-label">จำนวนรถที่ต้องการใช้</label>
+                        <label class="form-label">จำนวนรถที่ต้องการใช้ (คัน)</label>
                         <input class="form-control" type="number" name="number_of_car" >               
                       </div>    
                                      

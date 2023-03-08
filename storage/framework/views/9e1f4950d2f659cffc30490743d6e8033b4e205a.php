@@ -51,6 +51,9 @@
                             <li>
                                 <a href="<?php echo e(route('admin.bank')); ?>">ข้อมูลธนาคาร</a>
                             </li>
+                            <li>
+                                <a href="#">รายงานยอดขาย</a>
+                            </li>
                         </ul>
                     </li>
 

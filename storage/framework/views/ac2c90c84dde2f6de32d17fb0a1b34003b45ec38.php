@@ -96,8 +96,10 @@
                                   
                                     <tr>
                                         <td> <b>วันที่เดินทางไป-กลับ &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                                        <td class="txt-success">
-                                            <?php echo e(Carbon\Carbon::parse($item->date_start)->format('d/m/Y')); ?> - <?php echo e(Carbon\Carbon::parse($item->date_end)->format('d/m/Y')); ?>
+                                        <td class="txt-info">
+                                           <?php echo e(formatDateThai($item->date_start)); ?>
+
+                                            - <?php echo e(formatDateThai($item->date_end)); ?>
 
                                         </td>
                                     </tr>

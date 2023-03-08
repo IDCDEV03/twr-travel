@@ -95,8 +95,9 @@
                                   
                                     <tr>
                                         <td> <b>วันที่เดินทางไป-กลับ &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                                        <td class="txt-success">
-                                            {{ Carbon\Carbon::parse($item->date_start)->format('d/m/Y') }} - {{ Carbon\Carbon::parse($item->date_end)->format('d/m/Y') }}
+                                        <td class="txt-info">
+                                           {{formatDateThai($item->date_start)}}
+                                            - {{formatDateThai($item->date_end)}}
                                         </td>
                                     </tr>
                                     <tr>

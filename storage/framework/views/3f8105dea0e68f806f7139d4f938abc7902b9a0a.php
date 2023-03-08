@@ -14,6 +14,7 @@
 <style>
 body {
   background-color: #eee;
+  font-size: 16px;
 }
 
 div {
@@ -117,7 +118,8 @@ div {
 
                               </span>
                               <br>
-                                วันที่: <span>
+                                วันที่สั่งจอง: <span>
+                                 
                                   <?php echo e(Carbon\Carbon::parse($item->created_at)->format('d/m/Y')); ?>
 
       
@@ -159,8 +161,8 @@ div {
                                         <td class="item">
                                             <h6 class="p-2 mb-0">คำอธิบาย</h6>
                                         </td>
-                                        <td ><h6 class="p-2 mb-0">มัดจำ (บาท)</h6></td>
-                                        <td class="Rate">
+                                        <td align="middle"><h6 class="p-2 mb-0">มัดจำ (บาท)</h6></td>
+                                        <td align="middle">
                                             <h6 class="p-2 mb-0">ราคารวม (บาท)</h6>
                                         </td>
                                     </tr>
@@ -176,10 +178,10 @@ div {
 
                                                 <br>
                                                 วันที่เดินทางไป-กลับ :
-                                                <?php echo e(Carbon\Carbon::parse($item->date_start)->format('d/m/Y')); ?>
+                                                <?php echo e(formatDateThai($item->date_start)); ?>
 
                                                 -
-                                                <?php echo e(Carbon\Carbon::parse($item->date_end)->format('d/m/Y')); ?>
+                                                <?php echo e(formatDateThai($item->date_end)); ?>
 
                                             </label>
                                         </td>
@@ -200,11 +202,11 @@ div {
                                             <label>มัดจำ                     
                                               <?php if($item->booking_status == '1' OR $item->booking_status == '2'): ?>
                                               (กรุณาชำระภายในวันที่ 
-                                              <?php echo e(Carbon::parse($item->created_at)->addDays(7)->format('d/m/Y')); ?>
+                                              <?php echo e(Carbon::parse($item->created_at)->addDays(3)->format('d/m/Y')); ?>
 
                                               )
                                           <?php elseif($item->booking_status == '5' OR $item->booking_status == '7'): ?>
-                                          (ชำระเงินเรียบร้อยแล้ว)
+                                          <span style="color:red">(ชำระเงินเรียบร้อยแล้ว)</span> 
                                           <?php endif; ?></label>
                                         </td>
                         
@@ -224,10 +226,11 @@ div {
                                         <td>
                                           <label>ชำระส่วนที่เหลือ 
                                             <?php if($item->booking_status == '7'): ?>
-                                            (ชำระเงินเรียบร้อยแล้ว)
+                                            <span style="color:red">
+                                            (ชำระเงินเรียบร้อยแล้ว)</span>
                                             <?php else: ?>
-                                            (ก่อนวันเดินทาง 10 วัน ภายในวันที่
-                                            <?php echo e(Carbon::parse($item->date_start)->addDays(-10)->format('d/m/Y')); ?>
+                                            (ก่อนวันเดินทาง 15 วัน ภายในวันที่
+                                            <?php echo e(Carbon::parse($item->date_start)->addDays(-15)->format('d/m/Y')); ?>
 
                                             )
                                             <?php endif; ?>
@@ -274,9 +277,20 @@ div {
                                         <td align="middle" class="payment" colspan="2">
                                           <?php echo e($total_price); ?> บาท
                                         </td>
+                                        <tr>
+                                          <td >ตัวอักษร</td>
+                                        
+                                          <td align="right" colspan="3" class="fs-14"> 
+                                            ( <?php
+                                            echo num2wordsThai($item->total_price).'บาทถ้วน'
+                                            ;
+                                            ?>  )
+                                            </td>
+                                        </tr>
                                         <?php endif; ?>
                                         
                                     </tr>
+                                  
                                 </tbody>
                             </table>
                         </div>
@@ -288,7 +302,28 @@ div {
                                   <ul>
                                     <li>โอนชำระผ่านบัญชี</li>
                                     <?php $__currentLoopData = $data_bank; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><?php echo e($row->bank_name); ?>
+                                    <li class="fs-15">
+                                      <?php
+                                      $bank_name = $row->bank_name;
+                                      ?> 
+                                       <?php if($bank_name == 'ธนาคารกรุงไทย'): ?>
+                                       <img src="<?php echo e(asset('svg/ktb.png')); ?>" width="22px">
+                                       <?php elseif($bank_name == 'ธนาคารกสิกรไทย'): ?>
+                                       <img src="<?php echo e(asset('svg/kbank.png')); ?>" width="22px">
+                                       <?php elseif($bank_name == 'ธนาคารกรุงเทพ'): ?>
+                                       <img src="<?php echo e(asset('svg/bbl.png')); ?>" width="22px">
+                                       <?php elseif($bank_name == 'ธนาคารทีเอ็มบีธนชาต'): ?>
+                                       <img src="<?php echo e(asset('svg/ttb.png')); ?>" width="22px">
+                                       <?php elseif($bank_name == 'ธนาคารไทยพาณิชย์'): ?>
+                                       <img src="<?php echo e(asset('svg/scb.png')); ?>" width="22px">
+                                       <?php elseif($bank_name == 'ธนาคารกรุงศรีอยุธยา'): ?>
+                                       <img src="<?php echo e(asset('svg/bay.png')); ?>" width="22px">
+                                       <?php elseif($bank_name == 'ธนาคารยูโอบี'): ?>
+                                       <img src="<?php echo e(asset('svg/uob.png')); ?>" width="22px">
+                                       <?php elseif($bank_name == 'ธนาคารออมสิน'): ?>
+                                       <img src="<?php echo e(asset('svg/gsb.png')); ?>" width="22px">
+                                       <?php endif; ?>
+                                      <?php echo e($row->bank_name); ?>
 
                                         /
                                         เลขที่บัญชี : <?php echo e($row->account_number); ?> /                                 ชื่อบัญชี : <?php echo e($row->bank_account_name); ?> /                        
@@ -303,12 +338,16 @@ div {
                             <div class="col-md-4">
                               <?php if($item->booking_status == '5'): ?>
                           
-                               <strong>หมายเหตุ : ดำเนินการชำระมัดจำงวดที่ 1 แล้ว 
+                               <strong>
+                                หมายเหตุ : ชำระเงินมัดจำงวดที่ 1 แล้ว 
                                </strong>
                             
                                <?php elseif($item->booking_status == '7'): ?>
-                               <strong>หมายเหตุ : ดำเนินการชำระเงินเรียบร้อยแล้ว 
-                              </strong>
+                               <strong>
+                                <span style="color:red">
+                                หมายเหตุ : ดำเนินการชำระเงินเรียบร้อยแล้ว 
+                                </span>
+                                </strong>
                            
                                <?php endif; ?>
                             </div>

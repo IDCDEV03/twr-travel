@@ -14,6 +14,7 @@
 <style>
 body {
   background-color: #eee;
+  font-size: 16px;
 }
 
 div {
@@ -116,7 +117,8 @@ div {
                                   {{ $item->quotation_id }}
                               </span>
                               <br>
-                                วันที่: <span>
+                                วันที่สั่งจอง: <span>
+                                 
                                   {{ Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
       
                               </span><br> ใช้ได้ถึง:
@@ -157,8 +159,8 @@ div {
                                         <td class="item">
                                             <h6 class="p-2 mb-0">คำอธิบาย</h6>
                                         </td>
-                                        <td ><h6 class="p-2 mb-0">มัดจำ (บาท)</h6></td>
-                                        <td class="Rate">
+                                        <td align="middle"><h6 class="p-2 mb-0">มัดจำ (บาท)</h6></td>
+                                        <td align="middle">
                                             <h6 class="p-2 mb-0">ราคารวม (บาท)</h6>
                                         </td>
                                     </tr>
@@ -172,9 +174,9 @@ div {
                                                 จำนวนที่นั่ง : {{ $item->number_of_travel }}
                                                 <br>
                                                 วันที่เดินทางไป-กลับ :
-                                                {{ Carbon\Carbon::parse($item->date_start)->format('d/m/Y') }}
+                                                {{formatDateThai($item->date_start)}}
                                                 -
-                                                {{ Carbon\Carbon::parse($item->date_end)->format('d/m/Y') }}
+                                                {{formatDateThai($item->date_end)}}
                                             </label>
                                         </td>
                                         <td></td>
@@ -197,7 +199,7 @@ div {
                                               {{Carbon::parse($item->created_at)->addDays(3)->format('d/m/Y')}}
                                               )
                                           @elseif ($item->booking_status == '5' OR $item->booking_status == '7')
-                                          (ชำระเงินเรียบร้อยแล้ว)
+                                          <span style="color:red">(ชำระเงินเรียบร้อยแล้ว)</span> 
                                           @endif</label>
                                         </td>
                         
@@ -217,7 +219,8 @@ div {
                                         <td>
                                           <label>ชำระส่วนที่เหลือ 
                                             @if ($item->booking_status == '7')
-                                            (ชำระเงินเรียบร้อยแล้ว)
+                                            <span style="color:red">
+                                            (ชำระเงินเรียบร้อยแล้ว)</span>
                                             @else
                                             (ก่อนวันเดินทาง 15 วัน ภายในวันที่
                                             {{Carbon::parse($item->date_start)->addDays(-15)->format('d/m/Y')}}
@@ -265,9 +268,20 @@ div {
                                         <td align="middle" class="payment" colspan="2">
                                           {{$total_price}} บาท
                                         </td>
+                                        <tr>
+                                          <td >ตัวอักษร</td>
+                                        
+                                          <td align="right" colspan="3" class="fs-14"> 
+                                            ( @php
+                                            echo num2wordsThai($item->total_price).'บาทถ้วน'
+                                            ;
+                                            @endphp  )
+                                            </td>
+                                        </tr>
                                         @endif
                                         
                                     </tr>
+                                  
                                 </tbody>
                             </table>
                         </div>
@@ -279,7 +293,7 @@ div {
                                   <ul>
                                     <li>โอนชำระผ่านบัญชี</li>
                                     @foreach ($data_bank as $row)
-                                    <li>
+                                    <li class="fs-15">
                                       @php
                                       $bank_name = $row->bank_name;
                                       @endphp 
@@ -314,12 +328,16 @@ div {
                             <div class="col-md-4">
                               @if($item->booking_status == '5')
                           
-                               <strong>หมายเหตุ : ดำเนินการชำระมัดจำงวดที่ 1 แล้ว 
+                               <strong>
+                                หมายเหตุ : ชำระเงินมัดจำงวดที่ 1 แล้ว 
                                </strong>
                             
                                @elseif ($item->booking_status == '7')
-                               <strong>หมายเหตุ : ดำเนินการชำระเงินเรียบร้อยแล้ว 
-                              </strong>
+                               <strong>
+                                <span style="color:red">
+                                หมายเหตุ : ดำเนินการชำระเงินเรียบร้อยแล้ว 
+                                </span>
+                                </strong>
                            
                                @endif
                             </div>
