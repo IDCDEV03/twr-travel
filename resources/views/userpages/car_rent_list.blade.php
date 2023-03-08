@@ -44,7 +44,8 @@
                             <td>{{$item->car_type}}</td>
                             <td>{{$item->start_place}}-{{$item->end_place}}</td>         
                             <td>
-                            {{ Carbon\Carbon::parse($item->created_at)->thaidate() }}
+                                {{ formatDateThai($item->start_travel)}}
+                        
                             </td>
                             <td>
 
