@@ -346,17 +346,17 @@ class UserController extends Controller
 
   public function add_car_rent(Request $request)
   {
-      $ิrent_id = Str::random(8);
+      $ิrent_id = Str::random(8);    
+      $start_travel = Carbon::createFromFormat('d-m-Y', $request->start_travel)->format('Y-m-d');
+      $back_travel = Carbon::createFromFormat('d-m-Y', $request->back_travel)->format('Y-m-d');
       $data = $request->all();
       $data['created_at'] = Carbon::now();
       $data['rent_id'] = $ิrent_id;
       $data['rent_status'] = '0';
+      $data['start_travel'] = $start_travel;
+      $data['back_travel'] = $back_travel;
 
       user_car_rent::create($data);
-
-      //Line_Alert  
-      $msg_alrert = "มีรายการสั่งจองบริการเช่ารถ";
-      $this->LineAlert($msg_alrert);
 
       return redirect()->route('user.car-rental-list')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
   }

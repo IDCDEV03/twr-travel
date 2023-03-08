@@ -12,7 +12,6 @@
     <h3>บริการเช่ารถ</h3>
 @endsection
 
-
 @section('content')
     <div class="container-fluid">
 
@@ -90,11 +89,11 @@
                           </tr>
                           <tr>
                             <td> <b>วันที่เดินทางไป &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                            <td> {{ Carbon\Carbon::parse($item->start_travel)->format('d/m/Y') }}</td>
+                            <td> {{ Carbon\Carbon::parse($item->start_travel)->thaidate() }}</td>
                           </tr>
                           <tr>
                             <td> <b>วันที่เดินทางกลับ &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                            <td>{{ Carbon\Carbon::parse($item->back_travel)->format('d/m/Y') }}</td>
+                            <td>{{ Carbon\Carbon::parse($item->back_travel)->thaidate() }}</td>
                           </tr>
                       </tbody>
                     </table>

@@ -194,7 +194,7 @@ div {
                                             <label>มัดจำ                     
                                               @if ($item->booking_status == '1' OR $item->booking_status == '2')
                                               (กรุณาชำระภายในวันที่ 
-                                              {{Carbon::parse($item->created_at)->addDays(7)->format('d/m/Y')}}
+                                              {{Carbon::parse($item->created_at)->addDays(3)->format('d/m/Y')}}
                                               )
                                           @elseif ($item->booking_status == '5' OR $item->booking_status == '7')
                                           (ชำระเงินเรียบร้อยแล้ว)
@@ -219,8 +219,8 @@ div {
                                             @if ($item->booking_status == '7')
                                             (ชำระเงินเรียบร้อยแล้ว)
                                             @else
-                                            (ก่อนวันเดินทาง 10 วัน ภายในวันที่
-                                            {{Carbon::parse($item->date_start)->addDays(-10)->format('d/m/Y')}}
+                                            (ก่อนวันเดินทาง 15 วัน ภายในวันที่
+                                            {{Carbon::parse($item->date_start)->addDays(-15)->format('d/m/Y')}}
                                             )
                                             @endif
                                         </label>  

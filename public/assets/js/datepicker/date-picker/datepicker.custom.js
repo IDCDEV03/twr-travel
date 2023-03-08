@@ -4,13 +4,13 @@
 //Minimum and Maxium Date
     $('#minMaxExample').datepicker({
         language: 'en',        
-        dateFormat: 'yyyy-mm-dd',
-        minDate: new Date() // Now can select only dates, which goes after today
+        dateFormat: 'dd-mm-yyyy',
+        minDate   : new Date() 
     })
 //Minimum and Maxium Date
 $('#minMaxExample2').datepicker({
     language: 'en',
-    dateFormat: 'yyyy-mm-dd',
+    dateFormat: 'dd-mm-yyyy',
     minDate: new Date() // Now can select only dates, which goes after today
 })
 //Disable Days of week

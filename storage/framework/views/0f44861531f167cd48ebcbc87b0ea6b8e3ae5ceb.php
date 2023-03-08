@@ -44,7 +44,7 @@
                             <td><?php echo e($item->car_type); ?></td>
                             <td><?php echo e($item->start_place); ?>-<?php echo e($item->end_place); ?></td>         
                             <td>
-                            <?php echo e(Carbon\Carbon::parse($item->created_at)->format('d/m/Y')); ?>
+                            <?php echo e(Carbon\Carbon::parse($item->created_at)->thaidate()); ?>
 
                             </td>
                             <td>

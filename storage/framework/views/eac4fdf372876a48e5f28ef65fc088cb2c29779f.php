@@ -12,7 +12,6 @@
     <h3>บริการเช่ารถ</h3>
 <?php $__env->stopSection(); ?>
 
-
 <?php $__env->startSection('content'); ?>
     <div class="container-fluid">
 
@@ -91,11 +90,11 @@
                           </tr>
                           <tr>
                             <td> <b>วันที่เดินทางไป &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                            <td> <?php echo e(Carbon\Carbon::parse($item->start_travel)->format('d/m/Y')); ?></td>
+                            <td> <?php echo e(Carbon\Carbon::parse($item->start_travel)->thaidate()); ?></td>
                           </tr>
                           <tr>
                             <td> <b>วันที่เดินทางกลับ &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                            <td><?php echo e(Carbon\Carbon::parse($item->back_travel)->format('d/m/Y')); ?></td>
+                            <td><?php echo e(Carbon\Carbon::parse($item->back_travel)->thaidate()); ?></td>
                           </tr>
                       </tbody>
                     </table>
