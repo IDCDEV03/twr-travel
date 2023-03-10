@@ -70,8 +70,8 @@ class UserController extends Controller
     ]);
   
     //Line_Alert
-    $msg_alrert = "มีรายการสั่งจองแพ็คเกจทัวร์";    
-    $this->LineAlert($msg_alrert);
+    //$msg_alrert = "มีรายการสั่งจองแพ็คเกจทัวร์";    
+    //$this->LineAlert($msg_alrert);
 
     //Email_Notify
     $this->booking_mail($request->member_id);
@@ -199,8 +199,8 @@ class UserController extends Controller
       ]);    
 
     //Line_Alert
-    $msg_alrert = "มีการแจ้งโอนเงินแพ็คเกจทัวร์";
-    $this->LineAlert($msg_alrert);
+    //$msg_alrert = "มีการแจ้งโอนเงินแพ็คเกจทัวร์";
+    //$this->LineAlert($msg_alrert);
 
     $payment_slip->move($upload_location, $payment_slip_name);
     return redirect()->route('booking_status')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
@@ -358,6 +358,10 @@ class UserController extends Controller
 
       user_car_rent::create($data);
 
+        //Line_Alert  
+        //$msg_alrert = "มีรายการสั่งจองบริการเช่ารถ";
+        //$this->LineAlert($msg_alrert);
+
       return redirect()->route('user.car-rental-list')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
   }
 
@@ -420,8 +424,8 @@ class UserController extends Controller
     ]);
     
     //Line_Alert  
-    $msg_alrert = "มีการแจ้งโอนเงินบริการเช่ารถ";
-    $this->LineAlert($msg_alrert);
+    //$msg_alrert = "มีการแจ้งโอนเงินบริการเช่ารถ \n ชื่อ:";
+    //$this->LineAlert($msg_alrert);
 
     $payment_slip->move($upload_location, $payment_slip_name);
     return redirect()->route('user.car-rental-list')->with('success', "บันทึกข้อมูลเรียบร้อยแล้ว");
