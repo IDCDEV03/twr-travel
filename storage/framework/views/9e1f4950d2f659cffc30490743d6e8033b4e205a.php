@@ -50,10 +50,7 @@
                             </li>            
                             <li>
                                 <a href="<?php echo e(route('admin.bank')); ?>">ข้อมูลธนาคาร</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo e(route('admin.report')); ?>">รายงานยอดขาย</a>
-                            </li>
+                            </li>                          
                         </ul>
                     </li>
 

@@ -83,8 +83,6 @@ Route::get('/admin/car_rental_invoice/{id}', $controller_path . '\AdminControlle
 Route::get('/admin/car_rental_payment_chk/{id}', $controller_path . '\AdminController@car_rental_payment_chk')->name('admin.car_rent_payment');
 Route::get('/admin/car_update_payment/{id}/{pay_num}', $controller_path . '\AdminController@car_update_payment')->name('admin.car_update_payment');
 
-//admin_report
-Route::get('/admin/report', $controller_path . '\AdminController@admin_report')->name('admin.report');
 });
 
 
