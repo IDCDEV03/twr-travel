@@ -859,7 +859,6 @@ public function delete_user($id)
     $file2 = $delete_file_pk->package_file;
     File::delete($file1,$file2);
 
-
     DB::table('package_tours')
     ->leftJoin('member_booking_packages','package_tours.package_id','=','member_booking_packages.package_id')
     ->leftJoin('booking_quotations','package_tours.package_id','=','booking_quotations.package_id')
@@ -868,6 +867,12 @@ public function delete_user($id)
     ->delete();
 
     return redirect()->back()->with('success', "ลบข้อมูลเรียบร้อยแล้ว");
+  }
+
+  //admin_report
+  public function admin_report()
+  {
+    return view('admin.admin_report');
   }
 
 }

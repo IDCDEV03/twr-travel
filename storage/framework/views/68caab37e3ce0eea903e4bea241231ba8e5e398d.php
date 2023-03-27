@@ -201,12 +201,14 @@ div {
                                         <td class="txt-secondary">
                                           <label>มัดจำ                     
                                             <?php if($item->booking_status == '1' OR $item->booking_status == '2'): ?>
+                                            <span style="color:red">
                                             (กรุณาชำระภายในวันที่ 
                                             <?php echo e(Carbon::parse($item->created_at)->addDays(3)->format('d/m/Y')); ?>
 
-                                            )
+                                            ) </span>
                                         <?php elseif($item->booking_status == '5' OR $item->booking_status == '7'): ?>
-                                        (ชำระเงินเรียบร้อยแล้ว)
+                                        <span style="color:red">
+                                        (ชำระเงินเรียบร้อยแล้ว)</span>
                                         <?php endif; ?></label>
                                         </td>
                         
@@ -226,12 +228,14 @@ div {
                                         <td>
                                           <label>ชำระส่วนที่เหลือ  
                                             <?php if($item->booking_status == '7'): ?>
-                                            (ชำระเงินเรียบร้อยแล้ว)
+                                            <span style="color:red">
+                                            (ชำระเงินเรียบร้อยแล้ว)</span>
                                             <?php else: ?>
+                                            <span style="color:red">
                                             (ก่อนวันเดินทาง 15 วัน ภายในวันที่
                                             <?php echo e(Carbon::parse($item->date_start)->addDays(-15)->format('d/m/Y')); ?>
 
-                                            )
+                                            ) </span>
                                             <?php endif; ?>
                                         </label>  
                                         </td>
@@ -278,6 +282,16 @@ div {
                                             <?php echo e($total_price); ?> บาท
                                           </span>
                                         </td>
+                                        <tr>
+                                          <td >ตัวอักษร</td>
+                                        
+                                          <td align="right" colspan="3" class="fs-14"> 
+                                            ( <?php
+                                            echo num2wordsThai($item->total_price).'บาทถ้วน'
+                                            ;
+                                            ?>  )
+                                            </td>
+                                        </tr>
                                         <?php endif; ?>
                                         
                                     </tr>

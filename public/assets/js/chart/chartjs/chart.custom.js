@@ -222,6 +222,7 @@ var pieOptions = {
 };
 
 
+
 var doughnutData = [
     {
         value: 300,
@@ -255,6 +256,7 @@ var doughnutOptions = {
 };
 var doughnutCtx = document.getElementById("myDoughnutGraph").getContext("2d");
 var myDoughnutChart = new Chart(doughnutCtx).Doughnut(doughnutData, doughnutOptions);
+
 var myLineChart = {
     labels: ["","10", "20", "30", "40", "50", "60", "70", "80"],
     datasets: [{

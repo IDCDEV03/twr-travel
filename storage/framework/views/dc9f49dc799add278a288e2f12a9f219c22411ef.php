@@ -96,11 +96,11 @@
                           </tr>
                           <tr>
                             <td> <b>วันที่เดินทางไป &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                            <td> <?php echo e(Carbon\Carbon::parse($item->start_travel)->format('d/m/Y')); ?></td>
+                            <td> <?php echo e(formatDateThai($item->start_travel)); ?></td>
                           </tr>
                           <tr>
                             <td> <b>วันที่เดินทางกลับ &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                            <td><?php echo e(Carbon\Carbon::parse($item->back_travel)->format('d/m/Y')); ?></td>
+                            <td><?php echo e(formatDateThai($item->back_travel)); ?></td>
                           </tr>
                       </tbody>
                     </table>
