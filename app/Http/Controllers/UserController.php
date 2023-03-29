@@ -88,6 +88,7 @@ class UserController extends Controller
 
   public function LineAlert($msg)
   {
+    //$sToken = "hGoonBimIYNxmIfPnZkNsPViNWaBpSMC0FH3bA1g8o3";
     $sToken = "voGmGu1AvbR9VbDkC0dY2fTLJxQgOUEryUCfxsjGbx7";
     $sMessage = $msg; 
     
