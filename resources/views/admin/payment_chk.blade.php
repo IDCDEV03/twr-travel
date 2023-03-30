@@ -45,7 +45,7 @@
                                             <tr>
                                                 <th scope="row">{{$i++}}</th>
                                                 <td>{{$item->payment_bank}}</td>
-                                                <td>{{number_format($item->payment_price)}}
+                                             <td>{{$item->payment_price}}
                                                 </td>
                                                    
                                                 <td> {{ Carbon\Carbon::parse($item->created_at)->format('d/m/Y H:i') }}</td>
